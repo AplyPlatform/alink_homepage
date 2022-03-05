@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Calming Signal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000" >
+    <link rel="shortcut icon" href="/arink/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css">    
+    <style>
+      body {
+        background-image: url('/cs/assets/back.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm text-center">
+          <br><br>
+          <h1 style="color:#fff">
+            <b>Calming</b> <small style="color:rgb(70, 70, 70)">Signal</small>
+          </h1>          
+        </div>
+      </div>
+      <div class="row" id="fileDropArea">
+        <div class="col-sm">          
+          <div id="dropzone" class="dropzone" style="border: dotted 5px rgb(77, 77, 77);"></div>    
+          <div id="filecontainer"></div>        
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">          
+          <form>
+            <div class="form-group">
+              <br>
+              <label style="color:#fff" for="memoInput">메모</label>
+              <input type="text" class="form-control" name="memoInput" id="memoInput" aria-describedby="memoHelp" placeholder="짧은 기록을 남겨보세요">              
+            </div>                        
+          </form>
+        </div>
+      </div>
+      <div class="row" id="progressArea">        
+        <div class="col-sm text-center">
+          <span style="color:#fff" id="progress"></span>
+          <div class="progress">
+            <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">        
+        <div class="col-sm text-center">
+          <button id="startButton" type="button" class="btn btn-primary btn-block">업로드</button>
+        </div>        
+      </div>
+      <div class="row">        
+        <div class="col-sm text-center">
+          <a href="viewer.html" id="goButton" type="button" class="btn btn-info btn-block">Calming Signal 보기</a>
+        </div>        
+      </div>
+      <div class="row">
+        <div class="col-sm text-center">
+          <br>          
+          <hr size="1" width="100%" color="white">
+          <font size="3" color="white">© 2022 <a href="https://arink.aply.biz/cs/" target="_blank">Calming Signal</a></font>
+        </div>
+      </div>      
+    </div>    
+    <script src="./js/script.js"></script>
+  </body>
+</html>
+
