@@ -100,7 +100,7 @@ function showComments(comments) {
     comments.forEach((d) => {        
         let userIcon = getRandomInt(1, 10);
         contentRow += "<div class='row'>"
-            + "<div class='col-2 text-center'><img src='https://duni.io/arink/cs/assets/" + userIcon + ".png' border='0' width='16px' height='16px'></div>"
+            + "<div class='col-2 text-center'><img src='/cs/assets/" + userIcon + ".png' border='0' width='16px' height='16px'></div>"
             + "<div class='col-10 text-left'>"
             + d.comment
             + "</div>"            
