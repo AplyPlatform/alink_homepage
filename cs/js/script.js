@@ -40,7 +40,7 @@
                 return xhr;
             }                                          
         }).done(function(data) {            
-            location.href = "https://arink.aply.biz/cs/index.html";
+            location.href = "https://arink.aply.biz/cs/viewer.html";
         });
     };      
     // trigger the read from the reader...
