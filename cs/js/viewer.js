@@ -132,7 +132,7 @@ function showComments(comments) {
     
     comments.forEach((d) => {
         let imageContent = "";
-        if ("image" in d && d.image != "") {
+        if ("image" in d && isSet(d.image)) {
             imageContent = "<img src='" + d.image + "' border='0' width='16px' height='16px'>";
         }
         else {
