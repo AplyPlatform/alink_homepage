@@ -36,6 +36,10 @@ function signOut() {
     let auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
       delCookie("dev_kind");
+      delCookie("user_token");
+      delCookie("temp_sns_id");
+      $("#googleLoginBtn").text("Google 계정으로 사용");
+      googleinit();
     });  
 }
 
@@ -83,7 +87,10 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         }
 
         setCookie("user_token", data.token, 1);
-        $("#loginArea").hide();        
+        $("#googleLoginBtn").text("로그아웃");
+        $("#googleLoginBtn").click(function() {
+          signOut();
+        });
     });
 }
 
