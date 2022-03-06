@@ -14,7 +14,7 @@ function showConfirmDialog() {
   $('#askModalLabel').text("Calming Signal - ARink");
   $('#askModalContent').text("Calming Signal 서비스에 가입하시겠습니까?");
   $('#askModalOKButton').text("네");
-  $('#askModalCancelButton').hide();
+  //$('#askModalCancelButton').hide();
 
   $('#askModalOKButton').off('click');
   $('#askModalOKButton').click(function (e) {
