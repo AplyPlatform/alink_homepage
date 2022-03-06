@@ -48,7 +48,12 @@
                 };
                 return xhr;
             }                                          
-        }).done(function(data) {            
+        }).done(function(data) {               
+            if (data.result_code != 0) {         
+              showAlert("오류가 발생하였습니다, 잠시 후 다시 시도해 주세요. (또는 로그아웃 후 로그인)");
+              hideLoader();
+              return;
+            }
             location.href = "https://arink.aply.biz/cs/viewer.html";
         }).fail(function()  {            
             alert("Sorry. Server unavailable. ");
