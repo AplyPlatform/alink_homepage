@@ -122,6 +122,8 @@ function showComments(comments) {
     
     isCommentAreaVisible = true;
     
+    $('#commentReplyArea').empty();
+    
     let contentRow = "<div class='row'><div class='col-12 text-center'>"
                         + "<img src='https://duni.io/arink/cs/images/" + currentContentImage + "' border=0 width='150px'>"
                         + "<br>" + currentMemo
@@ -196,7 +198,6 @@ function getReplyContent() {
     let user_token = getCookie("user_token");
 
     $('#commentArea').show();
-    $('#commentReplyArea').empty();
     showLoader();
 
     var fd = new FormData();
