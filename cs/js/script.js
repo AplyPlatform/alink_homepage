@@ -34,6 +34,7 @@
         fd.append('fileext', fileext);        
         fd.append('memo', $("#memoInput").val());
         fd.append('data', event.target.result);
+        $("#progressArea").show();
         $.ajax({
             type: 'POST',
             url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -53,11 +54,11 @@
               showAlert("오류가 발생하였습니다, 잠시 후 다시 시도해 주세요. (또는 로그아웃 후 로그인)");
               hideLoader();
               return;
-            }
+            }            
             location.href = "https://arink.aply.biz/cs/viewer.html";
         }).fail(function()  {            
             alert("Sorry. Server unavailable. ");
-            hideLoader();
+            hideLoader();            
         }); 
     };      
     // trigger the read from the reader...
@@ -119,6 +120,8 @@
 
 window.onload = () => {
     // first get current user location
+    setDefaultUIStatus();
+    
     navigator.geolocation.getCurrentPosition(function (position) {
         // than use it to load from remote APIs some places nearby
 
