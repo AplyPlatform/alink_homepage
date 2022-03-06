@@ -1,7 +1,7 @@
 
-window.onload = () => {
-        initViewer();        
-};
+$(function() {
+    initViewer();        
+});
 
 let isCommentAreaVisible = false;
 let currentContentId = -1;

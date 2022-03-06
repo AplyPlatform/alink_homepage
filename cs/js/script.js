@@ -116,7 +116,7 @@
     });
   });
 
-window.onload = () => {
+$(function() {
     // first get current user location
     setDefaultUIStatus();
     
@@ -136,4 +136,4 @@ window.onload = () => {
               timeout: 27000,
       }
     );
-};
+});
