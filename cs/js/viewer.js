@@ -33,11 +33,10 @@ function initViewer() {
             }, 
         init: function() {            
             this.el.addEventListener('click', clickListener);
+            getLocationData();
+            hideLoader();
         }
-    });    
-
-    getLocationData();
-    hideLoader();
+    });
 }
 
 const getLocationData = function () {
