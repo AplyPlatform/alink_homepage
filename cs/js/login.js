@@ -16,6 +16,8 @@ window.onload = () => {
       $("#googleLogoutBtn").hide();
       $("#googleLoginBtn").show();
     }
+
+    hideLoader();
 };
 
 function googleinit() {

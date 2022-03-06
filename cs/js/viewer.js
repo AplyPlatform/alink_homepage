@@ -37,6 +37,7 @@ function initViewer() {
     });    
 
     getLocationData();
+    hideLoader();
 }
 
 const getLocationData = function () {
