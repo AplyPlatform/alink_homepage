@@ -133,7 +133,10 @@ function showComments(comments) {
     comments.forEach((d) => {
         let imageContent = "";
         if ("image" in d && d.image != "") {
-            imageContent = "<img src='/cs/assets/" + d.image + ".png' border='0' width='16px' height='16px'>";
+            imageContent = "<img src='" + d.image + "' border='0' width='16px' height='16px'>";
+        }
+        else {
+            imageContent = "<img src='/cs/assets/" + getRandomInt(1,10) + ".png' border='0' width='16px' height='16px'>";
         }
 
         contentRow += "<div class='row'>"
