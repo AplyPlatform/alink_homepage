@@ -5,14 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000" >
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css">    
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/index.css">
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/dropzone.min.css">    
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/dropzone.min.js"></script>    
+    <link rel="manifest" href="manifest.webmanifest">
     <meta property="og:title" content="Calming Signal - ARink" />
-    <meta property="og:image" content="https://arink.aply.biz/assets/images/arink.png" />
+    <meta property="og:image" content="./assets/arink.png" />
     <meta property="og:url" content="https://arink.aply.biz" />
     <meta property="og:site_name" content="Calming Signal - ARink" />
     <meta property="og:description" content="Calming Signal - ARink" />    
@@ -32,7 +33,7 @@
       }
 
       body {
-        background-image: url('/cs/assets/back.png');
+        background-image: url('./assets/back.png');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
@@ -55,7 +56,7 @@
 
       .google-button
       {
-          background-image: url('../assets/images/logo_google.png');    
+          background-image: url('./assets/logo_google.png');    
       }            
 
     </style>
@@ -121,6 +122,14 @@
           <a href="viewer.html" id="goButton" type="button" class="btn btn-info btn-block">Calming Signal 보기</a>
         </div>        
       </div>
+
+      <div class="row">        
+        <div class="col-sm text-center">
+          <br><br>
+          <button class="btn btn-primary btn-block add-button">홈 화면에 추가하기</button>
+        </div>        
+      </div>      
+
       <div class="row">
         <div class="col-sm text-center">
           <br>          
@@ -166,7 +175,7 @@
       </div>
     </div>
     
-    <script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/login.js"></script>    

@@ -1,0 +1,15 @@
+{
+  "background_color": "black",
+  "description": "Calming Signal of ARink Platform (APLY Inc.)",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/cs/assets/arink.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    }
+  ],
+  "name": "Calming Signal",
+  "short_name": "CSignal",
+  "start_url": "/cs/index.html"
+}
