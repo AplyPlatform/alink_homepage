@@ -91,6 +91,7 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         processData: false,
         contentType: false                                                    
     }).done(function(data) {
+        hideLoader();
         if (data.result_code != 0) {
             if (data.reason == "not registered") {
               setCookie("temp_sns_id", token, 1);
@@ -109,11 +110,14 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         setCookie("user_token", data.token, 1);
         $("#googleLogoutBtn").show();
         $("#googleLoginBtn").hide();
+    }).fail(function()  {
+      alert("Sorry. Server unavailable. ");
+      hideLoader();
     });
 }
 
 function tryRegister() {
-
+  showLoader();
   let sns_id = getCookie("temp_sns_id");
   let temp_name = getCookie("temp_name");
   let temp_email = getCookie("temp_email");
@@ -135,6 +139,8 @@ function tryRegister() {
       processData: false,
       contentType: false                                                    
   }).done(function(data) {
+      hideLoader();
+
       if (data.result_code != 0) {
         showAlert("죄송합니다, 회원가입이 실패하였습니다 : " + data.reason);
         return;    
@@ -145,6 +151,9 @@ function tryRegister() {
       $("#googleLoginBtn").hide();   
 
       showAlert("축하드립니다. 성공적으로 가입되었습니다.");
+  }).fail(function()  {
+        alert("Sorry. Server unavailable. ");
+        hideLoader();
   });
 }
 
