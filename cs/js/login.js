@@ -3,12 +3,18 @@
 let googleInitFlag = true;
 window.onload = () => {
     let token = getCookie("user_token");
+    $("#googleLogoutBtn").click(function() {
+      signOut();
+    });
+
     if (isSet(token)) {
       googleInitFlag = false;
-      $("#googleLoginBtn").text("로그아웃");
-      $("#googleLoginBtn").click(function() {
-        signOut();
-      });
+      $("#googleLogoutBtn").show();
+      $("#googleLoginBtn").hide();
+    }
+    else {
+      $("#googleLogoutBtn").hide();
+      $("#googleLoginBtn").show();
     }
 };
 
@@ -48,8 +54,8 @@ function signOut() {
       delCookie("dev_kind");
       delCookie("user_token");
       delCookie("temp_sns_id");
-      $("#googleLoginBtn").text("Google 계정으로 사용");
-      googleinit();
+      $("#googleLogoutBtn").hide();
+      $("#googleLoginBtn").show();
     });  
 }
 
@@ -97,10 +103,8 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         }
 
         setCookie("user_token", data.token, 1);
-        $("#googleLoginBtn").text("로그아웃");
-        $("#googleLoginBtn").click(function() {
-          signOut();
-        });
+        $("#googleLogoutBtn").show();
+        $("#googleLoginBtn").hide();
     });
 }
 
@@ -133,10 +137,8 @@ function tryRegister() {
       }
       
       setCookie("user_token", data.token, 1);
-      $("#googleLoginBtn").text("로그아웃");
-      $("#googleLoginBtn").click(function() {
-        signOut();
-      });    
+      $("#googleLogoutBtn").show();
+      $("#googleLoginBtn").hide();   
 
       showAlert("축하드립니다. 성공적으로 가입되었습니다.");
   });
