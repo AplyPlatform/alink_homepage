@@ -121,9 +121,14 @@ function tryRegister() {
         showAlert("죄송합니다, 회원가입이 실패하였습니다 : " + data.reason);
         return;    
       }
+      
+      setCookie("user_token", data.token, 1);
+      $("#googleLoginBtn").text("로그아웃");
+      $("#googleLoginBtn").click(function() {
+        signOut();
+      });    
 
       showAlert("축하드립니다. 성공적으로 가입되었습니다.");
-      $("#loginArea").hide();        
   });
 }
 
