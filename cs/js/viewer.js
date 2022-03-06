@@ -27,6 +27,16 @@ function initViewer() {
         $("#commentArea").hide();
     });
 
+    AFRAME.registerComponent('raycaster-autorefresh', {
+        init: function () {
+          var el = this.el;
+          this.el.addEventListener('model-loaded', function () {
+            var cursorEl = el.querySelector('[raycaster]');
+            cursorEl.components.raycaster.refreshObjects();
+          });
+        }
+    });
+
     AFRAME.registerComponent('click-handler', {
         schema: {
             txt: {default:'default'}
@@ -283,7 +293,7 @@ function renderPlaces(places) {
         objet.setAttribute("cursor", "rayOrigin:mouse");
         objet.setAttribute("smooth", "10");
         objet.setAttribute("smoothCount", "0.01");
-        objet.setAttribute("smoothThreshold", "5");        
+        objet.setAttribute("smoothThreshold", "5");
          
         objet.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
