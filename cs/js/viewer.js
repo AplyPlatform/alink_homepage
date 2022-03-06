@@ -120,11 +120,7 @@ function showComments(comments) {
     }   
     
     isCommentAreaVisible = true;
-
-    $('#commentArea').show();
-    $('#commentReplyArea').empty();
-
-
+    
     let contentRow = "<div class='row'><div class='col-12 text-center'>"
                         + "<img src='https://duni.io/arink/cs/images/" + currentContentImage + "' border=0 width='150px'>"
                         + "<br>" + currentMemo
@@ -158,6 +154,8 @@ function writeComment() {
         return;
     }
 
+    showLoader();
+
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
@@ -185,6 +183,7 @@ function writeComment() {
         }, 0);
     }).fail(function()  {
         alert("Sorry. Server unavailable. ");
+        hideLoader();
     });
 }
 
@@ -194,6 +193,10 @@ function getReplyContent() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
+
+    $('#commentArea').show();
+    $('#commentReplyArea').empty();
+    showLoader();
 
     var fd = new FormData();
     fd.append('user_id', 1324);
@@ -210,9 +213,11 @@ function getReplyContent() {
         processData: false,
         contentType: false                                                    
     }).done(function(data) {
-        showComments(data.data); 
+        showComments(data.data);
+        hideLoader();
     }).fail(function()  {
         alert("Sorry. Server unavailable. ");
+        hideLoader();
     });
 }
 
