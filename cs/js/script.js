@@ -15,6 +15,7 @@
     let fileext = blob.name.split('.').pop();
     let reader = new FileReader();
     reader.onload = function(event) {
+        showLoader();
         let sns_id = getCookie("temp_sns_id");
         let skind = getCookie("dev_kind");
         let user_token = getCookie("user_token");
@@ -49,8 +50,9 @@
             }                                          
         }).done(function(data) {            
             location.href = "https://arink.aply.biz/cs/viewer.html";
-        }).fail(function()  {
+        }).fail(function()  {            
             alert("Sorry. Server unavailable. ");
+            hideLoader();
         }); 
     };      
     // trigger the read from the reader...
