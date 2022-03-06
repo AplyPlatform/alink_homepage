@@ -267,11 +267,12 @@ function dynamicLoadPlaces() {
 
 function renderPlaces(places) {    
     if (!isSet(places)) {
-        $("#topText").text("Loaded : 0");
+        $("#topText").text("No signals are loaded.");
         return;
     }
 
-    $("#topText").text("Loaded : " + places.length);
+    if (places.length == 1) $("#topText").text(places.length + " signal is loaded.");
+    else $("#topText").text(places.length + " signals are loaded.");
 
     let scene = document.querySelector('a-scene');
 
