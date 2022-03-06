@@ -164,7 +164,7 @@ function writeComment() {
     fd.append('c_id', currentContentId);
     fd.append('c_image', getCookie("temp_image"));
     fd.append('comment', comment);
-    fd.append('user_id', sns_id);
+    fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
     $.ajax({
@@ -193,7 +193,7 @@ function getReplyContent() {
     fd.append('user_id', 1324);
     fd.append('form_kind', "comment");
     fd.append('c_id', currentContentId);
-    fd.append('user_id', sns_id);
+    fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
     $.ajax({
@@ -213,7 +213,7 @@ function dynamicLoadPlaces() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
-    
+
     var fd = new FormData();    
     fd.append('form_kind', "get");
     fd.append('lat', currentLat);
@@ -221,7 +221,7 @@ function dynamicLoadPlaces() {
     let alt = currentAlt;
     if (alt == null) alt = 0;    
     fd.append('alt', alt);
-    fd.append('user_id', sns_id);
+    fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
     $.ajax({
@@ -238,12 +238,15 @@ function dynamicLoadPlaces() {
     });
 };
 
-function renderPlaces(places) {
-    let scene = document.querySelector('a-scene');
+function renderPlaces(places) {    
+    if (!isSet(places)) {
+        $("#topText").text("Loaded : 0");
+        return;
+    }
+    
+    $("#topText").text("Loaded : " + places.length);
 
-    if (places && places.length > 0) {
-            $("#topText").text("Loaded : " + places.length);
-    }    
+    let scene = document.querySelector('a-scene');
 
     places.forEach((d) => {
         let latitude = d.lat;
