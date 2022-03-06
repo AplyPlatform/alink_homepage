@@ -1,7 +1,15 @@
 "use strict";
-  
+
+let googleInitFlag = true;
 window.onload = () => {
-    
+    let token = getCookie("user_token");
+    if (isSet(token)) {
+      googleInitFlag = false;
+      $("#googleLoginBtn").text("로그아웃");
+      $("#googleLoginBtn").click(function() {
+        signOut();
+      });
+    }
 };
 
 function googleinit() {
@@ -14,6 +22,8 @@ function googleinit() {
 
       let options = new gapi.auth2.SigninOptionsBuilder();
       options.setPrompt('select_account');
+
+      if (googleInitFlag == false) return;
 
       gauth.attachClickHandler(document.getElementById('googleLoginBtn'), options,
           function (googleUser) {
