@@ -11,6 +11,13 @@ let currentLat, currentLng, currentAlt;
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 
 function initViewer() {    
+    let user_token = getCookie("user_token");
+    if (!isSet(user_token)) {
+        alert("로그인 후 사용하실 수 있습니다.");
+        location.href = "./index.html";
+        return;
+    }
+
     $("#commentArea").hide();
     $("#replyButton").click(function() {
         writeComment();
@@ -148,12 +155,18 @@ function writeComment() {
         return;
     }
 
-    let fd = new FormData();
-    fd.append('user_id', 1324);
+    let sns_id = getCookie("temp_sns_id");
+    let skind = getCookie("dev_kind");
+    let user_token = getCookie("user_token");
+
+    let fd = new FormData();    
     fd.append('form_kind', 'write');
     fd.append('c_id', currentContentId);
     fd.append('c_image', getCookie("temp_image"));
     fd.append('comment', comment);
+    fd.append('user_id', sns_id);
+    fd.append('sns_kind', skind);
+    fd.append('user_token', user_token);
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -175,7 +188,10 @@ function getReplyContent() {
     var fd = new FormData();
     fd.append('user_id', 1324);
     fd.append('form_kind', "comment");
-    fd.append('c_id', currentContentId);    
+    fd.append('c_id', currentContentId);
+    fd.append('user_id', sns_id);
+    fd.append('sns_kind', skind);
+    fd.append('user_token', user_token);
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -190,14 +206,16 @@ function getReplyContent() {
 
 // getting places from REST APIs
 function dynamicLoadPlaces() {
-    var fd = new FormData();
-    fd.append('user_id', 1324);
+    var fd = new FormData();    
     fd.append('form_kind', "get");
     fd.append('lat', currentLat);
     fd.append('lng', currentLng);
     let alt = currentAlt;
     if (alt == null) alt = 0;    
     fd.append('alt', alt);
+    fd.append('user_id', sns_id);
+    fd.append('sns_kind', skind);
+    fd.append('user_token', user_token);
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',

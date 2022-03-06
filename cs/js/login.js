@@ -82,6 +82,7 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
             }
         }
 
+        setCookie("user_token", data.token, 1);
         $("#loginArea").hide();        
     });
 }
