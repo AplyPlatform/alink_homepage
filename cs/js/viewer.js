@@ -185,6 +185,10 @@ function writeComment() {
 function getReplyContent() {
     if (currentContentId < 0) return;
 
+    let sns_id = getCookie("temp_sns_id");
+    let skind = getCookie("dev_kind");
+    let user_token = getCookie("user_token");
+
     var fd = new FormData();
     fd.append('user_id', 1324);
     fd.append('form_kind', "comment");
@@ -206,6 +210,10 @@ function getReplyContent() {
 
 // getting places from REST APIs
 function dynamicLoadPlaces() {
+    let sns_id = getCookie("temp_sns_id");
+    let skind = getCookie("dev_kind");
+    let user_token = getCookie("user_token");
+    
     var fd = new FormData();    
     fd.append('form_kind', "get");
     fd.append('lat', currentLat);
