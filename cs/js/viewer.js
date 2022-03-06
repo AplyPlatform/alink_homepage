@@ -180,6 +180,8 @@ function writeComment() {
         setTimeout(() => {
             getReplyContent();
         }, 0);
+    }).fail(function()  {
+        alert("Sorry. Server unavailable. ");
     });
 }
 
@@ -206,6 +208,8 @@ function getReplyContent() {
         contentType: false                                                    
     }).done(function(data) {
         showComments(data.data); 
+    }).fail(function()  {
+        alert("Sorry. Server unavailable. ");
     });
 }
 
@@ -236,6 +240,8 @@ function dynamicLoadPlaces() {
         // todo:
         // redirection
         renderPlaces(data.data); 
+    }).fail(function()  {
+        alert("Sorry. Server unavailable. ");
     });
 };
 
