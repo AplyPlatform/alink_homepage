@@ -71,10 +71,10 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         processData: false,
         contentType: false                                                    
     }).done(function(data) {
-        $("#loginArea").hide();
-        setTimeout(() => {
-            getReplyContent();
-        }, 0);
+        if (data.result_code != 0) {
+
+        }
+        $("#loginArea").hide();        
     });
 }
 
