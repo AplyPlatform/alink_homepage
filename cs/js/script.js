@@ -81,6 +81,12 @@
         return;
       }
 
+      let token = getCookie("user_token");
+      if (!isSet(token)) {
+        showAlert("로그인을 하셔야 사용하실 수 있어요 :)");
+        return;
+      }
+
       navigator.geolocation.getCurrentPosition(function (position) {
           // than use it to load from remote APIs some places nearby
           lat = position.coords.latitude;
