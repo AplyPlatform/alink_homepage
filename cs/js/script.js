@@ -69,6 +69,17 @@
     });
 
     document.getElementById("startButton").addEventListener("click", function() {
+      const files = myDropzone.files;
+      if (files.length === 0) {
+        showAlert("귀여운 반려동물의 마킹 모습을 촬영해 주세요!");
+        return;
+      }
+
+      let memo = $("#memoInput").val();
+      if (!isSet(memo)) {
+        showAlert("짧은 메모의 작성을 부탁드려요~^^");
+        return;
+      }
 
       navigator.geolocation.getCurrentPosition(function (position) {
           // than use it to load from remote APIs some places nearby
@@ -78,9 +89,7 @@
           $("#fileDropArea").hide();
           $("#startButton").hide();
           $("#progressArea").show();
-          $("#progress").text("어디가지마, 기다려!");
-          const files = myDropzone.files;
-          if (files.length === 0) return;      
+          $("#progress").text("어디가지마, 기다려!");          
           uploadToServer(files[0]);
         },
         (err) => console.error('Error in retrieving position', err),
