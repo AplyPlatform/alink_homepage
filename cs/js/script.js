@@ -18,6 +18,7 @@
         let sns_id = getCookie("temp_sns_id");
         let skind = getCookie("dev_kind");
         let user_token = getCookie("user_token");
+        let temp_image = getCookie("temp_image");
 
         let fd = new FormData();        
         fd.append('form_kind', "upload");
@@ -25,7 +26,8 @@
         fd.append('lng', lng);        
         if (alt == null) alt = 0;
         fd.append('alt', alt);
-        fd.append('sns_id', sns_id);
+        fd.append('c_image', temp_image);
+        fd.append('sns_id', sns_id);        
         fd.append('sns_kind', skind);
         fd.append('user_token', user_token);
         fd.append('fileext', fileext);        

@@ -158,11 +158,12 @@ function writeComment() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
+    let temp_image = getCookie("temp_image");
 
     let fd = new FormData();    
     fd.append('form_kind', 'write');
     fd.append('c_id', currentContentId);
-    fd.append('c_image', getCookie("temp_image"));
+    fd.append('c_image', temp_image);
     fd.append('comment', comment);
     fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
@@ -243,7 +244,7 @@ function renderPlaces(places) {
         $("#topText").text("Loaded : 0");
         return;
     }
-    
+
     $("#topText").text("Loaded : " + places.length);
 
     let scene = document.querySelector('a-scene');
