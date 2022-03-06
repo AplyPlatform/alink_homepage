@@ -123,11 +123,16 @@ function showComments(comments) {
                         + "<br>" + currentMemo
                         + "<br><br></div></div>";
     
-    comments.forEach((d) => {        
-        let userIcon = getRandomInt(1, 10);
+    comments.forEach((d) => {
+        let imageContent = "";
+        if ("image" in d && d.image != "") {
+            imageContent = "<img src='/cs/assets/" + d.image + ".png' border='0' width='16px' height='16px'>";
+        }
+
         contentRow += "<div class='row'>"
-            + "<div class='col-2 text-center'><img src='/cs/assets/" + userIcon + ".png' border='0' width='16px' height='16px'></div>"
-            + "<div class='col-10 text-left'>"
+            + "<div class='col-2 text-center'>"
+            + imageContent
+            + "</div><div class='col-10 text-left'>"
             + d.comment
             + "</div>"            
             + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";        
@@ -147,6 +152,7 @@ function writeComment() {
     fd.append('user_id', 1324);
     fd.append('form_kind', 'write');
     fd.append('c_id', currentContentId);
+    fd.append('c_image', getCookie("temp_image"));
     fd.append('comment', comment);
     $.ajax({
         type: 'POST',

@@ -72,68 +72,50 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         contentType: false                                                    
     }).done(function(data) {
         if (data.result_code != 0) {
-
+            if (data.reason == "not registered") {
+              setCookie("temp_sns_id", token, 1);
+              setCookie("temp_name", temp_name, 1);
+              setCookie("temp_email", temp_email, 1);
+              setCookie("temp_image", temp_image, 1);
+              showConfirmDialog();
+              return;
+            }
         }
+
         $("#loginArea").hide();        
     });
 }
 
-function showLoader() {
-  $("#loading").show();
-}
+function tryRegister() {
 
-function hideLoader() {
-  $("#loading").fadeOut(800);
-}
+  let sns_id = getCookie("temp_sns_id");
+  let temp_name = getCookie("temp_name");
+  let temp_email = getCookie("temp_email");
+  let temp_image = getCookie("temp_image");
+  let skind = getCookie("dev_kind");
 
+  let fd = new FormData();  
+  fd.append('form_kind', 'register');  
+  fd.append('sns_kind', skind);
+  fd.append('sns_id', sns_id);
+  fd.append('nickname', temp_name);
+  fd.append('email', temp_email);
+  fd.append('image', temp_image);
+  $.ajax({
+      type: 'POST',
+      url: 'https://duni.io/arink/cs/handler/handler.php',
+      data: fd,
+      cache: false,
+      processData: false,
+      contentType: false                                                    
+  }).done(function(data) {
+      if (data.result_code != 0) {
+        showAlert("죄송합니다, 회원가입이 실패하였습니다 : " + data.reason);
+        return;    
+      }
 
-function showConfirmDialog() {
-  $('#askModalLabel').text(GET_STRING_CONTENT('modal_title'));
-  $('#askModalContent').text(GET_STRING_CONTENT('msg_you_are_not_member'));
-  $('#askModalOKButton').text(GET_STRING_CONTENT('modal_confirm_btn'));
-  $('#askModalCancelButton').hide();
-
-  $('#askModalOKButton').off('click');
-  $('#askModalOKButton').click(function (e) {
-      e.preventDefault();
-      $('#askModal').modal('hide');
-      location.href = "/center/register.html";
+      showAlert("축하드립니다. 성공적으로 가입되었습니다.");
+      $("#loginArea").hide();        
   });
-
-  $('#askModal').modal('show');
-}
-
-function showAlert(msg) {
-  $('#modal-title').text("ARink");
-  $('#modal-confirm-btn').text("확인");
-
-  $('#errorModalLabel').html(msg);
-  $('#errorModal').modal('show');
-}
-
-function delCookie(cName) {
-  document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/; domain=.aply.biz";
-}
-
-function setCookie(cName, cValue, cDay) {
-  var date = new Date();
-  date.setTime(date.getTime() + cDay * 60 * 60 * 24 * 1000);
-  document.cookie = cName + '=' + cValue + '; expires=' + date.toUTCString() + '; path=/; domain=.aply.biz';
-}
-
-function getCookie(cName) {
-  let matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + cName.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-
-  return matches ? matches[1] : null;
-}
-
-function isSet(value) {
-  if (typeof (value) === 'number')
-      return true;
-  if (value == "" || value == null || value == "undefined" || value == undefined)
-      return false;
-  return true;
 }
 
