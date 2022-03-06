@@ -102,6 +102,10 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
             }
         }
 
+        setCookie("temp_sns_id", token, 1);
+        setCookie("temp_name", temp_name, 1);
+        setCookie("temp_email", temp_email, 1);
+        setCookie("temp_image", temp_image, 1);
         setCookie("user_token", data.token, 1);
         $("#googleLogoutBtn").show();
         $("#googleLoginBtn").hide();
