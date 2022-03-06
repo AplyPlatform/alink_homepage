@@ -51,9 +51,9 @@ function googleinit() {
 function signOut() {
     let auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
-      delCookie("dev_kind");
-      delCookie("user_token");
-      delCookie("temp_sns_id");
+      setCookie("dev_kind", "", -1);
+      setCookie("user_token", "", -1);
+      setCookie("temp_sns_id", "", -1);
       $("#googleLogoutBtn").hide();
       $("#googleLoginBtn").show();
     });  

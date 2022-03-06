@@ -25,7 +25,7 @@
             top: 0;
             left: 0;
             width: 100vw;
-            text-align: left;
+            text-align: right;
             z-index: 4;                        
             padding-left: 10px;            
       }
@@ -64,16 +64,14 @@
     </div>
 
     <div class="container">
-      <div class="row" id="loginArea">
-        <div class="col-sm text-right">
+      <div id="loginArea">
           <a id="googleLoginBtn"
-										class="btn btn-block sign-in-button google-button"
+										class="btn sign-in-button google-button"
 										style="font-weight:400;color:#fff;font-size:13px;">Google 계정으로 사용</a>
 
           <a id="googleLogoutBtn"
-                    class="btn btn-block"
-                    style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>
-        </div>
+                    type="button" class="btn btn-info"
+                    style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>        
       </div>
 
       <div class="row">
