@@ -17,33 +17,27 @@ function googleinit() {
 
       gauth.attachClickHandler(document.getElementById('googleLoginBtn'), options,
           function (googleUser) {
-              
+            setCookie("dev_kind", "google", 1);
 
+            var profile = googleUser.getBasicProfile();
+            var token = googleUser.getAuthResponse().id_token;
+        
+            var name = profile.getName();
+            var image = profile.getImageUrl();
+            var email = profile.getEmail();
+            formSubmit(token, name, image, email);
           }, function (error) {
               //alert(JSON.stringify(error, undefined, 2));
       });
   });
 }
 
-function onSignIn(googleUser) {    
-    setCookie("dev_kind", "google", 1);
-
-    var profile = googleUser.getBasicProfile();
-    var token = googleUser.getAuthResponse().id_token;
-
-    var name = profile.getName();
-    var image = profile.getImageUrl();
-    var email = profile.getEmail();
-    formSubmit(token, name, image, email);
-}
-
 function signOut() {
     let auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
-
+      delCookie("dev_kind");
     });  
 }
-
 
 function formSubmit(token, temp_name, temp_image, temp_email) {
     showLoader();
@@ -117,7 +111,7 @@ function showAlert(msg) {
   $('#errorModal').modal('show');
 }
 
-function delCoockie(cName) {
+function delCookie(cName) {
   document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/; domain=.aply.biz";
 }
 
@@ -134,3 +128,12 @@ function getCookie(cName) {
 
   return matches ? matches[1] : null;
 }
+
+function isSet(value) {
+  if (typeof (value) === 'number')
+      return true;
+  if (value == "" || value == null || value == "undefined" || value == undefined)
+      return false;
+  return true;
+}
+
