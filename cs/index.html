@@ -17,7 +17,19 @@
     <meta property="og:description" content="Calming Signal - ARink" />    
     <meta name="google-signin-client_id"
       content="815328508526-77mufv4cnunmjg9bclthilgtqc7li7jl.apps.googleusercontent.com">
+    
     <style>
+      #loginArea {        
+            text-decoration: none;
+            position: fixed;            
+            top: 0;
+            left: 0;
+            width: 100vw;
+            text-align: left;
+            z-index: 4;                        
+            padding-left: 10px;            
+      }
+
       body {
         background-image: url('/cs/assets/back.png');
         background-repeat: no-repeat;
@@ -52,6 +64,18 @@
     </div>
 
     <div class="container">
+      <div class="row" id="loginArea">
+        <div class="col-sm text-right">
+          <a id="googleLoginBtn"
+										class="btn btn-block sign-in-button google-button"
+										style="font-weight:400;color:#fff;font-size:13px;">Google 계정으로 사용</a>
+
+          <a id="googleLogoutBtn"
+                    class="btn btn-block"
+                    style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm text-center">
           <br><br>
@@ -59,19 +83,7 @@
             <b>Calming</b> <small style="color:rgb(70, 70, 70)">Signal</small>
           </h1>          
         </div>
-      </div>
-
-      <div class="row" id="loginArea">
-        <div class="col-sm">
-          <a id="googleLoginBtn"
-										class="col-sm-12 btn btn-block sign-in-button google-button"
-										style="font-weight:400;color:#fff;font-size:13px;">Google 계정으로 사용</a>
-
-          <a id="googleLogoutBtn"
-                    class="col-sm-12 btn btn-block"
-                    style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>
-        </div>
-      </div>
+      </div>      
 
       <div class="row" id="fileDropArea">
         <div class="col-sm">          
