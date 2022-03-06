@@ -8,7 +8,7 @@
     $("#progressArea").hide();
     $("#fileDropArea").show();
     $("#progress-bar").css("width", "0%");
-  }
+  };
     
   const uploadToServer = (blob) => {
   
@@ -63,7 +63,7 @@
     };      
     // trigger the read from the reader...
     reader.readAsDataURL(blob);  
-  }
+  };
   
   const setProgress = (progress) => {
     $("#progress").text('기다려: ' + progress.toFixed(2) + "%");
@@ -112,9 +112,7 @@
                 maximumAge: 0,
                 timeout: 27000,
         }
-      );
-
-      
+      );      
     });
   });
 
