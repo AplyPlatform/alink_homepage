@@ -32,11 +32,12 @@ function initViewer() {
             txt: {default:'default'}
             }, 
         init: function() {            
-            this.el.addEventListener('click', clickListener);
-            getLocationData();
-            hideLoader();
+            this.el.addEventListener('click', clickListener);            
         }
     });
+
+    getLocationData();
+    hideLoader();
 }
 
 const getLocationData = function () {
@@ -72,7 +73,7 @@ const checkCurrentLocation = function (position) {
     oldLat = currentLat;
     oldLng = currentLng;
     oldAlt = currentAlt;
-}
+};
 
 const clickListener = function(ev, target) {
     ev.stopPropagation();
@@ -289,7 +290,5 @@ function renderPlaces(places) {
         });
 
         scene.appendChild(objet);        
-    });
-
-    
+    });    
 }
