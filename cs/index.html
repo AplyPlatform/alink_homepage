@@ -1,15 +1,22 @@
 <html>
   <head>
-    <title>Calming Signal</title>
+    <title>Calming Signal - ARink</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000" >
-    <link rel="shortcut icon" href="/arink/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css">    
+    <meta property="og:title" content="Calming Signal - ARink" />
+    <meta property="og:image" content="https://arink.aply.biz/assets/images/arink.png" />
+    <meta property="og:url" content="https://arink.aply.biz" />
+    <meta property="og:site_name" content="Calming Signal - ARink" />
+    <meta property="og:description" content="Calming Signal - ARink" />    
+    <meta name="google-signin-client_id"
+      content="815328508526-77mufv4cnunmjg9bclthilgtqc7li7jl.apps.googleusercontent.com">
     <style>
       body {
         background-image: url('/cs/assets/back.png');
@@ -20,6 +27,10 @@
     </style>
   </head>
   <body>
+    <div id="loading">
+      <div class="loader"></div>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-sm text-center">
@@ -29,6 +40,13 @@
           </h1>          
         </div>
       </div>
+
+      <div class="row" id="loginArea">
+        <div class="col-sm">
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+      </div>
+
       <div class="row" id="fileDropArea">
         <div class="col-sm">          
           <div id="dropzone" class="dropzone" style="border: dotted 5px rgb(77, 77, 77);"></div>    
@@ -61,6 +79,7 @@
       </div>
       <div class="row">        
         <div class="col-sm text-center">
+          <br><br>
           <a href="viewer.html" id="goButton" type="button" class="btn btn-info btn-block">Calming Signal 보기</a>
         </div>        
       </div>
@@ -71,8 +90,47 @@
           <font size="3" color="white">© 2022 <a href="https://arink.aply.biz/cs/" target="_blank">Calming Signal</a></font>
         </div>
       </div>      
-    </div>    
+    </div>
+
+    <div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="askModalLabel">Ready to Leave?</h5>
+          </div>
+          <div class="modal-body">
+            <span id="askModalContent">Select "Logout" below if you are ready to end your current
+              session.</span>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal"
+              id="askModalCancelButton">Cancel</button>
+            <button class="btn btn-primary" type="button" id="askModalOKButton">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title">Notification</h5>
+          </div>
+          <div class="modal-body" id="errorModalLabel"></div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="button" data-dismiss="modal"
+              id="modal-confirm-btn">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <script src="./js/script.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=googleinit" async defer></script>
   </body>
 </html>
 

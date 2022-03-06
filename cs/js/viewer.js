@@ -7,6 +7,8 @@ let isCommentAreaVisible = false;
 let currentContentId = -1;
 let currentContentImage = "";
 let currentMemo = "";
+let currentLat, currentLng, currentAlt;
+let oldLat = -999, oldLng = -999, oldAlt = -999;
 
 function initViewer() {    
     $("#commentArea").hide();
@@ -25,20 +27,44 @@ function initViewer() {
         init: function() {            
             this.el.addEventListener('click', clickListener);
         }
-    });
-    // first get current user location
-    navigator.geolocation.getCurrentPosition(function (position) {
+    });    
 
-        // than use it to load from remote APIs some places nearby
-        dynamicLoadPlaces(position.coords);
-    },
-        (err) => console.error('Error in retrieving position', err),
-        {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 27000,
-        }
-    );
+    getLocationData();
+}
+
+const getLocationData = function () {
+        navigator.geolocation.getCurrentPosition(function (position) {            
+                checkCurrentLocation(position);
+                setTimeout("getLocationData()", 2000);
+            },
+            (err) => {
+                //console.error('Error in retrieving position', err);
+                setTimeout("getLocationData()", 2000);
+            },
+            {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: 27000,
+            }
+        );
+};
+
+
+const checkCurrentLocation = function (position) {
+    currentLat = position.coords.latitude;
+    currentLng = position.coords.longitude;
+    currentAlt = position.coords.altitude;
+
+    if (oldLat == -999
+        || Math.abs(currentLat - oldLat) > 0.0005
+        || Math.abs(currentLng - oldLng) > 0.0005        
+        ) {
+        dynamicLoadPlaces();        
+    }
+
+    oldLat = currentLat;
+    oldLng = currentLng;
+    oldAlt = currentAlt;
 }
 
 const clickListener = function(ev, target) {
@@ -157,14 +183,14 @@ function getReplyContent() {
 }
 
 // getting places from REST APIs
-function dynamicLoadPlaces(position) {
+function dynamicLoadPlaces() {
     var fd = new FormData();
     fd.append('user_id', 1324);
     fd.append('form_kind', "get");
-    fd.append('lat', position.latitude);
-    fd.append('lng', position.longitude);
-    let alt = position.altitude;
-    if (position.altitude == null) alt = 0;    
+    fd.append('lat', currentLat);
+    fd.append('lng', currentLng);
+    let alt = currentAlt;
+    if (alt == null) alt = 0;    
     fd.append('alt', alt);
     $.ajax({
         type: 'POST',
