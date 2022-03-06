@@ -49,7 +49,9 @@
             }                                          
         }).done(function(data) {            
             location.href = "https://arink.aply.biz/cs/viewer.html";
-        });
+        }).fail(function()  {
+            alert("Sorry. Server unavailable. ");
+        }); 
     };      
     // trigger the read from the reader...
     reader.readAsDataURL(blob);  
