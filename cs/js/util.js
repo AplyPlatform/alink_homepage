@@ -38,6 +38,7 @@ function showAlert(msg) {
 }
 
 function delCookie(cName) {
+  var date = new Date();
   document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/; domain=.aply.biz";
 }
 
