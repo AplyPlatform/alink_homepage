@@ -1,26 +1,7 @@
 "use strict";
 
-let googleInitFlag = true;
 window.onload = () => {
-    $("#googleLoginBtn").hide();
-    $("#googleLogoutBtn").hide();
-    
-    let token = getCookie("user_token");
-    $("#googleLogoutBtn").click(function() {
-      signOut();
-    });
-
-    if (isSet(token)) {
-      googleInitFlag = false;
-      $("#googleLogoutBtn").show();
-      $("#googleLoginBtn").hide();
-    }
-    else {
-      $("#googleLogoutBtn").hide();
-      $("#googleLoginBtn").show();
-    }
-
-    hideLoader();
+    setLoginButtons();
 };
 
 function googleinit() {
@@ -33,8 +14,6 @@ function googleinit() {
 
       let options = new gapi.auth2.SigninOptionsBuilder();
       options.setPrompt('select_account');
-
-      if (googleInitFlag == false) return;
 
       gauth.attachClickHandler(document.getElementById('googleLoginBtn'), options,
           function (googleUser) {
@@ -50,7 +29,31 @@ function googleinit() {
           }, function (error) {
               //alert(JSON.stringify(error, undefined, 2));
       });
+
+      setLoginButtons();
   });
+}
+
+function setLoginButtons() {
+  let token = getCookie("user_token");
+  $("#googleLogoutBtn").click(function() {
+    signOut();
+  });
+
+  $("#googleLoginBtn").hide();
+  $("#googleLogoutBtn").hide();
+    
+    
+  if (isSet(token)) {
+    $("#googleLogoutBtn").show();
+    $("#googleLoginBtn").hide();
+  }
+  else {
+    $("#googleLogoutBtn").hide();
+    $("#googleLoginBtn").show();
+  }
+
+  hideLoader();   
 }
 
 function signOut() {
