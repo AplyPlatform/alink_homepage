@@ -173,6 +173,7 @@ function writeComment() {
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
     let temp_image = getCookie("temp_image");
+    let client_id = getCookie("user_clientid");
 
     let fd = new FormData();    
     fd.append('form_kind', 'write');
@@ -182,6 +183,7 @@ function writeComment() {
     fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
+    fd.append('client_id', client_id);
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -206,6 +208,7 @@ function getReplyContent() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
+    let client_id = getCookie("user_clientid");
 
     $('#commentArea').show();
     showLoader();
@@ -217,6 +220,8 @@ function getReplyContent() {
     fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
+    fd.append('client_id', client_id);
+
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -238,6 +243,7 @@ function dynamicLoadPlaces() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
+    let client_id = getCookie("user_clientid");
 
     var fd = new FormData();    
     fd.append('form_kind', "get");
@@ -249,6 +255,7 @@ function dynamicLoadPlaces() {
     fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
+    fd.append('client_id', client_id);
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',

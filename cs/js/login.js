@@ -2,6 +2,9 @@
 
 let googleInitFlag = true;
 window.onload = () => {
+    $("#googleLoginBtn").hide();
+    $("#googleLogoutBtn").hide();
+    
     let token = getCookie("user_token");
     $("#googleLogoutBtn").click(function() {
       signOut();
@@ -56,6 +59,7 @@ function signOut() {
       setCookie("dev_kind", "", -1);
       setCookie("user_token", "", -1);
       setCookie("temp_sns_id", "", -1);
+      setCookie("user_clientid", "", -1);
       $("#googleLogoutBtn").hide();
       $("#googleLoginBtn").show();
     });  
@@ -110,6 +114,8 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         setCookie("temp_email", temp_email, 1);
         setCookie("temp_image", temp_image, 1);
         setCookie("user_token", data.token, 1);
+        setCookie("user_clientid", data.client_id, 1);
+
         $("#googleLogoutBtn").show();
         $("#googleLoginBtn").hide();
     }).fail(function()  {
@@ -149,6 +155,7 @@ function tryRegister() {
       }
       
       setCookie("user_token", data.token, 1);
+      setCookie("user_clientid", data.client_id, 1);
       $("#googleLogoutBtn").show();
       $("#googleLoginBtn").hide();   
 

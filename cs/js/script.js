@@ -20,6 +20,7 @@
         let skind = getCookie("dev_kind");
         let user_token = getCookie("user_token");
         let temp_image = getCookie("temp_image");
+        let client_id = getCookie("user_clientid");
 
         let fd = new FormData();        
         fd.append('form_kind', "upload");
@@ -31,6 +32,7 @@
         fd.append('sns_id', sns_id);        
         fd.append('sns_kind', skind);
         fd.append('user_token', user_token);
+        fd.append("client_id", client_id);
         fd.append('fileext', fileext);        
         fd.append('memo', $("#memoInput").val());
         fd.append('data', event.target.result);
