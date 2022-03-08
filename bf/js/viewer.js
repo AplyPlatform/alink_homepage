@@ -5,7 +5,7 @@ $(function(){
   updateMindSet(mname);
 
   function updateMindSet(mindname) {
-    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/beautiful.mind;"';
+    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /bf/assets/beautiful.mind;"';
 
     let bodyStr = mindStr
                   + ' color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"><a-assets></a-assets>'
@@ -24,7 +24,7 @@ $(function(){
   }
 
   function updateEffect(mindname, effectname) {
-    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/beautiful.mind;"';
+    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /bf/assets/beautiful.mind;"';
     let bodyStr = mindStr
                   + ' color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"><a-assets></a-assets>'
                   + '<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>'
