@@ -8,7 +8,12 @@ $(function(){
     let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/targets.mind;"';
 
     if (isSet(mindname)) {
-      mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/assets/' + mindname + '.mind;"';               
+      if (mindname == "beautiful") {
+        mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/beautiful.mind;"';
+      }
+      else {
+        mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/assets/' + mindname + '.mind;"';
+      }
     }
 
     let bodyStr = mindStr
@@ -31,7 +36,12 @@ $(function(){
     let mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/targets.mind;"';
 
     if (isSet(mindname)) {
-      mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/assets/' + mindname + '.mind;"';             
+      if (mindname == "beautiful") {
+        mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/beautiful.mind;"';
+      }
+      else {
+        mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/assets/' + mindname + '.mind;"';
+      }
     }
 
     let bodyStr = mindStr
