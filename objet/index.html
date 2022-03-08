@@ -1,73 +1,43 @@
 <html>
   <head>
-    <title>ARink : APLY PROJECT</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LG0VM866XL');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
     <meta name="theme-color" content="#000000" >
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/dropzone.min.css">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <script src="./js/mindar-image.prod.js"></script>
+    <script src="./js/aframe.js"></script>
+    <script src="./js/mindar-image-aframe.prod.js"></script>
+    <script src="./js/aframe-gif-shader.js"></script>
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/dropzone.min.js"></script>    
-    <script src="./js/mindar-image.prod.js"></script>    
+    <script src="./js/viewer.js"></script>
     <style>
-      body {
-        background-image: url('./assets/back.png');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
+      #flipButton {        
+        text-decoration: none;
+        position: fixed;
+        background-color: rgba(0,0,0,0.5); color: white;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        text-align: center;
+        z-index: 3;
+        height: 30px;
+        padding-top: 10px;
+        cursor: pointer;
       }
-      </style>
+    </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm text-center">
-          <br><br>
-          <h1 style="color:#fff">
-            <b>A.R.i.n.k</b> <small style="color:rgb(167, 165, 201)">beta</small>
-          </h1>          
-        </div>
-      </div>
-      <div class="row" id="fileDropArea">
-        <div class="col-sm">          
-          <div id="dropzone" class="dropzone" style="border: dotted 5px rgb(77, 77, 77);"></div>    
-          <div id="filecontainer"></div>        
-        </div>
-      </div>
-      <div class="row" id="progressArea">        
-        <div class="col-sm text-center">
-          <span style="color:#fff" id="progress"></span>
-          <div class="progress">
-            <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </div>
-      <div class="row">        
-        <div class="col-sm text-center">
-          <button id="startButton" type="button" class="btn btn-primary btn-block">업로드</button>
-        </div>        
-      </div>
-      <div class="row" id="viewer_button">
-        <div class="col-sm text-center">
-          <br>          
-          <a href="viewer.html" target="_blank" class="btn btn-primary btn-lg" role="button" id="viewer_link_button">효과 보기 >></a>
-          <hr size="1" color="#fff">
-          <span id="short_url_field" style="color:#fff">단축주소 : <a href="viewer.html" id="short_url_link" target="_blank"></a></span>
-          <hr size="1" color="#fff">
-          <button id="startAgain" type="button" class="btn btn-light">다른 AR대상 촬영하기</button>                    
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm text-center">
-          <br>          
-          <hr size="1" width="100%" color="white">
-          <font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="https://aply.biz/assets/images/logo_white.png" border="0" width="45px"></a> | </font><a href="viewer.html" target="_blank"><font color=white size=3>Viewer</font></a>
-        </div>
-      </div>      
-    </div>    
-    <script src="./js/script.js"></script>
+  <body>    
+    
   </body>
 </html>
-
