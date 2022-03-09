@@ -121,8 +121,6 @@
 $(function() {
     // first get current user location
     setDefaultUIStatus();
-
-    setServieWorker();
     
     navigator.geolocation.getCurrentPosition(function (position) {
         // than use it to load from remote APIs some places nearby
@@ -140,10 +138,12 @@ $(function() {
               timeout: 27000,
       }
     );
+    
+    setServiceWorker();
 });
 
 
-function setServieWorker() {
+function setServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('/cs/js/sw.js')
