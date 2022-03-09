@@ -148,16 +148,12 @@ function setServiceWorker() {
     navigator.serviceWorker
       .register('/cs/sw.js', {scope: '/cs/'})
       .then(() => { 
-        console.log('Service Worker Registered'); 
-        self.addEventListener('activate', function(event) {
-          console.log('Claiming control');
-          return self.clients.claim();
-        });
+        console.log('Service Worker Registered');         
       })
       .catch(function(error) {
         // registration failed
         console.log('Registration failed with ' + error);
-      });
+      });    
   }
 
   let deferredPrompt;
