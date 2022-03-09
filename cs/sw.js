@@ -1,6 +1,8 @@
+
+let CACHE_NAME = 'arink-store';
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('arink-store').then((cache) => cache.addAll([
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([
       '/cs/',
       '/cs/index.html',
       '/cs/viewer.html',
