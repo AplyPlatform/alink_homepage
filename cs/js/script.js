@@ -153,6 +153,10 @@ function setServiceWorker() {
           console.log('Claiming control');
           return self.clients.claim();
         });
+      })
+      .catch(function(error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
       });
   }
 
