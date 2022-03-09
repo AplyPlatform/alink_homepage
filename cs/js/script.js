@@ -146,7 +146,7 @@ $(function() {
 function setServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/cs/js/sw.js', {scope: '/cs/'})
+      .register('/cs/js/sw.js', {scope: '/cs/js/'})
       .then(() => { 
         console.log('Service Worker Registered'); 
         self.addEventListener('activate', function(event) {
