@@ -147,7 +147,13 @@ function setServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('/cs/js/sw.js')
-      .then(() => { console.log('Service Worker Registered'); });
+      .then(() => { 
+        console.log('Service Worker Registered'); 
+        self.addEventListener('activate', function(event) {
+          console.log('Claiming control');
+          return self.clients.claim();
+        });
+      });
   }
 
   let deferredPrompt;
