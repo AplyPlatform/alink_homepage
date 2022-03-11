@@ -82,12 +82,18 @@
     </a-scene>        
     <div class="container">
         <div id="commentArea">
-            <div class="col-12 text-right"><span id="closeBtn" style="color:#fff;cursor: pointer;">X</span></div>
-            <div id="commentReplyArea">
-                <div id="loading">
-                    <div class="loader"></div>
+            <div class="col-12 text-right"><span id="closeBtn" style="color:#fff;cursor: pointer;">X</span></div>            
+            <div class='row'>
+                <div class='col-12 text-center'>
+                    <img src="/cs/assets/5.png" border=0 width='150px' id='currentImage'>
+                    <span id='currentMemo'></span>
                 </div>
-            </div>
+                <div class='row' id="commentReplyArea">
+                    <div id="loading">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>            
             <div class="row">
                 <div class="col-9">
                     <input type="text" class="form-control" name="commentInput" id="commentInput" placeholder="짧은 댓글을 남겨보세요">

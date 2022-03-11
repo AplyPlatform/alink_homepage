@@ -125,20 +125,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
 }
 
-function showComments(comments) {
-    if (comments && comments.length > 0) {
-        
-    }   
+function showComments(comments) {                
+    $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + currentContentImage);
+    $('#currentMemo').text(currentMemo);
+    $('#commentArea').show();
     
     isCommentAreaVisible = true;
-    
     $('#commentReplyArea').empty();
+    if (!comments || comments.length <= 0) {        
+        return;
+    }
     
-    let contentRow = "<div class='row'><div class='col-12 text-center'>"
-                        + "<img src=/cs/assets/5.png border=0 width='150px' id='currentImage'>"
-                        + "<br>" + currentMemo
-                        + "<br><br></div></div>";
-    
+    let contentRow = "";    
     comments.forEach((d) => {
         let imageContent = "";
         if ("image" in d && isSet(d.image)) {
@@ -155,10 +153,8 @@ function showComments(comments) {
             + d.comment
             + "</div>"            
             + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";        
-    });
-
-    $('#commentReplyArea').append(contentRow);
-    $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + currentContentImage);
+    });    
+    $('#commentReplyArea').append(contentRow);    
 }
 
 function writeComment() {
@@ -209,9 +205,7 @@ function getReplyContent() {
     let sns_id = getCookie("temp_sns_id");
     let skind = getCookie("dev_kind");
     let user_token = getCookie("user_token");
-    let client_id = getCookie("user_clientid");
-
-    $('#commentArea').show();
+    let client_id = getCookie("user_clientid");    
     showLoader();
 
     var fd = new FormData();
