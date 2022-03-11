@@ -293,7 +293,6 @@ function renderPlaces(places) {
         objetBox.setAttribute('rotation', '0 45 0');        
         objetBox.setAttribute('position', '0 -4 0');
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
-        objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('src', 'https://arink.aply.biz/cs/assets/8.png');
 
         // add place name
