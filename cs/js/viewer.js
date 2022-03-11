@@ -52,12 +52,17 @@ function initViewer() {
             let image_path = this.el.getAttribute("content_image");
             this.canvas = document.getElementById(c_id + '_canvas');
             let imgContext = this.canvas.getContext("2d");
-            let img = new Image(); //이미지 객체 생성            
-            img.src = "https://duni.io/arink/cs/images/" + image_path;
-            img.onload = function () //이미지 로딩 완료시 실행되는 함수
+            let img = new Image();
+            img.onload = function()
             {
                 imgContext.drawImage(img,0,0,200,200);
-            };            
+                imgContext.moveTo(30,96);
+                imgContext.lineTo(70,66);
+                imgContext.lineTo(103,76);
+                imgContext.lineTo(170,15);
+                imgContext.stroke();
+            };
+            img.src = "https://duni.io/arink/cs/images/" + image_path;
         }
     });
 
