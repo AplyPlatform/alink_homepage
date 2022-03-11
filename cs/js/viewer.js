@@ -299,7 +299,7 @@ function renderPlaces(places) {
         {
             imgContext.drawImage(img,0,0,200,200);
         };
-        img.src = "/assets/cs/assets/3.png";
+        img.src = "/cs/assets/3.png";
 
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
