@@ -305,17 +305,17 @@ function renderPlaces(places) {
         let longitude = d.lng;
         
         let objCanvas = document.createElement('canvas');
-        objCanvas.setAttribute('id', d.id + "_canvas");
+        objCanvas.setAttribute('id', d.id + "_box_canvas");
         assets.appendChild(objCanvas);
 
-        let objetPlane = document.createElement('a-box');
-        objetPlane.setAttribute('id', d.id + "_plane");
-        objetPlane.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
-        objetPlane.setAttribute('rotation', '0 45 0');
-        objetPlane.setAttribute('width', '4');
-        objetPlane.setAttribute('height', '4');
-        objetPlane.setAttribute('material', 'src:#' + d.id + "_canvas");
-        objetPlane.setAttribute("start", "");
+        let objetBox = document.createElement('a-box');
+        objetBox.setAttribute('id', d.id + "_box");
+        objetBox.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
+        objetBox.setAttribute('rotation', '0 45 0');
+        objetBox.setAttribute('width', '4');
+        objetBox.setAttribute('height', '4');
+        objetBox.setAttribute('material', 'src:#' + d.id + "_canvas");
+        objetBox.setAttribute("start", "");
 
         // add place name
         let objet = document.createElement('a-entity');
@@ -337,11 +337,11 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });
 
-        objetPlane.addEventListener('loaded', () => {
+        objetBox.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });
 
-        scene.appendChild(objetPlane);
+        scene.appendChild(objetBox);
 
         //scene.appendChild(objet);        
     });    
