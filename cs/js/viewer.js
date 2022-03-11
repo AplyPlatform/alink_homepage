@@ -135,7 +135,7 @@ function showComments(comments) {
     $('#commentReplyArea').empty();
     
     let contentRow = "<div class='row'><div class='col-12 text-center'>"
-                        + "<img src='https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=" + currentContentImage + "' border=0 width='150px'>"
+                        + "<img src='https://duni.io/arink/cs/images/" + currentContentImage + "' border=0 width='150px'>"
                         + "<br>" + currentMemo
                         + "<br><br></div></div>";
     
