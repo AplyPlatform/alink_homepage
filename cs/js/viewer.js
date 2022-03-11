@@ -306,6 +306,14 @@ function renderPlaces(places) {
         let latitude = d.lat;
         let longitude = d.lng;
 
+        let objetPlane = document.createElement('a-plane');
+        objetPlane.setAttribute('id', d.id + "_plane");
+        objetPlane.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
+        objetPlane.setAttribute('rotation', '-90 0 0');
+        objetPlane.setAttribute('width', '4');
+        objetPlane.setAttribute('height', '4');
+        objetPlane.setAttribute('material', 'src:#canvas');
+
         // add place name
         let objet = document.createElement('a-entity');
         objet.setAttribute('id', d.id);
@@ -326,6 +334,12 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });
 
-        scene.appendChild(objet);        
+        objetPlane.addEventListener('loaded', () => {
+            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
+        });
+
+        scene.appendChild(objetPlane);
+
+        //scene.appendChild(objet);        
     });    
 }
