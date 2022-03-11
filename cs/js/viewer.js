@@ -57,7 +57,7 @@ function initViewer() {
             this.ctx.fill();
             this.ctx.beginPath();
             this.ctx.rect(40, 40, 150, 100);
-            this.ctx.fillStyle = "blue";
+            this.ctx.fillStyle = "green";
             this.ctx.fill();
         }
     });
