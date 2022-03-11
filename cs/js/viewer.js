@@ -48,12 +48,9 @@ function initViewer() {
 
     AFRAME.registerComponent('start',{
         init: function(){            
-            //this.canvas = document.createElement('canvas');
-            this.canvas = document.getElementById('canvas');
+            let c_id = this.el.getAttribute("id");
+            this.canvas = document.getElementById(c_id + '_canvas');
             this.ctx = canvas.getContext("2d");
-            console.log("somethig should be happening!");
-            console.log(this.canvas);
-            console.log(this.ctx);
             this.ctx.beginPath();
             this.ctx.rect(20, 20, 150, 100);
             this.ctx.fillStyle = "red"; 
