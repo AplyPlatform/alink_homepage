@@ -309,9 +309,9 @@ function renderPlaces(places) {
         assets.appendChild(objCanvas);
 
         let objetBox = document.createElement('a-box');
-        objetBox.setAttribute('id', d.id + "_box");
-        objetBox.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
+        objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');
+        objetBox.setAttribute('position', '0 0.8 0');
         objetBox.setAttribute('width', '4');
         objetBox.setAttribute('height', '4');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
@@ -337,12 +337,7 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });
 
-        objetBox.addEventListener('loaded', () => {
-            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
-        });
-
-        scene.appendChild(objetBox);
-
-        //scene.appendChild(objet);        
+        objet.appendChild(objetBox);
+        scene.appendChild(objet);        
     });    
 }
