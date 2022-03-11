@@ -51,13 +51,13 @@ function initViewer() {
             let c_id = this.el.getAttribute("id");
             let image_path = this.el.getAttribute("content_image");
             this.canvas = document.getElementById(c_id + '_canvas');
-            this.ctx = this.canvas.getContext("2d");
+            let imgContext = this.canvas.getContext("2d");
             let img = new Image(); //이미지 객체 생성            
+            img.src = "https://duni.io/arink/cs/images/" + image_path;
             img.onload = function () //이미지 로딩 완료시 실행되는 함수
             {
-                this.ctx.drawImage(img,0,0,this.canvas.width,200);
-            };
-            img.src = "https://duni.io/arink/cs/images/" + image_path;            
+                imgContext.drawImage(img,0,0,200,200);
+            };            
         }
     });
 
@@ -310,7 +310,7 @@ function renderPlaces(places) {
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');        
-        objetBox.setAttribute('position', '0 -3 0');
+        objetBox.setAttribute('position', '0 -4 0');
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
         objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
