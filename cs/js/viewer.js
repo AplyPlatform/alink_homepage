@@ -52,13 +52,9 @@ function initViewer() {
             this.canvas = document.getElementById(c_id + '_canvas');
             this.ctx = this.canvas.getContext("2d");
             this.ctx.beginPath();
-            this.ctx.rect(20, 20, 150, 100);
-            this.ctx.fillStyle = "red"; 
-            this.ctx.fill();
-            this.ctx.beginPath();
-            this.ctx.rect(40, 40, 150, 100);
-            this.ctx.fillStyle = "green";
-            this.ctx.fill();
+            this.ctx.rect(0, 0, 300, 300);
+            this.ctx.fillStyle = "green"; 
+            this.ctx.fill();            
         }
     });
 
@@ -312,16 +308,16 @@ function renderPlaces(places) {
         objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');
         objetBox.setAttribute('position', '0 -3 0');
-        objetBox.setAttribute('width', '4');
-        objetBox.setAttribute('height', '4');
+        objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
         objetBox.setAttribute("start", "");
+        objetBox.setAttribute("content-image-url", d.filename);
 
         // add place name
         let objet = document.createElement('a-entity');
         objet.setAttribute('id', d.id);
         objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
-        objet.setAttribute('scale', '0.4 0.4 0.4');
+        objet.setAttribute('scale', '0.2 0.2 0.2');
         objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
         objet.setAttribute('memo', d.memo);
         objet.setAttribute('rotation', '0 90 0');
