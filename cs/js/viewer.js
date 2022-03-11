@@ -135,7 +135,7 @@ function showComments(comments) {
     $('#commentReplyArea').empty();
     
     let contentRow = "<div class='row'><div class='col-12 text-center'>"
-                        + "<img src='https://duni.io/arink/cs/images/" + currentContentImage + "' border=0 width='150px'>"
+                        + "<img src=/cs/assets/5.png border=0 width='150px' id='currentImage'>"
                         + "<br>" + currentMemo
                         + "<br><br></div></div>";
     
@@ -157,7 +157,8 @@ function showComments(comments) {
             + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";        
     });
 
-    $('#commentReplyArea').append(contentRow);   
+    $('#commentReplyArea').append(contentRow);
+    $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + currentContentImage);
 }
 
 function writeComment() {
