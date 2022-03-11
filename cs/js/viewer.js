@@ -46,26 +46,6 @@ function initViewer() {
         }
     });
 
-    AFRAME.registerComponent('start',{
-        init: function(){            
-            let c_id = this.el.getAttribute("id");
-            let image_path = this.el.getAttribute("content_image");
-            this.canvas = document.getElementById(c_id + '_canvas');
-            let imgContext = this.canvas.getContext("2d");
-            let img = new Image();
-            img.onload = function()
-            {
-                imgContext.drawImage(img,0,0,200,200);
-                imgContext.moveTo(30,96);
-                imgContext.lineTo(70,66);
-                imgContext.lineTo(103,76);
-                imgContext.lineTo(170,15);
-                imgContext.stroke();
-            };
-            img.src = "https://duni.io/arink/cs/images/" + image_path;
-        }
-    });
-
     getLocationData();
     hideLoader();
 }
@@ -312,6 +292,19 @@ function renderPlaces(places) {
         objCanvas.setAttribute('width',"500px");
         objCanvas.setAttribute('height', '500px');
         objCanvas.setAttribute('id', d.id + "_box_canvas");
+
+        let imgContext = objCanvas.getContext("2d");
+        let img = new Image();
+        img.onload = function()
+        {
+            imgContext.drawImage(img,0,0,200,200);
+            imgContext.moveTo(30,96);
+            imgContext.lineTo(70,66);
+            imgContext.lineTo(103,76);
+            imgContext.lineTo(170,15);
+            imgContext.stroke();
+        };
+        img.src = "https://duni.io/arink/cs/images/" + d.filename;
         assets.appendChild(objCanvas);
 
         let objetBox = document.createElement('a-box');
