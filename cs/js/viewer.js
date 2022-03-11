@@ -129,7 +129,7 @@ function showComments(comments) {
     $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + currentContentImage);
     $('#currentMemo').text(currentMemo);
     $('#commentArea').show();
-    
+
     isCommentAreaVisible = true;
     $('#commentReplyArea').empty();
     if (!comments || comments.length <= 0) {        
@@ -286,8 +286,8 @@ function renderPlaces(places) {
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');
-        objetBox.setAttribute('position', '0 -4 0');
-        objetBox.setAttribute('scale', '3.5 3.5 3.5');
+        objetBox.setAttribute('position', '0 -6 0');
+        objetBox.setAttribute('scale', '4.5 4.5 4.5');
         objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
 
         // add place name
