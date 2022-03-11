@@ -288,27 +288,13 @@ function renderPlaces(places) {
         let latitude = d.lat;
         let longitude = d.lng;
         
-        let objCanvas = document.createElement('canvas');
-        objCanvas.setAttribute('width',"500px");
-        objCanvas.setAttribute('height', '500px');
-        objCanvas.setAttribute('id', d.id + "_box_canvas");
-        assets.appendChild(objCanvas);
-        let imgContext = objCanvas.getContext("2d");
-        let img = new Image();
-        img.onload = function()
-        {
-            imgContext.drawImage(img,0,0,200,200);
-        };
-        img.src = "/cs/assets/3.png";
-
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');        
         objetBox.setAttribute('position', '0 -4 0');
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
         objetBox.setAttribute('color', '#ffffff');
-        objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
-        objetBox.setAttribute("content_image", d.filename);
+        objetBox.setAttribute('src', 'https://arink.aply.biz/cs/assets/8.png');
 
         // add place name
         let objet = document.createElement('a-entity');
