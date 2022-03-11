@@ -49,12 +49,15 @@ function initViewer() {
     AFRAME.registerComponent('start',{
         init: function(){            
             let c_id = this.el.getAttribute("id");
+            let image_path = this.el.getAttribute("content_image");
             this.canvas = document.getElementById(c_id + '_canvas');
             this.ctx = this.canvas.getContext("2d");
-            this.ctx.beginPath();
-            this.ctx.rect(0, 0, 300, 300);
-            this.ctx.fillStyle = "green"; 
-            this.ctx.fill();            
+            let img = new Image(); //이미지 객체 생성            
+            img.onload = function () //이미지 로딩 완료시 실행되는 함수
+            {
+                this.ctx.drawImage(img,0,0,this.canvas.width,200);
+            };
+            img.src = "https://duni.io/arink/cs/images/" + image_path;            
         }
     });
 
@@ -308,11 +311,11 @@ function renderPlaces(places) {
         objetBox.setAttribute('id', d.id + "_box");         
         objetBox.setAttribute('rotation', '0 45 0');        
         objetBox.setAttribute('position', '0 -3 0');
-        objetBox.setAttribute('scale', '1 1 1');
+        objetBox.setAttribute('scale', '3.5 3.5 3.5');
         objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
         objetBox.setAttribute("start", "");
-        objetBox.setAttribute("content-image-url", d.filename);
+        objetBox.setAttribute("content_image", d.filename);
 
         // add place name
         let objet = document.createElement('a-entity');
