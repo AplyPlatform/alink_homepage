@@ -301,10 +301,15 @@ function renderPlaces(places) {
     else $("#topText").text(places.length + " signals are loaded.");
 
     let scene = document.querySelector('a-scene');
+    let assets = document.querySelector('a-assets');
 
     places.forEach((d) => {
         let latitude = d.lat;
         let longitude = d.lng;
+        
+        let objCanvas = document.createElement('canvas');
+        objCanvas.setAttribute('id', d.id + "_canvas");
+        assets.appendChild(objCanvas);
 
         let objetPlane = document.createElement('a-plane');
         objetPlane.setAttribute('id', d.id + "_plane");
@@ -312,7 +317,7 @@ function renderPlaces(places) {
         objetPlane.setAttribute('rotation', '-90 0 0');
         objetPlane.setAttribute('width', '4');
         objetPlane.setAttribute('height', '4');
-        objetPlane.setAttribute('material', 'src:#canvas');
+        objetPlane.setAttribute('material', 'src:#' + d.id + "_canvas");
 
         // add place name
         let objet = document.createElement('a-entity');
