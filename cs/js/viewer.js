@@ -293,7 +293,7 @@ function renderPlaces(places) {
         objetBox.setAttribute('rotation', '0 45 0');
         objetBox.setAttribute('position', '0 -4 0');
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
-        objetBox.setAttribute('src', 'https://duni.io/arink/cs/images/' + d.filename);
+        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?filename=' + d.filename);
 
         // add place name
         let objet = document.createElement('a-entity');
