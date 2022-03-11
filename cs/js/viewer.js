@@ -306,8 +306,9 @@ function renderPlaces(places) {
 
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
-        objetBox.setAttribute('rotation', '0 45 0');
+        objetBox.setAttribute('rotation', '0 45 0');        
         objetBox.setAttribute('position', '0 -3 0');
+        objetBox.setAttribute('scale', '1 1 1');
         objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
         objetBox.setAttribute("start", "");
