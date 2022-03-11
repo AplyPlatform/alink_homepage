@@ -135,7 +135,7 @@ function showComments(comments) {
     $('#commentReplyArea').empty();
     
     let contentRow = "<div class='row'><div class='col-12 text-center'>"
-                        + "<img src='https://duni.io/arink/cs/images/" + currentContentImage + "' border=0 width='150px'>"
+                        + "<img src='https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=" + currentContentImage + "' border=0 width='150px'>"
                         + "<br>" + currentMemo
                         + "<br><br></div></div>";
     
@@ -293,7 +293,7 @@ function renderPlaces(places) {
         objetBox.setAttribute('rotation', '0 45 0');
         objetBox.setAttribute('position', '0 -4 0');
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
-        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?filename=' + d.filename);
+        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
 
         // add place name
         let objet = document.createElement('a-entity');
