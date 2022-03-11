@@ -311,13 +311,14 @@ function renderPlaces(places) {
         objCanvas.setAttribute('id', d.id + "_canvas");
         assets.appendChild(objCanvas);
 
-        let objetPlane = document.createElement('a-plane');
+        let objetPlane = document.createElement('a-box');
         objetPlane.setAttribute('id', d.id + "_plane");
         objetPlane.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
-        objetPlane.setAttribute('rotation', '-90 0 0');
+        objetPlane.setAttribute('rotation', '0 45 0');
         objetPlane.setAttribute('width', '4');
         objetPlane.setAttribute('height', '4');
         objetPlane.setAttribute('material', 'src:#' + d.id + "_canvas");
+        objetPlane.setAttribute("start", "");
 
         // add place name
         let objet = document.createElement('a-entity');
