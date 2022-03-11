@@ -292,20 +292,14 @@ function renderPlaces(places) {
         objCanvas.setAttribute('width',"500px");
         objCanvas.setAttribute('height', '500px');
         objCanvas.setAttribute('id', d.id + "_box_canvas");
-
+        assets.appendChild(objCanvas);
         let imgContext = objCanvas.getContext("2d");
         let img = new Image();
         img.onload = function()
         {
             imgContext.drawImage(img,0,0,200,200);
-            imgContext.moveTo(30,96);
-            imgContext.lineTo(70,66);
-            imgContext.lineTo(103,76);
-            imgContext.lineTo(170,15);
-            imgContext.stroke();
         };
-        img.src = "https://duni.io/arink/cs/images/" + d.filename;
-        assets.appendChild(objCanvas);
+        img.src = "/assets/cs/assets/3.png";
 
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('id', d.id + "_box");         
@@ -314,7 +308,6 @@ function renderPlaces(places) {
         objetBox.setAttribute('scale', '3.5 3.5 3.5');
         objetBox.setAttribute('color', '#ffffff');
         objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
-        objetBox.setAttribute("start", "");
         objetBox.setAttribute("content_image", d.filename);
 
         // add place name
