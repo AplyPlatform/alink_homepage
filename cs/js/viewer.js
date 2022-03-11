@@ -46,6 +46,25 @@ function initViewer() {
         }
     });
 
+    AFRAME.registerComponent('start',{
+        init: function(){            
+            //this.canvas = document.createElement('canvas');
+            this.canvas = document.getElementById('canvas');
+            this.ctx = canvas.getContext("2d");
+            console.log("somethig should be happening!");
+            console.log(this.canvas);
+            console.log(this.ctx);
+            this.ctx.beginPath();
+            this.ctx.rect(20, 20, 150, 100);
+            this.ctx.fillStyle = "red"; 
+            this.ctx.fill();
+            this.ctx.beginPath();
+            this.ctx.rect(40, 40, 150, 100);
+            this.ctx.fillStyle = "blue";
+            this.ctx.fill();
+        }
+    });
+
     getLocationData();
     hideLoader();
 }
