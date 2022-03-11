@@ -314,7 +314,7 @@ function renderPlaces(places) {
         objetBox.setAttribute('rotation', '0 45 0');
         objetBox.setAttribute('width', '4');
         objetBox.setAttribute('height', '4');
-        objetBox.setAttribute('material', 'src:#' + d.id + "_canvas");
+        objetBox.setAttribute('material', 'src:#' + d.id + "_box_canvas");
         objetBox.setAttribute("start", "");
 
         // add place name
