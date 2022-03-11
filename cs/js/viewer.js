@@ -309,6 +309,8 @@ function renderPlaces(places) {
         let longitude = d.lng;
         
         let objCanvas = document.createElement('canvas');
+        objCanvas.setAttribute('width',"500px");
+        objCanvas.setAttribute('height', '500px');
         objCanvas.setAttribute('id', d.id + "_box_canvas");
         assets.appendChild(objCanvas);
 
