@@ -50,7 +50,7 @@ function initViewer() {
         init: function(){            
             let c_id = this.el.getAttribute("id");
             this.canvas = document.getElementById(c_id + '_canvas');
-            this.ctx = canvas.getContext("2d");
+            this.ctx = this.canvas.getContext("2d");
             this.ctx.beginPath();
             this.ctx.rect(20, 20, 150, 100);
             this.ctx.fillStyle = "red"; 
