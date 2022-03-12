@@ -135,6 +135,9 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
               showConfirmDialog();
               return;
             }
+
+            showAlert("죄송합니다, 일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
+            return;
         }
 
         setCookie("temp_sns_id", token, 1);
