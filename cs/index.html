@@ -41,13 +41,6 @@
             z-index: 4;                        
             padding-left: 10px;            
       }
-
-      body {
-        background-image: url('./assets/back.png');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-      }
       
       .sign-in-button
       {
@@ -71,7 +64,7 @@
 
     </style>
   </head>
-  <body>
+  <body bgcolor="#fff">
     <div id="loading">
       <div class="loader"></div>
     </div>
@@ -80,17 +73,17 @@
       <div id="loginArea">
           <a id="googleLoginBtn"
 										class="btn sign-in-button google-button"
-										style="font-weight:400;color:#fff;font-size:13px;">Google 계정으로 사용</a>
+										style="font-weight:400;color:#333;font-size:13px;">Google 계정으로 사용</a>
 
           <a id="googleLogoutBtn"
                     type="button" class="btn btn-info"
-                    style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>        
+                    style="font-weight:400;color:#333;font-size:13px;">로그아웃</a>        
       </div>
 
       <div class="row">
         <div class="col-sm text-center">
           <br><br>
-          <h1 style="color:#fff">
+          <h1 style="color:#000">
             <b>Calming</b> <small style="color:rgb(70, 70, 70)">Signal</small>
           </h1>          
         </div>
@@ -107,7 +100,7 @@
           <form>
             <div class="form-group">
               <br>
-              <label style="color:#fff" for="memoInput">메모</label>
+              <label style="color:#000" for="memoInput">메모</label>
               <input type="text" class="form-control" name="memoInput" id="memoInput" aria-describedby="memoHelp" placeholder="짧은 기록을 남겨보세요">              
             </div>                        
           </form>
@@ -144,7 +137,7 @@
         <div class="col-sm text-center">
           <br>          
           <hr size="1" width="100%" color="white">
-          <font size="2" color="white">© 2022 <a href="https://arink.aply.biz/cs/">Calming Signal</a></font>
+          <font size="2" color="#000">© 2022 <a href="https://arink.aply.biz/cs/">Calming Signal</a></font>
         </div>
       </div>      
     </div>
