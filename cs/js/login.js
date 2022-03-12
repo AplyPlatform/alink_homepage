@@ -1,71 +1,96 @@
 "use strict";
 
 window.onload = () => {
+    kakaoinit();
     setLoginButtons();
 };
 
-function googleinit() {
-  if ((typeof gapi) === "undefined" || gapi == null || gapi == "") {
-      return;
-  }
+function kakaoLogin() {
+  Kakao.Auth.login({
+      success: function (authObj) {
+          Kakao.API.request({
+              url: '/v2/user/me',
+              success: function (res) {
+                  setCookie("dev_kind", "kakao", 1);
 
-  gapi.load('auth2', function () { // Ready.
-      let gauth = gapi.auth2.init();
+                  let name = "";
+                  let image = "";
+                  let email = "";
+                  let token = authObj.access_token;
 
-      let options = new gapi.auth2.SigninOptionsBuilder();
-      options.setPrompt('select_account');
+                  if ("properties" in res) {
+                      if ("nickname" in res.properties) {
+                          name = res.properties['nickname'];
+                      }
 
-      gauth.attachClickHandler(document.getElementById('googleLoginBtn'), options,
-          function (googleUser) {
-            setCookie("dev_kind", "google", 1);
+                      if ("profile_image" in res.properties) {
+                          image = res.properties['profile_image'];
+                      }
+                  }
 
-            var profile = googleUser.getBasicProfile();
-            var token = googleUser.getAuthResponse().id_token;
-        
-            var name = profile.getName();
-            var image = profile.getImageUrl();
-            var email = profile.getEmail();
-            formSubmit(token, name, image, email);
-          }, function (error) {
-              //alert(JSON.stringify(error, undefined, 2));
-      });
+                  if ("kakao_account" in res) {
+                      if ("email" in res.kakao_account) {
+                          email = res.kakao_account['email'];
+                      }
+                  }
 
-      setLoginButtons();
+                  formSubmit(token, name, image, email);
+              },
+              fail: function (error) {
+                  showAlert("로그인에 실패하였습니다. : " + error);
+              },
+          })
+      },
+      fail: function (err) {
+          showAlert("로그인에 실패하였습니다. : " + err);
+      },
   });
+}
+
+function kakaoinit() {
+  Kakao.init('74cf06fcd71087d17b1b9b40cb0fa573');
+
+  if (document.getElementById('kakaoLoginBtn')) {
+      document.getElementById('kakaoLoginBtn').addEventListener('click', function () {          
+          kakaoLogin();
+      });
+  }
 }
 
 function setLoginButtons() {
   let token = getCookie("user_token");
-  $("#googleLogoutBtn").click(function() {
+  $("#kakaoLogoutBtn").click(function() {
     signOut();
   });
 
-  $("#googleLoginBtn").hide();
-  $("#googleLogoutBtn").hide();
-    
+  $("#kakaoLoginBtn").hide();
+  $("#kakaoLogoutBtn").hide();
     
   if (isSet(token)) {
-    $("#googleLogoutBtn").show();
-    $("#googleLoginBtn").hide();
+    $("#kakaoLogoutBtn").show();
+    $("#kakaoLoginBtn").hide();
   }
   else {
-    $("#googleLogoutBtn").hide();
-    $("#googleLoginBtn").show();
+    $("#kakaoLogoutBtn").hide();
+    $("#kakaoLoginBtn").show();
   }
 
   hideLoader();   
 }
 
 function signOut() {
-    let auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function() {
-      setCookie("dev_kind", "", -1);
-      setCookie("user_token", "", -1);
-      setCookie("temp_sns_id", "", -1);
-      setCookie("user_clientid", "", -1);
-      $("#googleLogoutBtn").hide();
-      $("#googleLoginBtn").show();
-    });  
+  if (!Kakao.Auth.getAccessToken()) {      
+    return;
+  }
+
+  Kakao.Auth.logout(function() {
+    setCookie("dev_kind", "", -1);
+    setCookie("user_token", "", -1);
+    setCookie("temp_sns_id", "", -1);
+    setCookie("user_clientid", "", -1);
+    $("#kakaoLogoutBtn").hide();
+    $("#kakaoLoginBtn").show();
+  });    
 }
 
 function formSubmit(token, temp_name, temp_image, temp_email) {
@@ -119,8 +144,8 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         setCookie("user_token", data.token, 1);
         setCookie("user_clientid", data.client_id, 1);
 
-        $("#googleLogoutBtn").show();
-        $("#googleLoginBtn").hide();
+        $("#kakaoLogoutBtn").show();
+        $("#kakaoLoginBtn").hide();
     }).fail(function()  {
       alert("Sorry. Server unavailable. ");
       hideLoader();
@@ -159,8 +184,8 @@ function tryRegister() {
       
       setCookie("user_token", data.token, 1);
       setCookie("user_clientid", data.client_id, 1);
-      $("#googleLogoutBtn").show();
-      $("#googleLoginBtn").hide();   
+      $("#kakaoLogoutBtn").show();
+      $("#kakaoLoginBtn").hide();   
 
       showAlert("축하드립니다. 성공적으로 가입되었습니다.");
   }).fail(function()  {

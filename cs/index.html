@@ -57,9 +57,9 @@
           background-position: 19px 11px;  
       }
 
-      .google-button
+      .kakao-button
       {
-          background-image: url('./assets/logo_google.png');    
+          background-image: url('./assets/logo_kakao.png');
       }            
 
     </style>
@@ -71,11 +71,11 @@
 
     <div class="container">
       <div id="loginArea">
-          <a id="googleLoginBtn"
-										class="btn sign-in-button google-button"
-										style="font-weight:400;color:#333;font-size:13px;">Google 계정으로 사용</a>
+          <a id="kakaoLoginBtn"
+										class="btn sign-in-button kakao-button"
+										style="font-weight:400;color:#333;font-size:13px;">카카오 계정으로 사용</a>
 
-          <a id="googleLogoutBtn"
+          <a id="kakaoLogoutBtn"
                     type="button" class="btn btn-info"
                     style="font-weight:400;color:#fff;font-size:13px;">로그아웃</a>        
       </div>
@@ -181,8 +181,8 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/script.js"></script>
-    <script src="./js/login.js"></script>    
-    <script src="https://apis.google.com/js/platform.js?onload=googleinit" async defer></script>
+    <script src="./js/login.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js" type="text/javascript"></script>    
   </body>
 </html>
 
