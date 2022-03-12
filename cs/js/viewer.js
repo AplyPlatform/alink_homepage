@@ -90,7 +90,7 @@ const clickListener = function(ev, target) {
     ev.preventDefault();
 
     currentMemo = ev.target.getAttribute('memo');
-    currentContentId = ev.target.getAttribute('id');
+    currentContentId = ev.target.getAttribute('c_id');
     currentContentImage = ev.target.getAttribute('content_image');
     
     const el = ev.detail.intersection && ev.detail.intersection.object.el;
@@ -284,7 +284,7 @@ function renderPlaces(places) {
         let longitude = d.lng;
         
         let objetBox = document.createElement('a-box');
-        objetBox.setAttribute('id', d.id + "_box");         
+        objetBox.setAttribute('c_id', d.id);         
         objetBox.setAttribute('rotation', '0 45 0');
         objetBox.setAttribute('position', '0 -5 0');
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
@@ -292,7 +292,7 @@ function renderPlaces(places) {
 
         // add place name
         let objet = document.createElement('a-entity');
-        objet.setAttribute('id', d.id);
+        objet.setAttribute('c_id', d.id);
         objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
         objet.setAttribute('scale', '0.2 0.2 0.2');
         objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
