@@ -132,6 +132,8 @@ function getRandomInt(min, max) {
 }
 
 function setCurrentContent() {
+    let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
+
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
         visiblePages: 3,
@@ -140,7 +142,7 @@ function setCurrentContent() {
         next : '',
         last : '최초',        
         onPageClick: function (event, page) {
-            let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];    
+            contentsArrays = currentContentArrays[currentContentLat][currentContentLng];    
             let content = contentsArrays[page - 1];
             showContent(content);
         }
