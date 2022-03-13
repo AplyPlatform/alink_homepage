@@ -146,6 +146,7 @@ function showContent(content) {
     $('#currentMemo').text(content.memo);
     $('#commentArea').show();
 
+    currentContentId = content.id;
     getComments(content.id);
 }
 
@@ -340,7 +341,7 @@ function renderPlaces(placesArray) {
             scene.appendChild(objet);
         }
     }
-    
+
     if (count == 1) $("#topText").text(count + " signal is loaded.");
     else $("#topText").text(count + " signals are loaded.");
 }
