@@ -123,6 +123,8 @@ function getRandomInt(min, max) {
 
 function setCurrentContent() {
     let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
+    showContent(contentsArrays[0]);
+
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
         visiblePages: 3,
