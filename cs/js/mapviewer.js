@@ -399,11 +399,12 @@ function renderPlaces(placesArray) {
     let longitude = -999;
 
     for (const placesLat in placesArray) {
-        for (const placesLng in placesArray[placesLat]) {
-            count += placesArray[placesLat][placesLng].length;
+        for (const placesLng in placesArray[placesLat]) {            
+            let size = placesArray[placesLat][placesLng].length;
+            count += size;
 
-            for (let i=(count-1);i>=0;i--) {
-                d = placesArray[placesLat][placesLng][i];
+            for (let i=(size-1);i>=0;i--) {
+                let d = placesArray[placesLat][placesLng][i];
 
                 latitude = d.lat;
                 longitude = d.lng;
