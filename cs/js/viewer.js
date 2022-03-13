@@ -298,44 +298,46 @@ function renderPlaces(placesArray) {
     currentContentArrays = placesArray;
 
     let scene = document.querySelector('a-scene');
-    for (const places in placesArray) {    
-        d = places[0];
+    for (const placesLat in placesArray) {
+        for (const placesLng in placesLat) {
+            d = placesLng[0];
 
-        let latitude = d.lat;
-        let longitude = d.lng;
-        
-        let objetBox = document.createElement('a-box');
-        objetBox.setAttribute('c_id', d.id);
-        objetBox.setAttribute('d_lat', latitude);
-        objetBox.setAttribute('d_lng', longitude);
-        objetBox.setAttribute('rotation', '0 45 0');
-        objetBox.setAttribute('position', '0 -5 0');
-        objetBox.setAttribute('scale', '4.5 4.5 4.5');
-        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
-
-        // add place name
-        let objet = document.createElement('a-entity');
-        objet.setAttribute('c_id', d.id);
-        objet.setAttribute('d_lat', latitude);
-        objet.setAttribute('d_lng', longitude);
-        objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
-        objet.setAttribute('scale', '0.2 0.2 0.2');
-        objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
-        objet.setAttribute('memo', d.memo);
-        objet.setAttribute('rotation', '0 90 0');
-        objet.setAttribute('animation-mixer', '');
-        objet.setAttribute('content_image', d.filename);
-        objet.setAttribute("click-handler", "txt:image");
-        objet.setAttribute("cursor", "rayOrigin:mouse");
-        objet.setAttribute("smooth", "10");
-        objet.setAttribute("smoothCount", "0.01");
-        objet.setAttribute("smoothThreshold", "5");
+            let latitude = d.lat;
+            let longitude = d.lng;
             
-        objet.addEventListener('loaded', () => {
-            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
-        });
+            let objetBox = document.createElement('a-box');
+            objetBox.setAttribute('c_id', d.id);
+            objetBox.setAttribute('d_lat', latitude);
+            objetBox.setAttribute('d_lng', longitude);
+            objetBox.setAttribute('rotation', '0 45 0');
+            objetBox.setAttribute('position', '0 -5 0');
+            objetBox.setAttribute('scale', '4.5 4.5 4.5');
+            objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
 
-        objet.appendChild(objetBox);
-        scene.appendChild(objet);
+            // add place name
+            let objet = document.createElement('a-entity');
+            objet.setAttribute('c_id', d.id);
+            objet.setAttribute('d_lat', latitude);
+            objet.setAttribute('d_lng', longitude);
+            objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
+            objet.setAttribute('scale', '0.2 0.2 0.2');
+            objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
+            objet.setAttribute('memo', d.memo);
+            objet.setAttribute('rotation', '0 90 0');
+            objet.setAttribute('animation-mixer', '');
+            objet.setAttribute('content_image', d.filename);
+            objet.setAttribute("click-handler", "txt:image");
+            objet.setAttribute("cursor", "rayOrigin:mouse");
+            objet.setAttribute("smooth", "10");
+            objet.setAttribute("smoothCount", "0.01");
+            objet.setAttribute("smoothThreshold", "5");
+                
+            objet.addEventListener('loaded', () => {
+                window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
+            });
+
+            objet.appendChild(objetBox);
+            scene.appendChild(objet);
+        }
     }
 }
