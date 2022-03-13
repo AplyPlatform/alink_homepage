@@ -36,7 +36,7 @@ function initViewer() {
     });
 
     initMap();
-    hideLoader();
+    dynamicLoadPlaces();    
 }
 
 function getRandomInt(min, max) {
@@ -378,9 +378,10 @@ function createNewIconFor2DMap(item) {
 }
 
 
-function renderPlaces(placesArray) {    
+function renderPlaces(placesArray) {
     if (!isSet(placesArray)) {
         $("#topText").text("No signals are loaded.");
+        hideLoader();
         return;
     }
     
@@ -405,4 +406,5 @@ function renderPlaces(placesArray) {
 
     if (count == 1) $("#topText").text(count + " signal is loaded.");
     else $("#topText").text(count + " signals are loaded.");
+    hideLoader();
 }
