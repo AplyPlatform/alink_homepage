@@ -244,7 +244,7 @@ function writeComment() {
         contentType: false                                                    
     }).done(function(data) {
         setTimeout(() => {
-            getReplyContent();
+            getComments(currentContentId);
         }, 0);
     }).fail(function()  {
         alert("Sorry. Server unavailable. ");
