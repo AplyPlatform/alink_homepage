@@ -134,6 +134,7 @@ function getRandomInt(min, max) {
 function setCurrentContent() {
     let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
 
+    $('#pagination').twbsPagination('destroy');
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
         visiblePages: 3,
