@@ -89,27 +89,12 @@ const clickListener = function(ev, target) {
     ev.stopPropagation();
     ev.preventDefault();
 
-    currentMemo = ev.target.getAttribute('memo');
-    currentContentId = ev.target.getAttribute('c_id');
-    currentContentImage = ev.target.getAttribute('content_image');
-
     currentContentLat = ev.target.getAttribute('d_lat');
     currentContentLng = ev.target.getAttribute('d_lng');
     
     const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
-    if (el && el === ev.target) {
-        const label = document.createElement('span');
-        const container = document.createElement('div');
-        container.setAttribute('id', 'place-label');
-        label.innerText = currentMemo;
-        container.appendChild(label);
-        document.body.appendChild(container);
-        
-        setTimeout(() => {
-            container.parentElement.removeChild(container);
-        }, 1500);
-
+    if (el && el === ev.target) {        
         if (isCommentAreaVisible == true) {
             isCommentAreaVisible = false;
             $('#commentArea').hide();            
@@ -133,8 +118,11 @@ function setCurrentContent() {
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
         visiblePages: 3,
+        first: '',
+        prev : '',
+        next : '',
+        last : '',
         onPageClick: function (event, page) {
-            //$('#page-content').text('Page ' + page);
             let content = contentsArrays[page - 1];
             showContent(content);
         }
@@ -145,6 +133,16 @@ function showContent(content) {
     $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + content.filename);
     $('#currentMemo').text(content.memo);
     $('#commentArea').show();
+
+    const label = document.createElement('span');
+    const container = document.createElement('div');
+    label.innerText = content.memo;
+    container.appendChild(label);
+    document.body.appendChild(container);
+    
+    setTimeout(() => {
+        container.parentElement.removeChild(container);
+    }, 1500);
 
     currentContentId = content.id;
     getComments(content.id);
@@ -323,10 +321,8 @@ function renderPlaces(placesArray) {
             objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
             objet.setAttribute('scale', '0.2 0.2 0.2');
             objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
-            objet.setAttribute('memo', d.memo);
             objet.setAttribute('rotation', '0 90 0');
             objet.setAttribute('animation-mixer', '');
-            objet.setAttribute('content_image', d.filename);
             objet.setAttribute("click-handler", "txt:image");
             objet.setAttribute("cursor", "rayOrigin:mouse");
             objet.setAttribute("smooth", "10");
