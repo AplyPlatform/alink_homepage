@@ -140,7 +140,7 @@ function setCurrentContent() {
         first: '최근',
         prev : '',
         next : '',
-        last : '처음',        
+        last : '최초',        
         onPageClick: function (event, page) {
             let content = contentsArrays[page - 1];
             showContent(content);
