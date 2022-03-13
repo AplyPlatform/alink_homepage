@@ -291,19 +291,16 @@ function renderPlaces(placesArray) {
         $("#topText").text("No signals are loaded.");
         return;
     }
-
-    let count = 0;
-    for (let k in placesArray) if (placesArray.hasOwnProperty(k)) ++count;
-
-    if (count == 1) $("#topText").text(count + " signal is loaded.");
-    else $("#topText").text(count + " signals are loaded.");
-
+    
     currentContentArrays = placesArray;
 
+    let count = 0;
     let scene = document.querySelector('a-scene');
     for (const placesLat in placesArray) {
         for (const placesLng in placesArray[placesLat]) {
-            d = placesArray[placesLat][placesLng][0];
+            count += placesArray[placesLat][placesLng].length;
+
+            d = placesArray[placesLat][placesLng][0];            
 
             let latitude = d.lat;
             let longitude = d.lng;
@@ -343,4 +340,7 @@ function renderPlaces(placesArray) {
             scene.appendChild(objet);
         }
     }
+    
+    if (count == 1) $("#topText").text(count + " signal is loaded.");
+    else $("#topText").text(count + " signals are loaded.");
 }
