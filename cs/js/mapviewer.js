@@ -404,8 +404,8 @@ function renderPlaces(placesArray) {
 
             d = placesArray[placesLat][placesLng][0];            
 
-            let latitude = d.lat;
-            let longitude = d.lng;
+            latitude = d.lat;
+            longitude = d.lng;
             
             let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
             if (isSet(g_vector_2D_map_for_dog)) {
