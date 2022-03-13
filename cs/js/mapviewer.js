@@ -223,6 +223,13 @@ function initMap() {
         zoom: 7
     });
 
+    let bingLayer = new ol.layer.Tile({
+        visible: true,
+        preload: Infinity,
+        source: new ol.source.OSM()
+                //new ol.source.Stamen({ layer: 'toner', })
+    });
+
     let overviewMapControl = new ol.control.OverviewMap({
         layers: [
             new ol.layer.Tile({
