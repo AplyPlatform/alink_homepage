@@ -150,7 +150,11 @@ function setCurrentContent() {
 
 function showContent(content) {
     $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + content.filename);
-    $('#currentMemo').text(content.memo);
+        
+    let date = new Date(content.timestamp).toISOString().split("T")[0];    
+    const time = new Date().toTimeString().split(" ")[0];    
+
+    $('#currentMemo').html(content.memo + "<br>" + date + ' ' + time);
     $('#commentArea').show();
 
     popLabel.text(content.memo);
