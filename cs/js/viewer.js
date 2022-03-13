@@ -152,7 +152,7 @@ function showContent(content) {
     $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + content.filename);
         
     let date = new Date(content.datetime * 1000).toISOString().split("T")[0];    
-    const time = new Date().toTimeString().split(" ")[0];    
+    const time = new Date(content.datetime * 1000).toTimeString().split(" ")[0];    
     $('#currentDate').html("<font size=1>" + date + ' ' + time + "</font>");
     $('#currentMemo').html("<b>" + content.memo + "</b>");
     $('#commentArea').show();
