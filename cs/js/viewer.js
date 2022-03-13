@@ -147,6 +147,8 @@ function setCurrentContent() {
             showContent(content);
         }
     });
+
+    $('#pagination').twbsPagination('show', 1);
 }
 
 function showContent(content) {
