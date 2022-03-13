@@ -153,8 +153,8 @@ function showContent(content) {
         
     let date = new Date(content.datetime * 1000).toISOString().split("T")[0];    
     const time = new Date().toTimeString().split(" ")[0];    
-
-    $('#currentMemo').html(content.memo + "<br><font size=1>" + date + ' ' + time + "</font>");
+    $('#currentDate').html("<font size=1>" + date + ' ' + time + "</font>");
+    $('#currentMemo').html("<b>" + content.memo + "</b>");
     $('#commentArea').show();
 
     popLabel.text(content.memo);
