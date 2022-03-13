@@ -32,6 +32,7 @@ function initViewer() {
 
     $("#closeBtn").click(function () {
         $("#commentArea").hide();
+        isCommentAreaVisible = false;
     });
 
     AFRAME.registerComponent('raycaster-autorefresh', {
@@ -95,13 +96,13 @@ const checkCurrentLocation = function (position) {
 const clickListener = function(ev, target) {
     ev.stopPropagation();
     ev.preventDefault();
-
-    currentContentLat = ev.target.getAttribute('d_lat');
-    currentContentLng = ev.target.getAttribute('d_lng');
-    
+        
     const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
     if (el && el === ev.target) {        
+        currentContentLat = ev.target.getAttribute('d_lat');
+        currentContentLng = ev.target.getAttribute('d_lng');
+
         if (isCommentAreaVisible == true) {
             isCommentAreaVisible = false;
             $('#commentArea').hide();            
