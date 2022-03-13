@@ -1,5 +1,13 @@
 
 $(function() {
+    let user_token = getCookie("user_token");
+    if (!isSet(user_token)) {
+        alert("로그인 후에 사용하실 수 있습니다.");
+        location.href = "./index.html";
+        return;
+    }
+
+    showLoader();
     initViewer();        
 });
 
@@ -14,14 +22,7 @@ let currentContentArrays = [];
 const popLabel = $('<span></span>');
 const popContainer = $('<div id="place-label"></div>');
 
-function initViewer() {    
-    let user_token = getCookie("user_token");
-    if (!isSet(user_token)) {
-        alert("로그인 후 사용하실 수 있습니다.");
-        location.href = "./index.html";
-        return;
-    }
-    
+function initViewer() {            
     popContainer.append(popLabel);
     popContainer.hide();
     $("body").append(popContainer);
@@ -196,7 +197,7 @@ function getComments(c_id) {
         showComments(data.data);
         hideLoader();
     }).fail(function()  {
-        alert("Sorry. Server unavailable. ");
+        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
         hideLoader();
     });
 }
@@ -233,7 +234,7 @@ function showComments(comments) {
 function writeComment() {
     let comment = $("#commentInput").val();
     if (comment == "") {
-        alert("내용을 입력해 주5");
+        showAlert("내용을 입력해 주5");
         return;
     }
 
@@ -266,7 +267,7 @@ function writeComment() {
             getComments(currentContentId);
         }, 0);
     }).fail(function()  {
-        alert("Sorry. Server unavailable. ");
+        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
         hideLoader();
     });
 }
@@ -296,12 +297,10 @@ function dynamicLoadPlaces() {
         cache: false,
         processData: false,
         contentType: false                                                    
-    }).done(function(data) {
-        // todo:
-        // redirection
+    }).done(function(data) {        
         renderPlaces(data.data); 
     }).fail(function()  {
-        alert("Sorry. Server unavailable. ");
+        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
     });
 };
 
