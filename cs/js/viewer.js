@@ -137,10 +137,10 @@ function setCurrentContent() {
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
         visiblePages: 3,
-        first: '',
+        first: '최근',
         prev : '',
         next : '',
-        last : '',        
+        last : '처음',        
         onPageClick: function (event, page) {
             let content = contentsArrays[page - 1];
             showContent(content);
