@@ -301,12 +301,7 @@ function displayMapFeature(f, coordinate, overlay) {
 }
 
 
-function createNewIconFor2DMap(i, item) {
-
-    var hasYoutube = false;
-    if (isSet(item.hasYoutube)) {
-        hasYoutube = item.hasYoutube;
-    }
+function createNewIconFor2DMap(item) {
 
     var pos_icon = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([item.lng * 1, item.lat * 1])),
@@ -338,7 +333,7 @@ function renderPlaces(placesArray) {
             let latitude = d.lat;
             let longitude = d.lng;
             
-            var icon = createNewIconFor2DMap(0, { lat: latitude, lng: longitude, alt: d.alt });
+            var icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
             if (isSet(g_view_2D_map)) {
                 g_view_2D_map.addFeature(icon);
             }
