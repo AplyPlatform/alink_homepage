@@ -35,8 +35,8 @@ function initViewer() {
         isCommentAreaVisible = false;
     });
 
+    initMap();
     hideLoader();
-
 }
 
 function getRandomInt(min, max) {
