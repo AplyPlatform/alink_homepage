@@ -264,7 +264,7 @@ function initMap() {
                     style = [new ol.style.Style({
                         image: new ol.style.Icon({
                             src: '/cs/assets/6.png',
-                            scale: 0.3,
+                            scale: 0.07,
                             opacity: 0.8,
                             fill: new ol.style.Fill({ color: '#FFF' }),
                             stroke: new ol.style.Stroke({ color: '#45cdba', width: 2 }),
@@ -309,6 +309,14 @@ function initMap() {
         var feature = vMap.forEachFeatureAtPixel(evt.pixel, function (feature) { return feature; });
         processMapClick(vMap, evt, feature);
     });
+}
+
+function isCluster(feature) {
+    if (!feature || !feature.get('features')) {
+        return false;
+    }
+
+    return feature.get('features').length >= 1;
 }
 
 function processMapClick(map, evt, feature) {
@@ -386,7 +394,10 @@ function renderPlaces(placesArray) {
     
     currentContentArrays = placesArray;
 
-    let count = 0;
+    let count = 0;    
+    let latitude = -999;
+    let longitude = -999;
+
     for (const placesLat in placesArray) {
         for (const placesLng in placesArray[placesLat]) {
             count += placesArray[placesLat][placesLng].length;
@@ -396,13 +407,16 @@ function renderPlaces(placesArray) {
             let latitude = d.lat;
             let longitude = d.lng;
             
-            var icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
+            let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
             if (isSet(g_vector_2D_map_for_dog)) {
                 g_vector_2D_map_for_dog.addFeature(icon);
             }
         }
     }
-
+    
+    let npos = ol.proj.fromLonLat([longitude, latitude]);
+    g_view_2D_map.setCenter(npos);
+    
     if (count == 1) $("#topText").text(count + " signal is loaded.");
     else $("#topText").text(count + " signals are loaded.");
     hideLoader();
