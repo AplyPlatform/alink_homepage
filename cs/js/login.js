@@ -63,15 +63,18 @@ function setLoginButtons() {
     signOut();
   });
 
-  $("#kakaoLoginBtn").hide();
-  $("#kakaoLogoutBtn").hide();
+  $("#menuAreaAfterLogin").hide();
+  $("#titleAreaBeforeLogin").show();
+  $("#kakaoLoginBtn").show();
     
   if (isSet(token)) {
-    $("#kakaoLogoutBtn").show();
+    $("#menuAreaAfterLogin").show();
+    $("#titleAreaBeforeLogin").hide();
     $("#kakaoLoginBtn").hide();
   }
   else {
-    $("#kakaoLogoutBtn").hide();
+    $("#menuAreaAfterLogin").hide();
+    $("#titleAreaBeforeLogin").show();
     $("#kakaoLoginBtn").show();
   }
 
@@ -88,7 +91,8 @@ function signOut() {
     setCookie("user_token", "", -1);
     setCookie("temp_sns_id", "", -1);
     setCookie("user_clientid", "", -1);
-    $("#kakaoLogoutBtn").hide();
+    $("#menuAreaAfterLogin").hide();
+    $("#titleAreaBeforeLogin").show();
     $("#kakaoLoginBtn").show();
   });    
 }
@@ -147,7 +151,8 @@ function formSubmit(token, temp_name, temp_image, temp_email) {
         setCookie("user_token", data.token, 1);
         setCookie("user_clientid", data.client_id, 1);
 
-        $("#kakaoLogoutBtn").show();
+        $("#menuAreaAfterLogin").show();
+        $("#titleAreaBeforeLogin").hide();
         $("#kakaoLoginBtn").hide();
     }).fail(function()  {
       alert("Sorry. Server unavailable. ");
@@ -187,8 +192,9 @@ function tryRegister() {
       
       setCookie("user_token", data.token, 1);
       setCookie("user_clientid", data.client_id, 1);
-      $("#kakaoLogoutBtn").show();
-      $("#kakaoLoginBtn").hide();   
+      $("#menuAreaAfterLogin").show();
+      $("#titleAreaBeforeLogin").hide();
+      $("#kakaoLoginBtn").hide();
 
       showAlert("축하드립니다. 성공적으로 가입되었습니다.");
   }).fail(function()  {
