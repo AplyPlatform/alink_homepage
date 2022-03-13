@@ -402,15 +402,17 @@ function renderPlaces(placesArray) {
         for (const placesLng in placesArray[placesLat]) {
             count += placesArray[placesLat][placesLng].length;
 
-            d = placesArray[placesLat][placesLng][0];            
+            for (let i=(count-1);i>=0;i--) {
+                d = placesArray[placesLat][placesLng][i];
 
-            latitude = d.lat;
-            longitude = d.lng;
-            
-            let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
-            if (isSet(g_vector_2D_map_for_dog)) {
-                g_vector_2D_map_for_dog.addFeature(icon);
-            }
+                latitude = d.lat;
+                longitude = d.lng;
+                
+                let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
+                if (isSet(g_vector_2D_map_for_dog)) {
+                    g_vector_2D_map_for_dog.addFeature(icon);
+                }
+            }            
         }
     }
     
