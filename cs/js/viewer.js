@@ -299,8 +299,8 @@ function renderPlaces(placesArray) {
 
     let scene = document.querySelector('a-scene');
     for (const placesLat in placesArray) {
-        for (const placesLng in plcesArray[placesLat]) {
-            d = placesLng[placeLat][placeLng][0];
+        for (const placesLng in placesArray[placesLat]) {
+            d = placesArray[placeLat][placeLng][0];
 
             let latitude = d.lat;
             let longitude = d.lng;
