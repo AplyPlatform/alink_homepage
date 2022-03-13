@@ -7,6 +7,7 @@ let currentLat, currentLng, currentAlt;
 
 let isCommentAreaVisible = false;
 let currentContentLat, currentContentLng;
+let oldContentLat, oldContentLng;
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 let currentContentArrays = [];
 
@@ -32,6 +33,8 @@ function initViewer() {
 
     $("#closeBtn").click(function () {
         $("#commentArea").hide();
+        oldContentLat = -999;
+        oldContentLng = -999;
         isCommentAreaVisible = false;
     });
 
@@ -93,10 +96,7 @@ const checkCurrentLocation = function (position) {
     oldAlt = currentAlt;
 };
 
-const clickListener = function(ev, target) {
-    ev.stopPropagation();
-    ev.preventDefault();
-        
+const clickListener = function(ev, target) {      
     const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
     if (el && el === ev.target) {        
@@ -105,9 +105,18 @@ const clickListener = function(ev, target) {
 
         if (isCommentAreaVisible == true) {
             isCommentAreaVisible = false;
-            $('#commentArea').hide();            
+            $('#commentArea').hide();
+            oldContentLat = -999;
+            oldContentLng = -999;
         }
         else {
+            if (currentContentLat == oldContentLat &&
+                currentContentLng == oldContentLng) {
+                return;
+            }
+
+            oldContentLat = currentContentLat;
+            oldContentLng = currentContentLng;
             setTimeout(() => {
                 setCurrentContent();
             }, 0);
