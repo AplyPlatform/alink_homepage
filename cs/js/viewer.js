@@ -122,6 +122,7 @@ function setCurrentContent() {
         prev : '',
         next : '',
         last : '',
+        pageClass : 'page-item',
         onPageClick: function (event, page) {
             let content = contentsArrays[page - 1];
             showContent(content);
