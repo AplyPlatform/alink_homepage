@@ -307,11 +307,11 @@ function initMap() {
 
     vMap.on('click', function (evt) {
         var feature = vMap.forEachFeatureAtPixel(evt.pixel, function (feature) { return feature; });
-        processMapClick(vMap, evt, feature, overlay);
+        processMapClick(vMap, evt, feature);
     });
 }
 
-function processMapClick(map, evt, feature, overlay) {
+function processMapClick(map, evt, feature) {
     if (!isCluster(feature)) {
         map.getView().animate({
             zoom: map.getView().getZoom() + 1,
@@ -330,11 +330,10 @@ function processMapClick(map, evt, feature, overlay) {
         return;
     }
 
-    let coord = evt.coordinate;    
-    displayMapFeature(features[0], coord, overlay);
+    displayMapFeature(features[0]);
 }
 
-function displayMapFeature(f, coordinate, overlay) {
+function displayMapFeature(f) {
     let ii = f.get('mlat');
     if (!isSet(ii)) {
        return;     
