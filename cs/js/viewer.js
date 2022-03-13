@@ -298,7 +298,7 @@ function renderPlaces(placesArray) {
     currentContentArrays = placesArray;
 
     let scene = document.querySelector('a-scene');
-    placesArray.forEach((places) => {
+    for (const places in placesArray) {    
         d = places[0];
 
         let latitude = d.lat;
@@ -337,5 +337,5 @@ function renderPlaces(placesArray) {
 
         objet.appendChild(objetBox);
         scene.appendChild(objet);
-    });        
+    }
 }
