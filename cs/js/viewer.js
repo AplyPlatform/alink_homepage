@@ -11,8 +11,8 @@ let oldContentLat, oldContentLng;
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 let currentContentArrays = [];
 
-const popLabel = $('<span id="place-label"></span>');
-const popContainer = $('<div></div>');
+const popLabel = $('<span></span>');
+const popContainer = $('<div id="place-label"></div>');
 
 function initViewer() {    
     let user_token = getCookie("user_token");
