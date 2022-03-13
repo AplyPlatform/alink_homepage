@@ -10,6 +10,9 @@ let currentContentLat, currentContentLng;
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 let currentContentArrays = [];
 
+const popLabel = $('<span id="place-label"></span>');
+const popContainer = $('<div></div>');
+
 function initViewer() {    
     let user_token = getCookie("user_token");
     if (!isSet(user_token)) {
@@ -17,6 +20,10 @@ function initViewer() {
         location.href = "./index.html";
         return;
     }
+    
+    popContainer.append(popLabel);
+    popContainer.hide();
+    $("body").append(popContainer);
 
     $("#commentArea").hide();
     $("#replyButton").click(function() {
@@ -121,8 +128,7 @@ function setCurrentContent() {
         first: '',
         prev : '',
         next : '',
-        last : '',
-        pageClass : 'page-item',
+        last : '',        
         onPageClick: function (event, page) {
             let content = contentsArrays[page - 1];
             showContent(content);
@@ -135,14 +141,11 @@ function showContent(content) {
     $('#currentMemo').text(content.memo);
     $('#commentArea').show();
 
-    const label = document.createElement('span');
-    const container = document.createElement('div');
-    label.innerText = content.memo;
-    container.appendChild(label);
-    document.body.appendChild(container);
+    popLabel.text(content.memo);
+    popContainer.show();
     
     setTimeout(() => {
-        container.parentElement.removeChild(container);
+        popContainer.hide();
     }, 1500);
 
     currentContentId = content.id;
