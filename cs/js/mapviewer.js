@@ -414,7 +414,7 @@ function renderPlaces(placesArray) {
         }
     }
     
-    let npos = ol.proj.fromLonLat([longitude, latitude]);
+    let npos = ol.proj.fromLonLat([longitude * 1, latitude * 1]);
     g_view_2D_map.setCenter(npos);
     
     if (count == 1) $("#topText").text(count + " signal is loaded.");
