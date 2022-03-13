@@ -263,7 +263,7 @@ function initMap() {
                 if (size == 1) {
                     style = [new ol.style.Style({
                         image: new ol.style.Icon({
-                            src: '/cs/assets/6.png',
+                            src: '/cs/assets/map_icon.png',
                             scale: 0.07,
                             opacity: 0.8,
                             fill: new ol.style.Fill({ color: '#FFF' }),
