@@ -214,6 +214,7 @@ function dynamicLoadPlaces() {
 };
 
 let g_view_2D_map;
+let g_vector_2D_map_for_dog;
 
 function initMap() {
     let dpoint = ol.proj.fromLonLat([126.5203904, 33.3616837]);
@@ -230,13 +231,68 @@ function initMap() {
         collapsed: true
     });
 
+    g_vector_2D_map_for_dog = new ol.source.Vector();
+    let clusterCompanySource = new ol.source.Cluster({
+        distance: 40,
+        source: g_vector_2D_map_for_dog,
+        geometryFunction: function (feature) {
+            var geom = feature.getGeometry();
+            return geom.getType() == 'Point' ? geom : null;
+        },
+    });
+
+    let styleCacheForCompany = {};
+    let g_layer_2D_map_for_company = new ol.layer.Vector({
+        source: clusterCompanySource,
+        zIndex: 20,
+        style: function (feature) {
+            if (!feature) return;
+
+            let size = feature.get('features').length;
+            let radius;
+            size == 1 ? radius = 8 : radius = 10 + (size * 0.1);
+            let style = styleCacheForCompany[size];
+            if (!style) {
+                if (size == 1) {
+                    style = [new ol.style.Style({
+                        image: new ol.style.Icon({
+                            src: '/cs/assets/6.png',
+                            scale: 0.3,
+                            opacity: 0.8,
+                            fill: new ol.style.Fill({ color: '#FFF' }),
+                            stroke: new ol.style.Stroke({ color: '#45cdba', width: 2 }),
+                        })
+                    })];
+                }
+                else {
+                    style = [new ol.style.Style({
+                        image: new ol.style.Circle({
+                            radius: radius,
+                            opacity: 0.7,
+                            fill: new ol.style.Fill({ color: '#FFF' }),
+                            stroke: new ol.style.Stroke({ color: '#45cdba', width: 2 })
+                        }),
+                        text: new ol.style.Text({
+                            font: radius + 'px Roboto',
+                            text: size.toString(),
+                            fill: new ol.style.Fill({ color: '#000' })
+                        })
+                    })];
+                }
+
+                styleCacheForCompany[size] = style
+            }
+            return style;
+        },
+    });
+
     let vMap = new ol.Map({
         controls: ol.control.defaults().extend([
             overviewMapControl
         ]),
         target: 'historyMap',
         layers: [
-            bingLayer,  pointLayer
+            bingLayer,  g_layer_2D_map_for_company
         ],
         loadTilesWhileAnimating: true,
         view: g_view_2D_map
@@ -334,8 +390,8 @@ function renderPlaces(placesArray) {
             let longitude = d.lng;
             
             var icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
-            if (isSet(g_view_2D_map)) {
-                g_view_2D_map.addFeature(icon);
+            if (isSet(g_vector_2D_map_for_dog)) {
+                g_vector_2D_map_for_dog.addFeature(icon);
             }
         }
     }
