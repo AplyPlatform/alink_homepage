@@ -11,13 +11,11 @@ $(function() {
     initViewer();        
 });
 
-let currentLat, currentLng, currentAlt;
 let currentIndex = 0;
 
 let isCommentAreaVisible = false;
 let currentContentLat, currentContentLng;
 let oldContentLat, oldContentLng;
-let oldLat = -999, oldLng = -999, oldAlt = -999;
 let currentContentArrays = [];
 
 const popLabel = $('<span></span>');
@@ -197,11 +195,6 @@ function dynamicLoadPlaces() {
     var fd = new FormData();    
     fd.append('form_kind', "get");
     fd.append('is_mine', 1);
-    fd.append('lat', currentLat);
-    fd.append('lng', currentLng);
-    let alt = currentAlt;
-    if (alt == null) alt = 0;    
-    fd.append('alt', alt);
     fd.append('sns_id', sns_id);
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
