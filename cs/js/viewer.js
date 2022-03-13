@@ -292,8 +292,11 @@ function renderPlaces(placesArray) {
         return;
     }
 
-    if (placesArray.length == 1) $("#topText").text(placesArray.length + " signal is loaded.");
-    else $("#topText").text(placesArray.length + " signals are loaded.");
+    let count = 0;
+    for (let k in placesArray) if (placesArray.hasOwnProperty(k)) ++count;
+
+    if (count == 1) $("#topText").text(count + " signal is loaded.");
+    else $("#topText").text(count + " signals are loaded.");
 
     currentContentArrays = placesArray;
 
