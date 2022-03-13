@@ -46,8 +46,7 @@ function getRandomInt(min, max) {
 }
 
 function setCurrentContent() {
-    let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
-    showContent(contentsArrays[0]);
+    let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];    
 
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
@@ -309,7 +308,7 @@ function initMap() {
 
     vMap.on('click', function (evt) {
         var feature = vMap.forEachFeatureAtPixel(evt.pixel, function (feature) { return feature; });
-        processMapClick(vMap, evt, feature);
+        processMapClick(vMap, feature);
     });
 }
 
@@ -321,7 +320,7 @@ function isCluster(feature) {
     return feature.get('features').length >= 1;
 }
 
-function processMapClick(map, evt, feature) {
+function processMapClick(map, feature) {
     if (!isCluster(feature)) {
         map.getView().animate({
             zoom: map.getView().getZoom() + 1,
@@ -405,13 +404,13 @@ function renderPlaces(placesArray) {
             let size = placesArray[placesLat][placesLng].length;
             count += size;
 
-            for (let i=(size-1);i>=0;i--) {
-                let d = placesArray[placesLat][placesLng][i];
+            latitude = placesLat;
+            longitude = placesLng;
 
-                latitude = d.lat;
-                longitude = d.lng;
+            for (let i=(size-1);i>=0;i--) {
+                let d = placesArray[placesLat][placesLng][i];                
                 
-                let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: d.alt });
+                let icon = createNewIconFor2DMap({ lat: placesLat, lng: placesLng, alt: d.alt });
                 if (isSet(g_vector_2D_map_for_dog)) {
                     g_vector_2D_map_for_dog.addFeature(icon);
                 }
