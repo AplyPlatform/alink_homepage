@@ -14,7 +14,6 @@ $(function() {
     initViewer();        
 });
 
-let currentLat, currentLng, currentAlt;
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 
 function initViewer() {            
