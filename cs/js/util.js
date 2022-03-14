@@ -44,7 +44,7 @@ function getContent(currentContentLat, currentContentLng, startIndex) {
       let user_token = getCookie("user_token");
       let client_id = getCookie("user_clientid");        
 
-      var fd = new FormData();
+      let fd = new FormData();
       fd.append('form_kind', "getspe");        
       fd.append('sns_id', sns_id);    
       fd.append('sns_kind', skind);
@@ -100,7 +100,7 @@ function getComments(c_id, start) {
   let user_token = getCookie("user_token");
   let client_id = getCookie("user_clientid");        
 
-  var fd = new FormData();
+  let fd = new FormData();
   fd.append('form_kind', "comment");
   fd.append('c_id', c_id);
   fd.append('sns_id', sns_id);

@@ -44,7 +44,7 @@ function dynamicLoadPlaces() {
     let user_token = getCookie("user_token");
     let client_id = getCookie("user_clientid");
   
-    var fd = new FormData();    
+    let fd = new FormData();    
     fd.append('form_kind', "get");
     fd.append('is_mine', gIsMine);
     fd.append('sns_id', sns_id);
@@ -66,7 +66,7 @@ function dynamicLoadPlaces() {
     }).fail(function()  {
         showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
     });
-  }
+}
 
 let g_view_2D_map;
 let g_vector_2D_map_for_dog;
