@@ -142,11 +142,11 @@ function setCurrentContent() {
     $('#pagination').twbsPagination('destroy');
     $('#pagination').twbsPagination({
         totalPages: contentsArrays.length,
-        visiblePages: 3,
-        first: '최신기록',
+        visiblePages: 5,
+        first: '',
         prev : '',
         next : '',
-        last : '첫기록',        
+        last : '',        
         onPageClick: function (event, page) {
             contentsArrays = currentContentArrays[currentContentLat][currentContentLng];    
             let content = contentsArrays[page - 1];
@@ -160,8 +160,8 @@ function setCurrentContent() {
 function showContent(content) {
     $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + content.filename);
         
-    let date = new Date(content.datetime * 1000).toISOString().split("T")[0];    
-    const time = new Date(content.datetime * 1000).toTimeString().split(" ")[0];    
+    let date = new Date(content.datetime * 1000).toISOString().split("T")[0];
+    const time = new Date(content.datetime * 1000).toTimeString().split(" ")[0];
     $('#currentDate').html("<font size=1>" + date + ' ' + time + "</font>");
     $('#currentMemo').html("<b>" + content.memo + "</b>");
     $('#commentArea').show();
@@ -234,13 +234,20 @@ function showComments(comments, start) {
             imageContent = "<img src='/cs/assets/" + getRandomInt(1,10) + ".png' border='0' width='16px' height='16px'>";
         }
 
+        let date = new Date(d.datetime * 1000).toISOString().split("T")[0];
+        let time = new Date(d.datetime * 1000).toTimeString().split(" ")[0];
+        let dtimeStr = date + " " + time;
+
         contentRow += "<div class='row'>"
             + "<div class='col-2 text-center'>"
             + imageContent
-            + "</div><div class='col-10 text-left'>"
+            + "</div>"
+            + "<div class='col-2 text-left'><font size=1 color='#ccc'>"
+            + dtimeStr
+            + "</font></div><div class='col-8 text-left'>"
             + d.comment
             + "</div>"            
-            + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";        
+            + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";
     });    
     $('#commentReplyArea').append(contentRow);
 
