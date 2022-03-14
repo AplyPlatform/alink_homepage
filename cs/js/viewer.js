@@ -176,7 +176,7 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('look-at', '[gps-camera]');
         objetText.setAttribute('color', 'white');
         objetText.setAttribute('position', '0 5 0');
-        objetText.setAttribute('scale', '4 4 4');
+        objetText.setAttribute('scale', '6 6 6');
         
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
