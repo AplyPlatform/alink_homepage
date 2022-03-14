@@ -39,6 +39,11 @@ function initViewer() {
         isCommentAreaVisible = false;
     });
 
+    $("commentReplyMore").click(function() {
+        currentReplyIndex += 10;
+        getComments(currentContentId, currentReplyIndex);
+    });
+
     AFRAME.registerComponent('raycaster-autorefresh', {
         init: function () {
           var el = this.el;
@@ -168,12 +173,12 @@ function showContent(content) {
         popContainer.hide();
     }, 1500);
 
-    currentContentId = content.id;
-    getComments(content.id);
+    currentContentId = content.id;    
+    getComments(content.id, 0);
 }
 
 
-function getComments(c_id) {    
+function getComments(c_id, start) {    
     showLoader();
 
     let sns_id = getCookie("temp_sns_id");
@@ -184,10 +189,11 @@ function getComments(c_id) {
     var fd = new FormData();
     fd.append('form_kind', "comment");
     fd.append('c_id', c_id);
-    fd.append('sns_id', sns_id);
+    fd.append('sns_id', sns_id);    
     fd.append('sns_kind', skind);
     fd.append('user_token', user_token);
     fd.append('client_id', client_id);
+    fd.append('start', start);
 
     $.ajax({
         type: 'POST',
@@ -197,7 +203,7 @@ function getComments(c_id) {
         processData: false,
         contentType: false                                                    
     }).done(function(data) {
-        showComments(data.data);
+        showComments(data.data, start);
         hideLoader();
     }).fail(function()  {
         showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
@@ -206,12 +212,17 @@ function getComments(c_id) {
 }
 
 
-function showComments(comments) {    
+function showComments(comments, start) {    
     isCommentAreaVisible = true;
-    $('#commentReplyArea').empty();
-    if (!comments || comments.length <= 0) {        
+    
+    if (start == 0) $('#commentReplyArea').empty();
+
+    if (!comments || comments.length <= 0) {     
+        $('#commentReplyMore').hide();   
         return;
     }
+
+    currentReplyIndex = 0;
     
     let contentRow = "";    
     comments.forEach((d) => {
@@ -231,7 +242,14 @@ function showComments(comments) {
             + "</div>"            
             + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";        
     });    
-    $('#commentReplyArea').append(contentRow);    
+    $('#commentReplyArea').append(contentRow);
+
+    if (comments.length >= 10) {
+        $('#commentReplyMore').show();
+    }
+    else {
+        $('#commentReplyMore').hide();
+    }
 }
 
 function writeComment() {
