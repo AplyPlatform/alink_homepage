@@ -167,7 +167,7 @@ function renderPlacesToAR(placesArray) {
         let longitude = d.lng;
         let count = d.cnt;
         
-        /*
+        
         let objetText = document.createElement('a-entity');
         objetText.setAttribute('d_lat', latitude);
         objetText.setAttribute('d_lng', longitude);
@@ -175,8 +175,7 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('count', count);
         objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');
         objetText.setAttribute('position', '0 5 0');
-        objetText.setAttribute('scale', '1.5 1.5 1.5');        
-        */
+        objetText.setAttribute('scale', '1.5 1.5 1.5');
         
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
@@ -206,7 +205,7 @@ function renderPlacesToAR(placesArray) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });        
 
-        //objet.appendChild(objetText);
+        objet.appendChild(objetText);
         objet.appendChild(objetBox);        
         scene.appendChild(objet);
     });
