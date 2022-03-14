@@ -64,6 +64,8 @@ function getContent(currentContentLat, currentContentLng, startIndex) {
           contentType: false                                                    
       }).done(function(data) {            
           if (!("data" in data) || data.data.length == 0) {
+              showAlert("해당 장소에는 기록이 존재하지 않습니다.");
+              hideLoader();
               return;
           }
 
