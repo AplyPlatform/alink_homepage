@@ -207,7 +207,7 @@ function writeComment() {
         contentType: false                                                    
     }).done(function(data) {
         setTimeout(() => {
-            getComments(currentContentId);
+            getComments(currentContentId, 0);
         }, 0);
     }).fail(function()  {
         showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
