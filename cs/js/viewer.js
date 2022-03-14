@@ -355,7 +355,8 @@ function renderPlaces(placesArray) {
             objetBox.setAttribute('c_id', d.id);
             objetBox.setAttribute('d_lat', latitude);
             objetBox.setAttribute('d_lng', longitude);       
-            objetBox.setAttribute('rotation', '0 45 0');
+            objetBox.setAttribute('look-at', '[gps-camera]');
+            //objetBox.setAttribute('rotation', '0 45 0');
             objetBox.setAttribute('position', '0 -5 0');
             objetBox.setAttribute('scale', '4.5 4.5 4.5');
             objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
@@ -368,7 +369,7 @@ function renderPlaces(placesArray) {
             objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
             objet.setAttribute('scale', '0.2 0.2 0.2');
             objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
-            objet.setAttribute('rotation', '0 90 0');
+//            objet.setAttribute('rotation', '0 90 0');
             objet.setAttribute('look-at', '[gps-camera]');
             objet.setAttribute('animation-mixer', '');
             objet.setAttribute("click-handler", "txt:image");
