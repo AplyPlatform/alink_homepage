@@ -133,7 +133,7 @@ const clickListener = function(ev, target) {
     if (el && el === ev.target) {        
         let currentContentLat = ev.target.getAttribute('d_lat');
         let currentContentLng = ev.target.getAttribute('d_lng');
-        let currentContentCount = ev.target.getAttribute('dcount');
+        let currentContentCount = ev.target.getAttribute('d_count');
 
         if (isCommentAreaVisible == true) {
             isCommentAreaVisible = false;
@@ -183,8 +183,7 @@ function renderPlacesToAR(placesArray) {
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
-        objetBox.setAttribute('memo', d.memo);
-        objetBox.setAttribute('dcount', count);
+        objetBox.setAttribute('d_count', count);
         objetBox.setAttribute('look-at', '[gps-camera]');
         objetBox.setAttribute('position', '0 -5 0');
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
@@ -193,8 +192,7 @@ function renderPlacesToAR(placesArray) {
         let objet = document.createElement('a-entity');            
         objet.setAttribute('d_lat', latitude);
         objet.setAttribute('d_lng', longitude);
-        objet.setAttribute('memo', d.memo);
-        objet.setAttribute('dcount', count);
+        objet.setAttribute('d_count', count);
         objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
         objet.setAttribute('scale', '0.2 0.2 0.2');
         objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
