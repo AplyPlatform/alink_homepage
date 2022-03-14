@@ -178,9 +178,11 @@ function renderPlacesToAR(placesArray) {
         objet.setAttribute("smoothCount", "0.01");
         objet.setAttribute("smoothThreshold", "5");
             
+        /*
         objet.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });
+        */
 
         objet.appendChild(objetBox);
         objet.appendChild(objetText);        
