@@ -143,12 +143,11 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('d_lng', longitude);
         objetText.setAttribute('memo', d.memo);
         objetText.setAttribute('count', count);
-        objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');        
-        objetText.setAttribute('look-at', '[gps-camera]');
-        objetText.setAttribute('position', '0 5 0');
+        objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');
+        objetText.setAttribute('position', '0 10 0');
         objetText.setAttribute('scale', '1.5 1.5 1.5');        
 
-        let objetBox = document.createElement('a-box');            
+        let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
         objetBox.setAttribute('memo', d.memo);
@@ -158,7 +157,6 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
         objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
 
-        // add place name
         let objet = document.createElement('a-entity');            
         objet.setAttribute('d_lat', latitude);
         objet.setAttribute('d_lng', longitude);
@@ -180,7 +178,7 @@ function renderPlacesToAR(placesArray) {
         });        
 
         objet.appendChild(objetBox);
-        objet.appendChild(objetText);        
+        objetBox.appendChild(objetText);        
         scene.appendChild(objet);
     });
 
