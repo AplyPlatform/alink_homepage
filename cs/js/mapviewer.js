@@ -36,7 +36,7 @@ function initViewer() {
         isCommentAreaVisible = false;
     });
 
-    $("commentReplyMore").click(function() {
+    $("#commentReplyMore").click(function() {
         currentReplyIndex += 10;
         getComments(currentContentId, currentReplyIndex);
     });
@@ -142,10 +142,10 @@ function showComments(comments, start) {
     comments.forEach((d) => {
         let imageContent = "";
         if ("image" in d && isSet(d.image)) {
-            imageContent = "<img src='" + d.image + "' border='0' width='16px' height='16px'>";
+            imageContent = "<img src='" + d.image + "' border='0' width='24px' height='24px'>";
         }
         else {
-            imageContent = "<img src='/cs/assets/" + getRandomInt(1,10) + ".png' border='0' width='16px' height='16px'>";
+            imageContent = "<img src='/cs/assets/" + getRandomInt(1,10) + ".png' border='0' width='24px' height='24px'>";
         }
 
         let date = new Date(d.datetime * 1000).toISOString().split("T")[0];
