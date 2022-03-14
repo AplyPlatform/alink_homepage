@@ -8,6 +8,8 @@ $(function() {
         return;
     }
 
+    gIsMine = "no";
+
     showLoader();
     initViewer();        
 });
