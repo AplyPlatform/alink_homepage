@@ -5,6 +5,7 @@ let isCommentAreaVisible = false;
 let oldContentLat, oldContentLng;
 let currentReplyIndex = 0;
 let currentContentId;
+let currentLat, currentLng, currentAlt;
 
 const popLabel = $('<span></span>');
 const popContainer = $('<div id="place-label"></div>');
@@ -183,6 +184,9 @@ function dynamicLoadPlaces(callback) {
   fd.append('sns_kind', skind);
   fd.append('user_token', user_token);
   fd.append('client_id', client_id);
+  fd.append('lat', currentLat);
+  fd.append('lng', currentLng);
+  fd.append('alt', currentAlt);
   $.ajax({
       type: 'POST',
       url: 'https://duni.io/arink/cs/handler/handler.php',
