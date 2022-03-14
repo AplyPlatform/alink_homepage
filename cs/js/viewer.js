@@ -133,7 +133,7 @@ const clickListener = function(ev, target) {
     if (el && el === ev.target) {        
         let currentContentLat = ev.target.getAttribute('d_lat');
         let currentContentLng = ev.target.getAttribute('d_lng');
-        let currentContentCount = ev.target.getAttribute('count');
+        let currentContentCount = ev.target.getAttribute('dcount');
 
         if (isCommentAreaVisible == true) {
             isCommentAreaVisible = false;
@@ -184,7 +184,7 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
         objetBox.setAttribute('memo', d.memo);
-        objetBox.setAttribute('count', count);
+        objetBox.setAttribute('dcount', count);
         objetBox.setAttribute('look-at', '[gps-camera]');
         objetBox.setAttribute('position', '0 -5 0');
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
@@ -194,7 +194,7 @@ function renderPlacesToAR(placesArray) {
         objet.setAttribute('d_lat', latitude);
         objet.setAttribute('d_lng', longitude);
         objet.setAttribute('memo', d.memo);
-        objet.setAttribute('count', count);
+        objet.setAttribute('dcount', count);
         objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
         objet.setAttribute('scale', '0.2 0.2 0.2');
         objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
