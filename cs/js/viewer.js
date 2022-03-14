@@ -1,5 +1,3 @@
-"use strict";
-
 $(function() {
     let user_token = getCookie("user_token");
     if (!isSet(user_token)) {
