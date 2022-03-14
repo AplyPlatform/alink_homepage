@@ -88,13 +88,44 @@ const checkCurrentLocation = function (position) {
         || Math.abs(currentLat - oldLat) > 0.0005
         || Math.abs(currentLng - oldLng) > 0.0005        
         ) {
-        dynamicLoadPlaces(renderPlacesToAR);        
+        dynamicLoadPlaces();        
     }
 
     oldLat = currentLat;
     oldLng = currentLng;
     oldAlt = currentAlt;
 };
+
+
+function dynamicLoadPlaces() {
+    let sns_id = getCookie("temp_sns_id");
+    let skind = getCookie("dev_kind");
+    let user_token = getCookie("user_token");
+    let client_id = getCookie("user_clientid");
+  
+    var fd = new FormData();    
+    fd.append('form_kind', "get");
+    fd.append('is_mine', gIsMine);
+    fd.append('sns_id', sns_id);
+    fd.append('sns_kind', skind);
+    fd.append('user_token', user_token);
+    fd.append('client_id', client_id);
+    fd.append('lat', currentLat);
+    fd.append('lng', currentLng);
+    fd.append('alt', currentAlt);
+    $.ajax({
+        type: 'POST',
+        url: 'https://duni.io/arink/cs/handler/handler.php',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false                                                    
+    }).done(function(data) {        
+        renderPlacesToAR(data.data); 
+    }).fail(function()  {
+        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
+    });
+  };
 
 const clickListener = function(ev, target) {      
     const el = ev.detail.intersection && ev.detail.intersection.object.el;
@@ -138,6 +169,7 @@ function renderPlacesToAR(placesArray) {
         let longitude = d.lng;
         let count = d.cnt;
         
+        /*
         let objetText = document.createElement('a-entity');
         objetText.setAttribute('d_lat', latitude);
         objetText.setAttribute('d_lng', longitude);
@@ -146,8 +178,8 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');
         objetText.setAttribute('position', '0 5 0');
         objetText.setAttribute('scale', '1.5 1.5 1.5');        
-
-        /*
+        */
+        
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
@@ -156,8 +188,7 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('look-at', '[gps-camera]');
         objetBox.setAttribute('position', '0 -5 0');
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
-        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
-        */
+        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);        
 
         let objet = document.createElement('a-entity');            
         objet.setAttribute('d_lat', latitude);
@@ -179,8 +210,8 @@ function renderPlacesToAR(placesArray) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });        
 
-        objet.appendChild(objetText);
-        //objet.appendChild(objetBox);        
+        //objet.appendChild(objetText);
+        objet.appendChild(objetBox);        
         scene.appendChild(objet);
     });
 

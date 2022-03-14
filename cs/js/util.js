@@ -173,35 +173,6 @@ function showComments(comments, start) {
   }
 }
 
-function dynamicLoadPlaces(callback) {
-  let sns_id = getCookie("temp_sns_id");
-  let skind = getCookie("dev_kind");
-  let user_token = getCookie("user_token");
-  let client_id = getCookie("user_clientid");
-
-  var fd = new FormData();    
-  fd.append('form_kind', "get");
-  fd.append('is_mine', gIsMine);
-  fd.append('sns_id', sns_id);
-  fd.append('sns_kind', skind);
-  fd.append('user_token', user_token);
-  fd.append('client_id', client_id);
-  fd.append('lat', currentLat);
-  fd.append('lng', currentLng);
-  fd.append('alt', currentAlt);
-  $.ajax({
-      type: 'POST',
-      url: 'https://duni.io/arink/cs/handler/handler.php',
-      data: fd,
-      cache: false,
-      processData: false,
-      contentType: false                                                    
-  }).done(function(data) {        
-      callback(data.data); 
-  }).fail(function()  {
-      showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
-  });
-};
 
 
 function writeComment() {
