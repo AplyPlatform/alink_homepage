@@ -236,13 +236,13 @@ function showComments(comments, start) {
 
         let date = new Date(d.datetime * 1000).toISOString().split("T")[0];
         let time = new Date(d.datetime * 1000).toTimeString().split(" ")[0];
-        let dtimeStr = date + " " + time;
+        let dtimeStr = date + "<br>" + time;
 
         contentRow += "<div class='row'>"
             + "<div class='col-2 text-center'>"
             + imageContent
             + "</div>"
-            + "<div class='col-2 text-left'><font size=1 color='#ccc'>"
+            + "<div class='col-2 text-center'><font size=1 color='#ccc'>"
             + dtimeStr
             + "</font></div><div class='col-8 text-left'>"
             + d.comment
