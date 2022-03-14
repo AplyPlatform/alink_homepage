@@ -1,5 +1,5 @@
 
-let CACHE_NAME = 'arink-store-v1_20220314_08';
+let CACHE_NAME = 'arink-store-v1_20220315_01';
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll([

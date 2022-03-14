@@ -1,3 +1,4 @@
+"use strict";
 
 $(function() {
     let user_token = getCookie("user_token");
@@ -7,20 +8,12 @@ $(function() {
         return;
     }
 
+    gIsMine = "yes";
+
     showLoader();
     initViewer();        
 });
 
-let currentIndex = 0;
-
-let isCommentAreaVisible = false;
-let currentContentLat, currentContentLng;
-let oldContentLat, oldContentLng;
-let currentContentArrays = [];
-let currentReplyIndex = 0;
-
-const popLabel = $('<span></span>');
-const popContainer = $('<div id="place-label"></div>');
 
 function initViewer() {            
     popContainer.append(popLabel);
@@ -42,205 +35,8 @@ function initViewer() {
     });
 
     initMap();
-    dynamicLoadPlaces();    
+    dynamicLoadPlaces(renderPlacesToMap);    
 }
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function setCurrentContent() {
-    let contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
-
-    $('#pagination').twbsPagination('destroy');
-    $('#pagination').twbsPagination({
-        totalPages: contentsArrays.length,
-        visiblePages: 5,
-        first: '',
-        prev : '',
-        next : '',
-        last : '',        
-        onPageClick: function (event, page) {
-            contentsArrays = currentContentArrays[currentContentLat][currentContentLng];
-            let content = contentsArrays[page - 1];
-            showContent(content);
-        }
-    });
-
-    $('#pagination').twbsPagination('show', 1);
-}
-
-function showContent(content) {
-    $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + content.filename);
-        
-    let date = new Date(content.datetime * 1000).toISOString().split("T")[0];    
-    const time = new Date(content.datetime * 1000).toTimeString().split(" ")[0];    
-    $('#currentDate').html("<font size=1>" + date + ' ' + time + "</font>");
-    $('#currentMemo').html("<b>" + content.memo + "</b>");
-    $('#commentArea').show();
-
-    popLabel.text(content.memo);
-    popContainer.show();
-    
-    setTimeout(() => {
-        popContainer.hide();
-    }, 1500);
-
-    currentContentId = content.id;    
-    getComments(content.id, 0);
-}
-
-
-function getComments(c_id, start) {    
-    showLoader();
-
-    let sns_id = getCookie("temp_sns_id");
-    let skind = getCookie("dev_kind");
-    let user_token = getCookie("user_token");
-    let client_id = getCookie("user_clientid");        
-
-    var fd = new FormData();
-    fd.append('form_kind', "comment");
-    fd.append('c_id', c_id);
-    fd.append('sns_id', sns_id);
-    fd.append('sns_kind', skind);
-    fd.append('user_token', user_token);
-    fd.append('client_id', client_id);
-    fd.append('start', start);
-
-    $.ajax({
-        type: 'POST',
-        url: 'https://duni.io/arink/cs/handler/handler.php',
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false                                                    
-    }).done(function(data) {
-        showComments(data.data, start);
-        hideLoader();
-    }).fail(function()  {
-        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
-        hideLoader();
-    });
-}
-
-function showComments(comments, start) {    
-    isCommentAreaVisible = true;
-
-    if (start == 0) $('#commentReplyArea').empty();
-    
-    if (!comments || comments.length <= 0) {       
-        $('#commentReplyMore').hide(); 
-        return;
-    }
-
-    currentReplyIndex = 0;
-    
-    let contentRow = "";    
-    comments.forEach((d) => {
-        let imageContent = "";
-        if ("image" in d && isSet(d.image)) {
-            imageContent = "<img src='" + d.image + "' border='0' width='24px' height='24px'>";
-        }
-        else {
-            imageContent = "<img src='/cs/assets/" + getRandomInt(1,10) + ".png' border='0' width='24px' height='24px'>";
-        }
-
-        let date = new Date(d.datetime * 1000).toISOString().split("T")[0];
-        let time = new Date(d.datetime * 1000).toTimeString().split(" ")[0];
-        let dtimeStr = date + "<br>" + time;
-
-        contentRow += "<div class='row'>"
-            + "<div class='col-1 text-center'>"
-            + imageContent
-            + "</div>"
-            + "<div class='col-2 text-center' style='white-space:nowrap;'><font size=1 color='#ccc'>"
-            + dtimeStr
-            + "</font></div><div class='col-9 text-left'>"
-            + d.comment
-            + "</div>"            
-            + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";
-    });
-
-    $('#commentReplyArea').append(contentRow);
-
-    if (comments.length >= 10) {
-        $('#commentReplyMore').show();
-    }
-    else {
-        $('#commentReplyMore').hide();
-    }
-}
-
-function writeComment() {
-    let comment = $("#commentInput").val();
-    if (comment == "") {
-        showAlert("내용을 입력해 주5");
-        return;
-    }
-
-    showLoader();
-
-    let sns_id = getCookie("temp_sns_id");
-    let skind = getCookie("dev_kind");
-    let user_token = getCookie("user_token");
-    let temp_image = getCookie("temp_image");
-    let client_id = getCookie("user_clientid");
-
-    let fd = new FormData();    
-    fd.append('form_kind', 'write');
-    fd.append('c_id', currentContentId);
-    fd.append('c_image', temp_image);
-    fd.append('comment', comment);
-    fd.append('sns_id', sns_id);
-    fd.append('sns_kind', skind);
-    fd.append('user_token', user_token);
-    fd.append('client_id', client_id);
-    $.ajax({
-        type: 'POST',
-        url: 'https://duni.io/arink/cs/handler/handler.php',
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false                                                    
-    }).done(function(data) {
-        setTimeout(() => {
-            getComments(currentContentId, 0);
-        }, 0);
-    }).fail(function()  {
-        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
-        hideLoader();
-    });
-}
-
-function dynamicLoadPlaces() {
-    let sns_id = getCookie("temp_sns_id");
-    let skind = getCookie("dev_kind");
-    let user_token = getCookie("user_token");
-    let client_id = getCookie("user_clientid");
-
-    var fd = new FormData();    
-    fd.append('form_kind', "get");
-    fd.append('is_mine', 1);
-    fd.append('sns_id', sns_id);
-    fd.append('sns_kind', skind);
-    fd.append('user_token', user_token);
-    fd.append('client_id', client_id);
-    $.ajax({
-        type: 'POST',
-        url: 'https://duni.io/arink/cs/handler/handler.php',
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false                                                    
-    }).done(function(data) {        
-        renderPlaces(data.data); 
-    }).fail(function()  {
-        showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
-    });
-};
 
 let g_view_2D_map;
 let g_vector_2D_map_for_dog;
@@ -371,13 +167,13 @@ function processMapClick(map, feature) {
 }
 
 function displayMapFeature(f) {
-    let ii = f.get('mlat');
-    if (!isSet(ii)) {
+    let currentContentLat = f.get('mlat');
+    if (!isSet(currentContentLat)) {
        return;     
     }
 
-    currentContentLat = f.get('mlat');
-    currentContentLng = f.get('mlng');
+    let currentContentLng = f.get('mlng');
+    let currentContentCount = f.get('mcount');
 
     if (isCommentAreaVisible == true) {
         isCommentAreaVisible = false;
@@ -394,62 +190,49 @@ function displayMapFeature(f) {
         oldContentLat = currentContentLat;
         oldContentLng = currentContentLng;
         setTimeout(() => {
-            setCurrentContent();
+            setCurrentContent(currentContentLat, currentContentLng, currentContentCount);
         }, 0);
     }
 }
 
 
 function createNewIconFor2DMap(item) {
-
-    var pos_icon = new ol.Feature({
+    let pos_icon = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([item.lng * 1, item.lat * 1])),
         name: "lat: " + item.lat + ", lng: " + item.lng + ", alt: " + item.alt,
-        mindex: currentIndex++,
         mlat : item.lat,        
         mlng : item.lng,
+        mcount : item.mcount
     });
 
     return pos_icon;
 }
 
 
-function renderPlaces(placesArray) {
-    if (!isSet(placesArray)) {
+function renderPlacesToMap(placesArray) {
+    if (!isSet(placesArray) || placesArray.length <= 0) {
         $("#topText").text("No signals are loaded.");
         hideLoader();
         return;
     }
     
-    currentContentArrays = placesArray;
-
-    let count = 0;    
     let latitude = -999;
     let longitude = -999;
 
-    for (const placesLat in placesArray) {
-        for (const placesLng in placesArray[placesLat]) {            
-            let size = placesArray[placesLat][placesLng].length;
-            count += size;
+    placesArray.forEach((d) => {
+        let latitude = d.lat;
+        let longitude = d.lng;        
 
-            latitude = placesLat;
-            longitude = placesLng;
-
-            for (let i=(size-1);i>=0;i--) {
-                let d = placesArray[placesLat][placesLng][i];                
-                
-                let icon = createNewIconFor2DMap({ lat: placesLat, lng: placesLng, alt: d.alt });
-                if (isSet(g_vector_2D_map_for_dog)) {
-                    g_vector_2D_map_for_dog.addFeature(icon);
-                }
-            }            
+        let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: 0, mcount: d.cnt });
+        if (isSet(g_vector_2D_map_for_dog)) {
+            g_vector_2D_map_for_dog.addFeature(icon);
         }
-    }
+    });
     
     let npos = ol.proj.fromLonLat([longitude * 1, latitude * 1]);
     g_view_2D_map.setCenter(npos);
     
-    if (count == 1) $("#topText").text(count + " signal is loaded.");
-    else $("#topText").text(count + " signals are loaded.");
+    if (placesArray.length == 1) $("#topText").text(placesArray.length + " signal is loaded.");
+    else $("#topText").text(placesArray.length + " signals are loaded.");
     hideLoader();
 }
