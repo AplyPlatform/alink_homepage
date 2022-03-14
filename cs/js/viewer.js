@@ -173,9 +173,10 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('d_lng', longitude);        
         objetText.setAttribute('d_count', count);
         objetText.setAttribute('value', count + '');
+        objetText.setAttribute('look-at', '[gps-camera]');
         objetText.setAttribute('color', 'white');
         objetText.setAttribute('position', '0 5 0');
-        objetText.setAttribute('scale', '1.5 1.5 1.5');
+        objetText.setAttribute('scale', '4 4 4');
         
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
