@@ -153,12 +153,12 @@ function showComments(comments, start) {
         let dtimeStr = date + "<br>" + time;
 
         contentRow += "<div class='row'>"
-            + "<div class='col-2 text-center'>"
+            + "<div class='col-1 text-center'>"
             + imageContent
             + "</div>"
-            + "<div class='col-2 text-center'><font size=1 color='#ccc'>"
+            + "<div class='col-2 text-center' style='white-space:nowrap;'><font size=1 color='#ccc'>"
             + dtimeStr
-            + "</font></div><div class='col-8 text-left'>"
+            + "</font></div><div class='col-9 text-left'>"
             + d.comment
             + "</div>"            
             + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";
