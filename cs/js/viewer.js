@@ -131,8 +131,7 @@ function renderPlacesToAR(placesArray) {
         $("#topText").text("No signals are loaded.");
         return;
     }    
-
-    let count = 0;
+    
     let scene = document.querySelector('a-scene');
     placesArray.forEach((d) => {
         let latitude = d.lat;
@@ -189,6 +188,6 @@ function renderPlacesToAR(placesArray) {
         scene.appendChild(objet);
     });
 
-    if (count == 1) $("#topText").text(count + " signal is loaded.");
-    else $("#topText").text(count + " signals are loaded.");
+    if (placesArray.length == 1) $("#topText").text(placesArray.length + " signal is loaded.");
+    else $("#topText").text(placesArray.length + " signals are loaded.");
 }
