@@ -354,7 +354,7 @@ function renderPlaces(placesArray) {
             let objetBox = document.createElement('a-box');
             objetBox.setAttribute('c_id', d.id);
             objetBox.setAttribute('d_lat', latitude);
-            objetBox.setAttribute('d_lng', longitude);
+            objetBox.setAttribute('d_lng', longitude);       
             objetBox.setAttribute('rotation', '0 45 0');
             objetBox.setAttribute('position', '0 -5 0');
             objetBox.setAttribute('scale', '4.5 4.5 4.5');
@@ -369,6 +369,7 @@ function renderPlaces(placesArray) {
             objet.setAttribute('scale', '0.2 0.2 0.2');
             objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
             objet.setAttribute('rotation', '0 90 0');
+            objet.setAttribute('look-at', '[gps-camera]');
             objet.setAttribute('animation-mixer', '');
             objet.setAttribute("click-handler", "txt:image");
             objet.setAttribute("cursor", "rayOrigin:mouse");
