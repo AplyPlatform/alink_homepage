@@ -170,9 +170,8 @@ function renderPlacesToAR(placesArray) {
         
         let objetText = document.createElement('a-entity');
         objetText.setAttribute('d_lat', latitude);
-        objetText.setAttribute('d_lng', longitude);
-        objetText.setAttribute('memo', d.memo);
-        objetText.setAttribute('count', count);
+        objetText.setAttribute('d_lng', longitude);        
+        objetText.setAttribute('d_count', count);
         objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');
         objetText.setAttribute('position', '0 5 0');
         objetText.setAttribute('scale', '1.5 1.5 1.5');
