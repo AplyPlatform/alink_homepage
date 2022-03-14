@@ -144,9 +144,10 @@ function renderPlacesToAR(placesArray) {
         objetText.setAttribute('memo', d.memo);
         objetText.setAttribute('count', count);
         objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');
-        objetText.setAttribute('position', '0 10 0');
+        objetText.setAttribute('position', '0 5 0');
         objetText.setAttribute('scale', '1.5 1.5 1.5');        
 
+        /*
         let objetBox = document.createElement('a-box');
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
@@ -156,6 +157,7 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('position', '0 -5 0');
         objetBox.setAttribute('scale', '4.5 4.5 4.5');
         objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);
+        */
 
         let objet = document.createElement('a-entity');            
         objet.setAttribute('d_lat', latitude);
@@ -177,8 +179,8 @@ function renderPlacesToAR(placesArray) {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });        
 
-        objet.appendChild(objetBox);
-        objetBox.appendChild(objetText);        
+        objet.appendChild(objetText);
+        //objet.appendChild(objetBox);        
         scene.appendChild(objet);
     });
 
