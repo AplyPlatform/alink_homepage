@@ -66,7 +66,6 @@ function getContent(currentContentLat, currentContentLng, startIndex) {
               return;
           }
 
-          currentContentId = data.data[0].id;
           $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + data.data[0].filename);        
           let date = new Date(data.data[0].datetime * 1000).toISOString().split("T")[0];
           const time = new Date(data.data[0].datetime * 1000).toTimeString().split(" ")[0];

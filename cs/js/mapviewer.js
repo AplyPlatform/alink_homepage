@@ -220,8 +220,8 @@ function renderPlacesToMap(placesArray) {
     let longitude = -999;
 
     placesArray.forEach((d) => {
-        let latitude = d.lat;
-        let longitude = d.lng;        
+        latitude = d.lat;
+        longitude = d.lng;        
 
         let icon = createNewIconFor2DMap({ lat: latitude, lng: longitude, alt: 0, mcount: d.cnt });
         if (isSet(g_vector_2D_map_for_dog)) {
