@@ -138,17 +138,15 @@ function renderPlacesToAR(placesArray) {
         let longitude = d.lng;
         let count = d.cnt;
         
-        let objetText = document.createElement('a-text');
+        let objetText = document.createElement('a-entity');
         objetText.setAttribute('d_lat', latitude);
         objetText.setAttribute('d_lng', longitude);
         objetText.setAttribute('memo', d.memo);
         objetText.setAttribute('count', count);
-        objetText.setAttribute('value', count + '');
-        objetText.setAttribute('color', '#fff');
-        objetText.setAttribute('geometry', 'primitive:plane');        
+        objetText.setAttribute('text', 'width: 2; lineHeight: 50; letterSpacing: 5; color: white; value: "' + count + '"');        
         objetText.setAttribute('look-at', '[gps-camera]');
         objetText.setAttribute('position', '0 5 0');
-        objetText.setAttribute('scale', '2 2 2');        
+        objetText.setAttribute('scale', '1.5 1.5 1.5');        
 
         let objetBox = document.createElement('a-box');            
         objetBox.setAttribute('d_lat', latitude);
@@ -176,12 +174,10 @@ function renderPlacesToAR(placesArray) {
         objet.setAttribute("smooth", "10");
         objet.setAttribute("smoothCount", "0.01");
         objet.setAttribute("smoothThreshold", "5");
-            
-        /*
+                    
         objet.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
-        });
-        */
+        });        
 
         objet.appendChild(objetBox);
         objet.appendChild(objetText);        
