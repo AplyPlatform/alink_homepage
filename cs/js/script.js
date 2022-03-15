@@ -35,9 +35,6 @@
   };
     
   const uploadToServer = (blob) => {
-  
-    let reader = new FileReader();
-    reader.onload = function(event) {
         showLoader();
         let sns_id = getCookie("temp_sns_id");
         let skind = getCookie("dev_kind");
@@ -85,10 +82,7 @@
             alert("Sorry. Server unavailable. ");
             hideLoader();            
         }); 
-    };      
-    // trigger the read from the reader...
-    reader.readAsDataURL(blob);  
-  };    
+  };
 
   function uploadBlobData(blob) {
     if (!isSet(blob)) {
@@ -191,7 +185,8 @@ function imageCropperSetup() {
         $alert.removeClass('alert-success alert-warning');
         
         canvas.toBlob(function (blob) {
-          currentBlob = blob;          
+          currentBlob = blob;
+          $("#startButton").show();
         });        
       }
     });
