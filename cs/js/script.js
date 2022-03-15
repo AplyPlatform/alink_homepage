@@ -1,15 +1,9 @@
 
   let lat, lng, alt;
-  let cropper;
-  let canvas, $result, context;
 
   $(function() {
     // first get current user location
     setDefaultUIStatus();
-    var canvas = document.getElementById('canvas');    
-    context = canvas.getContext("2d"),
-    $result = $('#result');
-    cropper = new Cropper(canvas);
     
     navigator.geolocation.getCurrentPosition(function (position) {
         // than use it to load from remote APIs some places nearby
