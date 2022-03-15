@@ -4,6 +4,7 @@
   $(function() {
     // first get current user location
     setDefaultUIStatus();
+    imageCropperSetup();
     
     navigator.geolocation.getCurrentPosition(function (position) {
         // than use it to load from remote APIs some places nearby
@@ -22,8 +23,7 @@
       }
     );
     
-    setServiceWorker();
-    imageCropperSetup();
+    setServiceWorker();    
   });
 
   const setDefaultUIStatus = () => {
@@ -130,12 +130,10 @@ function imageCropperSetup() {
 
     var avatar = document.getElementById('avatar');
     var image = document.getElementById('image');
-    var input = document.getElementById('input');    
+    var input = document.getElementById('inputimage_file');    
     var $alert = $('.alert');
     var $modal = $('#modal');
     var cropper;
-
-    $('[data-toggle="tooltip"]').tooltip();
 
     input.addEventListener('change', function (e) {
       var files = e.target.files;
