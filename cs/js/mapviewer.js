@@ -11,7 +11,8 @@ $(function() {
     gIsMine = "yes";
 
     showLoader();
-    initViewer();        
+    initViewer();
+    dynamicLoadPlaces();
 });
 
 
