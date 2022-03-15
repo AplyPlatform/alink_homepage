@@ -1,5 +1,6 @@
 
   let lat, lng, alt;
+  let currentBlob;
 
   $(function() {
     // first get current user location
@@ -27,6 +28,7 @@
   });
 
   const setDefaultUIStatus = () => {
+    $("#startButton").hide();
     $("#progressArea").hide();
     $("#fileDropArea").show();
     $("#progress-bar").css("width", "0%");
@@ -112,6 +114,7 @@
         lat = position.coords.latitude;
         lng = position.coords.longitude;
         alt = position.coords.altitude;
+        $("#startButton").hide();
         $("#fileDropArea").hide();
         $("#progressArea").show();
         $("#progress").text("어디가지마, 기다려!");          
@@ -187,14 +190,17 @@ function imageCropperSetup() {
         initialAvatarURL = avatar.src;
         avatar.src = canvas.toDataURL();
         $alert.removeClass('alert-success alert-warning');
+        
         canvas.toBlob(function (blob) {
-          uploadBlobData(blob);
-        });
+          currentBlob = blob;          
+        });        
       }
     });
-
 }
 
+document.getElementById("startButton").addEventListener("click", function() {
+    uploadBlobData(blob);
+});
 
 function setServiceWorker() {
   if ('serviceWorker' in navigator) {
