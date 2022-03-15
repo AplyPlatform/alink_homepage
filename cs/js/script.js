@@ -193,7 +193,7 @@ function imageCropperSetup() {
 }
 
 document.getElementById("startButton").addEventListener("click", function() {
-    uploadBlobData(blob);
+    uploadBlobData(currentBlob);
 });
 
 function setServiceWorker() {
