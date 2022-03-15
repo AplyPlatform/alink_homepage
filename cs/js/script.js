@@ -1,5 +1,36 @@
 
   let lat, lng, alt;
+  let cropper;
+  let canvas, $result, context;
+
+  $(function() {
+    // first get current user location
+    setDefaultUIStatus();
+    
+    canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+    cropper = new Cropper(canvas);
+    
+    navigator.geolocation.getCurrentPosition(function (position) {
+        // than use it to load from remote APIs some places nearby
+
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        alt = position.coords.altitude;
+        setDefaultUIStatus();
+        
+      },
+      (err) => console.error('Error in retrieving position', err),
+      {
+              enableHighAccuracy: true,
+              maximumAge: 0,
+              timeout: 27000,
+      }
+    );
+    
+    setServiceWorker();
+  });
 
   const setDefaultUIStatus = () => {    
     $("#startButton").hide();
@@ -71,9 +102,7 @@
   };
 
 
-var canvas  = $("#canvas"),
-context = canvas.get(0).getContext("2d"),
-$result = $('#result');
+
 
 $('#fileInput').on( 'change', function(){
     if (this.files && this.files[0]) {
@@ -157,29 +186,7 @@ document.getElementById("startButton").addEventListener("click", function() {
   }, 'image/jpeg', 0.9);         
 });
 
-$(function() {
-    // first get current user location
-    setDefaultUIStatus();
-    
-    navigator.geolocation.getCurrentPosition(function (position) {
-        // than use it to load from remote APIs some places nearby
 
-        lat = position.coords.latitude;
-        lng = position.coords.longitude;
-        alt = position.coords.altitude;
-        setDefaultUIStatus();
-        
-      },
-      (err) => console.error('Error in retrieving position', err),
-      {
-              enableHighAccuracy: true,
-              maximumAge: 0,
-              timeout: 27000,
-      }
-    );
-    
-    setServiceWorker();
-});
 
 
 function setServiceWorker() {
