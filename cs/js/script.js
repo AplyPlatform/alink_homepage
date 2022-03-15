@@ -136,9 +136,7 @@ function imageCropperSetup() {
 
     var avatar = document.getElementById('avatar');
     var image = document.getElementById('image');
-    var input = document.getElementById('input');
-    var $progress = $('.progress');
-    var $progressBar = $('.progress-bar');
+    var input = document.getElementById('input');    
     var $alert = $('.alert');
     var $modal = $('#modal');
     var cropper;
@@ -155,8 +153,6 @@ function imageCropperSetup() {
       };
       var reader;
       var file;
-      var url;
-
       if (files && files.length > 0) {
         file = files[0];
 
@@ -189,12 +185,11 @@ function imageCropperSetup() {
 
       if (cropper) {
         canvas = cropper.getCroppedCanvas({
-          width: 160,
-          height: 160,
+          width: 800,
+          height: 800,
         });
         initialAvatarURL = avatar.src;
         avatar.src = canvas.toDataURL();
-        $progress.show();
         $alert.removeClass('alert-success alert-warning');
         canvas.toBlob(function (blob) {
           uploadBlobData(blob);
