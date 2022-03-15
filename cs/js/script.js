@@ -6,9 +6,8 @@
   $(function() {
     // first get current user location
     setDefaultUIStatus();
-    
-    canvas  = $("#canvas"),
-    context = canvas.get(0).getContext("2d"),
+    var canvas = document.getElementById('canvas');    
+    context = canvas.getContext("2d"),
     $result = $('#result');
     cropper = new Cropper(canvas);
     
