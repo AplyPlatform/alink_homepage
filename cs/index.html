@@ -26,9 +26,9 @@
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/index.css">
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/dropzone.min.css">    
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/dropzone.min.js"></script>            
+    <link rel="stylesheet" href="./assets/cropper.css">
+    <link rel="stylesheet" href="./js/cropper.js">
+    <script src="./js/jquery.min.js"></script>   
     
     <style>
       #loginArea {        
@@ -60,8 +60,19 @@
       .kakao-button
       {
           background-image: url('./assets/logo_kakao.png');
-      }            
+      }
 
+      img {
+        max-width: 100%; /* This rule is very important, please do not ignore this! */
+      }
+
+      #canvas {
+        height: 400px;
+        width: 400px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+      }
     </style>
   </head>
   <body bgcolor="#fff">
@@ -109,8 +120,18 @@
 
       <div class="row" id="fileDropArea">
         <div class="col-sm">          
-          <div id="dropzone" class="dropzone" style="border: dotted 5px rgb(77, 77, 77);"></div>    
-          <div id="filecontainer"></div>        
+          <canvas id="canvas">
+            Your browser does not support the HTML5 canvas element.
+          </canvas>
+          <div class="form-group">
+            <input type="file" class="form-control-file" id="fileInput" accept="image/*" />
+
+            <button id="btnCrop" type="button" class="btn btn-light">자르기</button>
+
+            <button id="btnRestore" type="button" class="btn btn-light">초기화</button>
+          </div>
+
+          <div id="result"></div>
         </div>
       </div>
       <div class="row">

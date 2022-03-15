@@ -1,5 +1,5 @@
 
-let CACHE_NAME = 'arink-store-v1_20220315_24';
+let CACHE_NAME = 'arink-store-v1_20220315_25';
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll([
@@ -25,7 +25,8 @@ self.addEventListener('install', (e) => {
       '/cs/assets/bootstrap.min.css',
       '/cs/assets/dropzone.min.css',
       '/cs/assets/index.css',
-      '/cs/assets/ol.css',      
+      '/cs/assets/ol.css',
+      '/cs/assets/cropper.css',
       '/cs/js/aframe.min.js',
       '/cs/js/aframe-ar.js',
       '/cs/js/aframe-ar.min.js',
@@ -34,7 +35,7 @@ self.addEventListener('install', (e) => {
       '/cs/js/aframe-extras.loaders.min.js',
       '/cs/js/html_embeder_build.js',
       '/cs/js/bootstrap.min.js',
-      '/cs/js/dropzone.min.js',
+      '/cs/js/cropper.js',
       '/cs/js/jquery.min.js',
       '/cs/js/jquery.twbsPagination.js',
       '/cs/js/ol.js',

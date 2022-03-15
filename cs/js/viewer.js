@@ -178,7 +178,7 @@ function renderPlacesToAR(placesArray) {
         let imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
         wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center"><br>'
                         + '<div class="imgcontainer">'                        
-                        +   '<div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img">'
+                        +   '<div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" height="90px" class="content_img">'
                         +       '<div class="edit_photo"><div class="circleborder_small"><img src="/cs/assets/heart.png" width="15px" class="content_img"></div></div>'
                         +   '</div>'
                         + '</div>'
@@ -192,7 +192,7 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('d_lng', longitude);
         objetBox.setAttribute('d_count', count);        
         objetBox.setAttribute('htmlembed', '');        
-        objetBox.setAttribute('look-at', '[gps-camera]');        
+        objetBox.setAttribute('look-at', '[gps-camera]');
         objetBox.setAttribute('scale', '2 2 2');
         objetBox.setAttribute('animation-mixer', '');
         objetBox.setAttribute("click-handler", "txt:image");
@@ -208,6 +208,7 @@ function renderPlacesToAR(placesArray) {
               
         scene.appendChild(objetBox);        
         objetBox.appendChild(wrapper);
+
         did++;
     });
 
