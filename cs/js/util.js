@@ -254,13 +254,13 @@ function showAlert(msg) {
 
 function delCookie(cName) {
   var date = new Date();
-  document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/; domain=.aply.biz";
+  document.cookie = name + "= " + "; expires=" + date.toUTCString() + ";";
 }
 
 function setCookie(cName, cValue, cDay) {
   var date = new Date();
   date.setTime(date.getTime() + cDay * 60 * 60 * 24 * 1000);
-  document.cookie = cName + '=' + cValue + '; expires=' + date.toUTCString() + '; path=/; domain=.aply.biz';
+  document.cookie = cName + '=' + cValue + '; expires=' + date.toUTCString() + ';';
 }
 
 function getCookie(cName) {

@@ -9,7 +9,7 @@ $(function() {
     gIsMine = "no";
 
     showLoader();
-    initViewer();        
+    initViewer();
 });
 
 let oldLat = -999, oldLng = -999, oldAlt = -999;
@@ -162,53 +162,42 @@ function renderPlacesToAR(placesArray) {
     }    
     
     let scene = document.querySelector('a-scene');
+    let did = 1;
     placesArray.forEach((d) => {
         let latitude = d.lat;
         let longitude = d.lng;
-        let count = d.cnt;
+        let count = d.cnt;                
+
+        var wrapper= document.createElement('div');
+        var imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
+        wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center">'
+                        + '<br><div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img"></div>'
+                        + '<br><br><font size=3 color=black><b>' + d.nickname + '</b></font> <font size=2>외에<br>'
+                        + count + '마리가 흔적을 남겼습니다</font><br><font size=4><b>...</b></font>'
+                        + '</div><div>&nbsp;&nbsp;</div></div>';
         
-        
-        let objetText = document.createElement('a-text');
-        objetText.setAttribute('d_lat', latitude);
-        objetText.setAttribute('d_lng', longitude);        
-        objetText.setAttribute('d_count', count);
-        objetText.setAttribute('value', count + '');
-        objetText.setAttribute('look-at', '[gps-camera]');
-        objetText.setAttribute('color', 'white');
-        objetText.setAttribute('position', '0 5 0');
-        objetText.setAttribute('scale', '6 6 6');
-        
-        let objetBox = document.createElement('a-box');
+        var objetBox = document.createElement('a-entity');
         objetBox.setAttribute('d_lat', latitude);
         objetBox.setAttribute('d_lng', longitude);
-        objetBox.setAttribute('d_count', count);
-        objetBox.setAttribute('look-at', '[gps-camera]');
-        objetBox.setAttribute('position', '0 -5 0');
-        objetBox.setAttribute('scale', '4.5 4.5 4.5');
-        objetBox.setAttribute('src', 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename);        
-
-        let objet = document.createElement('a-entity');            
-        objet.setAttribute('d_lat', latitude);
-        objet.setAttribute('d_lng', longitude);
-        objet.setAttribute('d_count', count);
-        objet.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);                
-        objet.setAttribute('scale', '0.2 0.2 0.2');
-        objet.setAttribute('gltf-model', '/cs/assets/dog.glb');
-        objet.setAttribute('look-at', '[gps-camera]');
-        objet.setAttribute('animation-mixer', '');
-        objet.setAttribute("click-handler", "txt:image");
-        objet.setAttribute("cursor", "rayOrigin:mouse");
-        objet.setAttribute("smooth", "10");
-        objet.setAttribute("smoothCount", "0.01");
-        objet.setAttribute("smoothThreshold", "5");
-                    
-        objet.addEventListener('loaded', () => {
+        objetBox.setAttribute('d_count', count);        
+        objetBox.setAttribute('htmlembed', '');        
+        objetBox.setAttribute('look-at', '[gps-camera]');        
+        objetBox.setAttribute('scale', '2 2 2');
+        objetBox.setAttribute('animation-mixer', '');
+        objetBox.setAttribute("click-handler", "txt:image");
+        objetBox.setAttribute("cursor", "rayOrigin:mouse");
+        objetBox.setAttribute("smooth", "10");
+        objetBox.setAttribute("smoothCount", "0.01");
+        objetBox.setAttribute("smoothThreshold", "5");
+        objetBox.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);           
+        
+        objetBox.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}));
         });        
-
-        objet.appendChild(objetText);
-        objet.appendChild(objetBox);        
-        scene.appendChild(objet);
+              
+        scene.appendChild(objetBox);        
+        objetBox.appendChild(wrapper);
+        did++;
     });
 
     if (placesArray.length == 1) $("#topText").text(placesArray.length + " signal is loaded.");
