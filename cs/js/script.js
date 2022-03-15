@@ -133,8 +133,6 @@ function imageCropperSetup() {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('#tooltipele').tooltip('show');
-
     input.addEventListener('change', function (e) {
       var files = e.target.files;
       var done = function (url) {
