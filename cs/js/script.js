@@ -29,10 +29,10 @@
     );
     
     setServiceWorker();
+    imageCropperSetup();
   });
 
-  const setDefaultUIStatus = () => {    
-    $("#startButton").hide();
+  const setDefaultUIStatus = () => {
     $("#progressArea").hide();
     $("#fileDropArea").show();
     $("#progress-bar").css("width", "0%");
@@ -93,53 +93,9 @@
     };      
     // trigger the read from the reader...
     reader.readAsDataURL(blob);  
-  };
-  
-  const setProgress = (progress) => {
-    $("#progress").text('기다려: ' + progress.toFixed(2) + "%");
-    $("#progress-bar").css("width", progress + "%");
-  };
+  };    
 
-
-
-
-$('#fileInput').on( 'change', function(){
-    if (this.files && this.files[0]) {
-      if ( this.files[0].type.match(/^image\//) ) {
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-           var img = new Image();
-           img.onload = function() {
-             context.canvas.height = img.height;
-             context.canvas.width  = img.width;
-             context.drawImage(img, 0, 0);
-             var cropper = canvas.cropper({
-               aspectRatio: 16 / 16
-             });
-             $('#btnCrop').click(function() {
-                // Get a string base 64 data url
-                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
-                $result.append( $('<img>').attr('src', croppedImageDataURL) );
-             });
-             $('#btnRestore').click(function() {
-               canvas.cropper('reset');
-               $result.empty();
-             });
-           };
-           img.src = evt.target.result;
-				};
-        reader.readAsDataURL(this.files[0]);
-      }
-      else {
-        alert("Invalid file type! Please select an image file.");
-      }
-    }
-    else {
-      alert('No file(s) selected.');
-    }
-});
-
-function uploadBlobData(blob) {
+  function uploadBlobData(blob) {
     if (!isSet(blob)) {
       showAlert("귀여운 반려동물의 마킹 모습을 촬영해 주세요!");
       return;
@@ -163,7 +119,6 @@ function uploadBlobData(blob) {
         lng = position.coords.longitude;
         alt = position.coords.altitude;
         $("#fileDropArea").hide();
-        $("#startButton").hide();
         $("#progressArea").show();
         $("#progress").text("어디가지마, 기다려!");          
         uploadToServer(blob);
@@ -175,17 +130,79 @@ function uploadBlobData(blob) {
               timeout: 27000,
       }
     ); 
+  }
+
+function imageCropperSetup() {
+
+    var avatar = document.getElementById('avatar');
+    var image = document.getElementById('image');
+    var input = document.getElementById('input');
+    var $progress = $('.progress');
+    var $progressBar = $('.progress-bar');
+    var $alert = $('.alert');
+    var $modal = $('#modal');
+    var cropper;
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    input.addEventListener('change', function (e) {
+      var files = e.target.files;
+      var done = function (url) {
+        input.value = '';
+        image.src = url;
+        $alert.hide();
+        $modal.modal('show');
+      };
+      var reader;
+      var file;
+      var url;
+
+      if (files && files.length > 0) {
+        file = files[0];
+
+        if (URL) {
+          done(URL.createObjectURL(file));
+        } else if (FileReader) {
+          reader = new FileReader();
+          reader.onload = function (e) {
+            done(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+
+    $modal.on('shown.bs.modal', function () {
+      cropper = new Cropper(image, {
+        aspectRatio: 1,
+        viewMode: 3,
+      });
+    }).on('hidden.bs.modal', function () {
+      cropper.destroy();
+      cropper = null;
+    });
+
+    document.getElementById('crop').addEventListener('click', function () {      
+      var canvas;
+
+      $modal.modal('hide');
+
+      if (cropper) {
+        canvas = cropper.getCroppedCanvas({
+          width: 160,
+          height: 160,
+        });
+        initialAvatarURL = avatar.src;
+        avatar.src = canvas.toDataURL();
+        $progress.show();
+        $alert.removeClass('alert-success alert-warning');
+        canvas.toBlob(function (blob) {
+          uploadBlobData(blob);
+        });
+      }
+    });
+
 }
-
-
-document.getElementById("startButton").addEventListener("click", function() {
-  canvas.toBlob(function (blob) {
-    uploadBlobData(blob);
-  /* This is the important part */
-  }, 'image/jpeg', 0.9);         
-});
-
-
 
 
 function setServiceWorker() {
