@@ -1,5 +1,5 @@
 
-let CACHE_NAME = 'arink-store-v1_20220315_25';
+let CACHE_NAME = 'arink-store-v1_20220315_26';
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll([
@@ -23,7 +23,6 @@ self.addEventListener('install', (e) => {
       '/cs/assets/logo_kakao.png',
       '/cs/assets/favicon.ico',
       '/cs/assets/bootstrap.min.css',
-      '/cs/assets/dropzone.min.css',
       '/cs/assets/index.css',
       '/cs/assets/ol.css',
       '/cs/assets/cropper.css',

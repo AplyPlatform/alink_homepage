@@ -1,6 +1,4 @@
 
-  Dropzone.autoDiscover = false;
-
   let lat, lng, alt;
 
   const setDefaultUIStatus = () => {    
