@@ -117,8 +117,21 @@
         left: 50%;
     }
 
-    .circleborder {
-      position: absolute;
+    .imgcontainer {
+        position: relative;
+        /* inline-block for 100% of child width */
+        display: inline-block;     
+    }
+
+    .circleborder_small {
+      border: 3px solid #ff0000;
+      border-radius: 100%;
+      display: inline-block;
+      /* Some color */
+      background: red;      
+    }
+
+    .circleborder {      
       border: 3px solid #000000;
       border-radius: 100%;
       display: inline-block;
@@ -131,12 +144,7 @@
     .edit_photo {
       position: absolute;
       right: 0px;
-      bottom: 0px;
-      /* Some color */
-      background: red;
-      padding: 2px 2px;
-      border-radius: 2px;
-      color: white; 
+      bottom: 0px;      
     }
     
     .paging-div { padding: 15px 0 5px 10px; display: table; margin-left: auto; margin-right: auto; text-align: center; }

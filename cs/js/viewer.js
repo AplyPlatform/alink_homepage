@@ -176,8 +176,12 @@ function renderPlacesToAR(placesArray) {
         }
 
         let imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
-        wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center">'
-                        + '<br><div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img"><div class="edit_photo"><img src="/cs/assets/heart.png" width="15px" class="content_img"></div></div>'
+        wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center"><br>'
+                        + '<div class="imgcontainer">'                        
+                        +   '<div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img">'
+                        +       '<div class="edit_photo"><div class="circleborder_small"><img src="/cs/assets/heart.png" width="15px" class="content_img"></div></div>'
+                        +   '</div>'
+                        + '</div>'
                         + '<br><br><font size=3 color=black><b>' + d.nickname + '</b></font>'
                         + moreMsg
                         + '<br><font size=4><b>...</b></font>'
