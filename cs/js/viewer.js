@@ -169,11 +169,18 @@ function renderPlacesToAR(placesArray) {
         let count = d.cnt;                
 
         var wrapper= document.createElement('div');
-        var imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
+
+        let moreMsg = '<font size=2>외에<br>'+ (count - 1) + '마리가 흔적을 남겼습니다</font>';
+        if (count <= 1) {
+            moreMsg = "";
+        }
+
+        let imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
         wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center">'
-                        + '<br><div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img"></div>'
-                        + '<br><br><font size=3 color=black><b>' + d.nickname + '</b></font> <font size=2>외에<br>'
-                        + count + '마리가 흔적을 남겼습니다</font><br><font size=4><b>...</b></font>'
+                        + '<br><div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" class="content_img"><div class="edit_photo"><img src="/cs/assets/heart.png" width="15px" class="content_img"></div></div>'
+                        + '<br><br><font size=3 color=black><b>' + d.nickname + '</b></font>'
+                        + moreMsg
+                        + '<br><font size=4><b>...</b></font>'
                         + '</div><div>&nbsp;&nbsp;</div></div>';
         
         var objetBox = document.createElement('a-entity');
