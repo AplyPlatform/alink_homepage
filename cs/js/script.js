@@ -35,6 +35,10 @@
   };
     
   const uploadToServer = (blob) => {
+
+    let fileext = blob.name.split('.').pop();
+    let reader = new FileReader();
+    reader.onload = function(event) {
         showLoader();
         let sns_id = getCookie("temp_sns_id");
         let skind = getCookie("dev_kind");
@@ -53,9 +57,9 @@
         fd.append('sns_kind', skind);
         fd.append('user_token', user_token);
         fd.append("client_id", client_id);
-        fd.append('fileext', "jpg");        
+        fd.append('fileext', fileext);        
         fd.append('memo', $("#memoInput").val());
-        fd.append('data', blob);
+        fd.append('data', event.target.result);
         $("#progressArea").show();
         $.ajax({
             type: 'POST',
@@ -82,7 +86,10 @@
             alert("Sorry. Server unavailable. ");
             hideLoader();            
         }); 
-  };
+    };
+
+    reader.readAsDataURL(blob);
+  }
 
   function uploadBlobData(blob) {
     if (!isSet(blob)) {
