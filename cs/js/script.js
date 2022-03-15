@@ -135,6 +135,8 @@ function imageCropperSetup() {
     var $modal = $('#modal');
     var cropper;
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     input.addEventListener('change', function (e) {
       var files = e.target.files;
       var done = function (url) {
