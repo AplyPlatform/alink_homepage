@@ -36,7 +36,6 @@
     
   const uploadToServer = (blob) => {
   
-    let fileext = blob.name.split('.').pop();
     let reader = new FileReader();
     reader.onload = function(event) {
         showLoader();
@@ -57,9 +56,9 @@
         fd.append('sns_kind', skind);
         fd.append('user_token', user_token);
         fd.append("client_id", client_id);
-        fd.append('fileext', fileext);        
+        fd.append('fileext', "jpg");        
         fd.append('memo', $("#memoInput").val());
-        fd.append('data', event.target.result);
+        fd.append('data', blob);
         $("#progressArea").show();
         $.ajax({
             type: 'POST',
