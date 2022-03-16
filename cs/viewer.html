@@ -9,13 +9,15 @@
       gtag('js', new Date());
 
       gtag('config', 'G-LG0VM866XL');
-    </script>    
+    </script>
+    <title>Calming Signal - ARink</title>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>    
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <title>Calming Signal</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">        
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/index.css">
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
@@ -156,7 +158,10 @@
         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-assets></a-assets>
         <a-camera gps-camera rotation-reader></a-camera>        
-    </a-scene>        
+    </a-scene>
+    <div id="loading">
+      <div class="loader"></div>
+    </div>
     <div class="container">
         <div id="commentArea">
             <div class="col-12 text-right"><span id="closeBtn" style="color:#fff;cursor: pointer;">X</span></div>

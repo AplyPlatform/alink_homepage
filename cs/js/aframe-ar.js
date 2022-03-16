@@ -3110,7 +3110,7 @@ ARjs.Source.prototype._initSourceWebcam = function (onReady, onError) {
 
     // init default value
     onError = onError || function (error) {
-        alert('Webcam Error\nName: ' + error.name + '\nMessage: ' + error.message)
+        alert('카메라 오류\n이름: ' + error.name + '\n내용: ' + error.message)
         var event = new CustomEvent('camera-error', { error: error });
         window.dispatchEvent(event);
     }
