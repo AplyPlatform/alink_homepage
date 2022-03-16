@@ -72,8 +72,9 @@ function getContent(currentContentLat, currentContentLng, startIndex) {
           $('#currentImage').attr("src", "https://duni.io/arink/cs/images/" + data.data[0].filename);        
           let date = new Date(data.data[0].datetime * 1000).toISOString().split("T")[0];
           const time = new Date(data.data[0].datetime * 1000).toTimeString().split(" ")[0];
+          $('#currentNickname').html("<b>" + data.data[0].nickname + "</b>");
           $('#currentDate').html("<font size=1>" + date + ' ' + time + "</font>");
-          $('#currentMemo').html("<b>" + data.data[0].memo + "</b>");
+          $('#currentMemo').html(data.data[0].memo);
           $('#commentArea').show();
 
           popLabel.text(data.data[0].memo);
@@ -155,9 +156,9 @@ function showComments(comments, start) {
           + "<div class='col-1 text-center'>"
           + imageContent
           + "</div>"
-          + "<div class='col-2 text-center' style='white-space:nowrap;'><font size=1 color='#ccc'>"
-          + dtimeStr
-          + "</font></div><div class='col-9 text-left'>"
+          + "<div class='col-3 text-center' style='white-space:nowrap;'><font size=1 color='#ccc'>"
+          + d.nickname + "<br>" + dtimeStr
+          + "</font></div><div class='col-8 text-left'>"
           + d.comment
           + "</div>"            
           + "</div><div class='row'><hr size='1' width='90%' color='#aaa'></div>";

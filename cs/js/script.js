@@ -27,8 +27,7 @@
     setServiceWorker();    
   });
 
-  const setDefaultUIStatus = () => {
-    $("#startButton").hide();
+  const setDefaultUIStatus = () => {    
     $("#progressArea").hide();
     $("#fileDropArea").show();
     $("#progress-bar").css("width", "0%");
@@ -112,8 +111,7 @@
         // than use it to load from remote APIs some places nearby
         lat = position.coords.latitude;
         lng = position.coords.longitude;
-        alt = position.coords.altitude;
-        $("#startButton").hide();
+        alt = position.coords.altitude;        
         $("#fileDropArea").hide();
         $("#progressArea").show();
         $("#progress").text("어디가지마, 기다려!");          
@@ -190,7 +188,6 @@ function imageCropperSetup() {
         
         canvas.toBlob(function (blob) {
           currentBlob = blob;
-          $("#startButton").show();
         });        
       }
     });
