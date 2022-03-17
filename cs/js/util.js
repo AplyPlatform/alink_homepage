@@ -253,6 +253,11 @@ function showAlert(msg) {
   $('#errorModal').modal('show');
 }
 
+const setProgress = (progress) => {
+  $("#progress").text('기다려: ' + progress.toFixed(2) + "%");
+  $("#progress-bar").css("width", progress + "%");
+};
+
 function delCookie(cName) {
   var date = new Date();
   document.cookie = name + "= " + "; expires=" + date.toUTCString() + ";";
