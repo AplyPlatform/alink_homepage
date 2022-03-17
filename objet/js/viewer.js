@@ -12,7 +12,7 @@ $(function(){
         mindStr = '<div><a-scene mindar-image="imageTargetSrc: /objet/assets/beautiful.mind;"';
       }
       else {
-        mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/assets/' + mindname + '.mind;"';
+        mindStr = '<div><a-scene mindar-image="imageTargetSrc: https://duni.io/arink/arinkassets/objethandler.php?get=mind&fname=' + mindname + '.mind;"';
       }
     }
 

@@ -22,7 +22,7 @@
         fd.append('data', event.target.result);
         $.ajax({
             type: 'POST',
-            url: 'https://duni.io/arink/arinkassets/upload.php',
+            url: 'https://duni.io/arink/arinkassets/objethandler.php',
             data: fd,
             processData: false,
             contentType: false
