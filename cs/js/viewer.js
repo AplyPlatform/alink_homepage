@@ -82,16 +82,20 @@ const checkCurrentLocation = function (position) {
     currentLng = position.coords.longitude;
     currentAlt = position.coords.altitude;
 
-    if (oldLat == -999
-        || Math.abs(currentLat - oldLat) > 0.0005
-        || Math.abs(currentLng - oldLng) > 0.0005        
-        ) {
-        dynamicLoadPlaces();        
-    }
+    if(oldLat == -999) {
+        oldLat = currentLat;
+        oldLng = currentLng;
+        oldAlt = currentAlt;
+        return;
+    }       
 
-    oldLat = currentLat;
-    oldLng = currentLng;
-    oldAlt = currentAlt;
+    if (Math.abs(currentLat - oldLat) > 0.0005 
+        || Math.abs(currentLng - oldLng) > 0.0005) {
+        dynamicLoadPlaces();
+        oldLat = currentLat;
+        oldLng = currentLng;
+        oldAlt = currentAlt;
+    }    
 };
 
 
@@ -175,7 +179,7 @@ function renderPlacesToAR(placesArray) {
             moreMsg = "";
         }
 
-        let imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + d.filename;
+        let imagePath = 'https://duni.io/arink/cs/handler/handler.php?form_kind=image&filename=' + encodeURIComponent(d.filename);
         wrapper.innerHTML = '<div id="htmlElement_' + did + '"><div class="bubble text-center"><br>'
                         + '<div class="imgcontainer">'                        
                         +   '<div class="circleborder"><img src="' + imagePath + '" border=0 width="90px" height="90px" class="content_img">'
@@ -210,8 +214,8 @@ function renderPlacesToAR(placesArray) {
         objetBox.appendChild(wrapper);
 
         did++;
-    });
 
-    if (placesArray.length == 1) $("#topText").text(placesArray.length + " signal is loaded.");
-    else $("#topText").text(placesArray.length + " signals are loaded.");
+        if (did == 1) $("#topText").text(did + " signal is loaded.");
+        else $("#topText").text(did + " signals are loaded.");
+    });    
 }
