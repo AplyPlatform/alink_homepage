@@ -86,6 +86,7 @@ const checkCurrentLocation = function (position) {
         oldLat = currentLat;
         oldLng = currentLng;
         oldAlt = currentAlt;
+        dynamicLoadPlaces();
         return;
     }       
 
