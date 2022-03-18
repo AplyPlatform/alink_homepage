@@ -167,7 +167,7 @@ function renderPlacesToAR(placesArray) {
     }    
     
     let scene = document.querySelector('a-scene');
-    let did = 1;
+    let did = 0;
     placesArray.forEach((d) => {
         let latitude = d.lat;
         let longitude = d.lng;
