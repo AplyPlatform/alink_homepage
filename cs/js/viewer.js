@@ -55,6 +55,11 @@ function initViewer() {
         }
     });
 
+    const sceneEl = document.querySelector('a-scene');
+    sceneEl.addEventListener('loaded', () => {
+        sceneEl.camera = new THREE.PerspectiveCamera();
+    });
+
     getLocationData();
     hideLoader();
 }
@@ -147,6 +152,7 @@ const clickListener = function(ev, target) {
         else {
             if (currentContentLat == oldContentLat &&
                 currentContentLng == oldContentLng) {
+                $('#commentArea').show();
                 return;
             }
 
