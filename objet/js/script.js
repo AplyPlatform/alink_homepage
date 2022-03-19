@@ -147,9 +147,9 @@
     var reader = new FileReader();
     reader.onload = function() {
       const dataList = compiler.importData(this.result);
-      for (let i = 0; i < dataList.length; i++) {
-        showData(dataList[i]);
-      }
+      //for (let i = 0; i < dataList.length; i++) {
+      //  showData(dataList[i]);
+      //}
     }
     reader.readAsArrayBuffer(file);
   }
