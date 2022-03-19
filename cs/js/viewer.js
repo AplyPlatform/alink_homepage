@@ -55,11 +55,6 @@ function initViewer() {
         }
     });
 
-    const sceneEl = document.querySelector('a-scene');
-    sceneEl.addEventListener('loaded', () => {
-        sceneEl.camera = new THREE.PerspectiveCamera();
-    });
-
     getLocationData();
     hideLoader();
 }
@@ -208,9 +203,6 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('animation-mixer', '');
         objetBox.setAttribute("click-handler", "txt:image");
         objetBox.setAttribute("cursor", "rayOrigin:mouse");
-        objetBox.setAttribute("smooth", "10");
-        objetBox.setAttribute("smoothCount", "0.01");
-        objetBox.setAttribute("smoothThreshold", "5");
         objetBox.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);           
         
         objetBox.addEventListener('loaded', () => {
