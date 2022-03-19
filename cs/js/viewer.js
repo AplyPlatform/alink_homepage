@@ -90,7 +90,7 @@ const checkCurrentLocation = function (position) {
     }       
 
     if (Math.abs(currentLat - oldLat) > 0.00009 
-        || Math.abs(currentLng - oldLng) > 0.00009) {            
+        || Math.abs(currentLng - oldLng) > 0.0001) {            
             dynamicLoadPlaces();            
             oldLat = currentLat;
             oldLng = currentLng;
@@ -170,6 +170,8 @@ function renderPlacesToAR(placesArray) {
     }    
     
     let scene = document.querySelector('a-scene');
+    while (scene.firstChild) { scene.removeChild(scene.lastChild); }
+
     let did = 0;
     placesArray.forEach((d) => {
         let latitude = d.lat;
