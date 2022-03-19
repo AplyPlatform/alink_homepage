@@ -12,6 +12,7 @@ $(function() {
 });
 
 let oldLat = -999, oldLng = -999, oldAlt = -999;
+let currentEntities = Array();
 
 function initViewer() {            
     showLoader();
@@ -170,9 +171,12 @@ function renderPlacesToAR(placesArray) {
     }    
     
     let scene = document.querySelector('a-scene');
-    while (scene.firstChild) { 
-        if (scene.tagName.toLowerCase() == "a-entity") scene.removeChild(scene.lastChild); 
+    
+    for(i = currentEntities.length;i>=0;i--) {
+        scene.removeChild(currentEntities[i]);
     }
+
+    currentEntities = Array();
 
     let did = 0;
     placesArray.forEach((d) => {
@@ -218,7 +222,7 @@ function renderPlacesToAR(placesArray) {
               
         scene.appendChild(objetBox);        
         objetBox.appendChild(wrapper);
-
+        currentEntities.push(objetBox);
         did++;
 
         if (did == 1) $("#topText").text(did + " signal is loaded.");
