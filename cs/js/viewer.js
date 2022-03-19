@@ -170,7 +170,9 @@ function renderPlacesToAR(placesArray) {
     }    
     
     let scene = document.querySelector('a-scene');
-    while (scene.firstChild) { scene.removeChild(scene.lastChild); }
+    while (scene.firstChild) { 
+        if (scene.tagName.toLowerCase() == "a-entity") scene.removeChild(scene.lastChild); 
+    }
 
     let did = 0;
     placesArray.forEach((d) => {
