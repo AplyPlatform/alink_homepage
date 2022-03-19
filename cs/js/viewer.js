@@ -1,3 +1,8 @@
+
+let isCameraAdded = false;
+let currentCamera = null;
+let currentScene = null;
+
 $(function() {
     let user_token = getCookie("user_token");
     if (!isSet(user_token)) {
@@ -86,18 +91,43 @@ const checkCurrentLocation = function (position) {
         oldLat = currentLat;
         oldLng = currentLng;
         oldAlt = currentAlt;
+
+        if (isCameraAdded == false) {       
+            showLoader(); 
+            addCamera();            
+            isCameraAdded = true;
+        }
+
         dynamicLoadPlaces();
+        hideLoader();
         return;
     }       
 
-    if (Math.abs(currentLat - oldLat) > 0.0005 
-        || Math.abs(currentLng - oldLng) > 0.0005) {
-        dynamicLoadPlaces();
-        oldLat = currentLat;
-        oldLng = currentLng;
-        oldAlt = currentAlt;
+    if (Math.abs(currentLat - oldLat) > 0.00009 
+        || Math.abs(currentLng - oldLng) > 0.00009) {
+            showLoader(); 
+            setCamera();
+            dynamicLoadPlaces();
+            hideLoader();
+            oldLat = currentLat;
+            oldLng = currentLng;
+            oldAlt = currentAlt;
     }    
 };
+
+function addCamera() {
+    currentCamera = document.createElement('a-camera');
+    currentCamera.setAttribute('gps-camera', 'simulateLatitude: '+ currentLat +'; simulateLongitude: '+ currentLng +'; gpsMinDistance: 10;');
+    currentCamera.setAttribute('rotation-reader', '');        
+    
+    let scene = document.querySelector('a-scene'); 
+    scene.appendChild(currentCamera);        
+}
+
+function setCamera() {
+    if (!currentCamera) return;
+    currentCamera.setAttribute('gps-camera', 'simulateLatitude: '+ currentLat +'; simulateLongitude: '+ currentLng +'; gpsMinDistance: 10;');
+}
 
 
 function dynamicLoadPlaces() {
@@ -203,6 +233,7 @@ function renderPlacesToAR(placesArray) {
         objetBox.setAttribute('animation-mixer', '');
         objetBox.setAttribute("click-handler", "txt:image");
         objetBox.setAttribute("cursor", "rayOrigin:mouse");
+        objetBox.setAttribute("raycaster-autorefresh", "");
         objetBox.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);           
         
         objetBox.addEventListener('loaded', () => {
