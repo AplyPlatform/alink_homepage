@@ -172,7 +172,7 @@ function renderPlacesToAR(placesArray) {
     
     let scene = document.querySelector('a-scene');
     
-    for(i = currentEntities.length;i>=0;i--) {
+    for(let i=(currentEntities.length - 1);i>=0;i--) {
         scene.removeChild(currentEntities[i]);
     }
 
