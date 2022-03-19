@@ -1,8 +1,3 @@
-
-let isCameraAdded = false;
-let currentCamera = null;
-let currentScene = null;
-
 $(function() {
     let user_token = getCookie("user_token");
     if (!isSet(user_token)) {
@@ -13,13 +8,13 @@ $(function() {
 
     gIsMine = "no";
 
-    showLoader();
     initViewer();
 });
 
 let oldLat = -999, oldLng = -999, oldAlt = -999;
 
 function initViewer() {            
+    showLoader();
     popContainer.append(popLabel);
     popContainer.hide();
     $("body").append(popContainer);
@@ -61,7 +56,6 @@ function initViewer() {
     });
 
     getLocationData();
-    hideLoader();
 }
 
 const getLocationData = function () {
@@ -90,44 +84,19 @@ const checkCurrentLocation = function (position) {
     if(oldLat == -999) {
         oldLat = currentLat;
         oldLng = currentLng;
-        oldAlt = currentAlt;
-
-        if (isCameraAdded == false) {       
-            showLoader(); 
-            addCamera();            
-            isCameraAdded = true;
-        }
-
-        dynamicLoadPlaces();
-        hideLoader();
+        oldAlt = currentAlt;        
+        dynamicLoadPlaces();        
         return;
     }       
 
     if (Math.abs(currentLat - oldLat) > 0.00009 
-        || Math.abs(currentLng - oldLng) > 0.00009) {
-            showLoader(); 
-            setCamera();
-            dynamicLoadPlaces();
-            hideLoader();
+        || Math.abs(currentLng - oldLng) > 0.00009) {            
+            dynamicLoadPlaces();            
             oldLat = currentLat;
             oldLng = currentLng;
             oldAlt = currentAlt;
     }    
 };
-
-function addCamera() {
-    currentCamera = document.createElement('a-camera');
-    currentCamera.setAttribute('gps-camera', 'simulateLatitude: '+ currentLat +'; simulateLongitude: '+ currentLng +'; gpsMinDistance: 10;');
-    currentCamera.setAttribute('rotation-reader', '');        
-    
-    let scene = document.querySelector('a-scene'); 
-    scene.appendChild(currentCamera);        
-}
-
-function setCamera() {
-    if (!currentCamera) return;
-    currentCamera.setAttribute('gps-camera', 'simulateLatitude: '+ currentLat +'; simulateLongitude: '+ currentLng +'; gpsMinDistance: 10;');
-}
 
 
 function dynamicLoadPlaces() {
@@ -146,6 +115,7 @@ function dynamicLoadPlaces() {
     fd.append('lat', currentLat);
     fd.append('lng', currentLng);
     fd.append('alt', currentAlt);
+    showLoader();
     $.ajax({
         type: 'POST',
         url: 'https://duni.io/arink/cs/handler/handler.php',
@@ -157,6 +127,7 @@ function dynamicLoadPlaces() {
         renderPlacesToAR(data.data); 
     }).fail(function()  {
         showAlert("일시적인 오류가 발생하였습니다. 잠시후 다시 시도해 주세요.");
+        hideLoader();
     });
 }
 
@@ -194,6 +165,7 @@ const clickListener = function(ev, target) {
 function renderPlacesToAR(placesArray) {    
     if (!isSet(placesArray) || placesArray.length == 0) {
         $("#topText").text("No signals are loaded.");
+        hideLoader();
         return;
     }    
     
@@ -247,5 +219,7 @@ function renderPlacesToAR(placesArray) {
 
         if (did == 1) $("#topText").text(did + " signal is loaded.");
         else $("#topText").text(did + " signals are loaded.");
-    });    
+    });
+
+    hideLoader();
 }
