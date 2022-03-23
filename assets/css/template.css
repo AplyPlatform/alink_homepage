@@ -1,3 +1,5 @@
+
+
 :root {
     --alabaster: #f8f8f8;
     --athens-gray: #f0f0f0;
@@ -88,7 +90,7 @@ section {
 
 body {
     margin: 0;
-    font-family: "Poppins", Arial;
+    font-family: "Roboto", "Noto Sans KR";
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.8;
@@ -193,14 +195,14 @@ sup {
 }
 
 a {
-    color: #505cfd;
+    color: #222222;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-    color: #0416fc;
+    color: #9aa3e3;
     text-decoration: none;
 }
 
@@ -11320,7 +11322,14 @@ img.img-shadow,
 .icon-box .icon-box-icon {
     font-size: 2.375rem;
     margin: 0 0 10px;
-    color: #505cfd;
+    color: #6770b0;
+    transition: all .3s ease-in-out;
+}
+
+.icon-box .icon-box-icon-wh {
+    font-size: 1.375rem;
+    margin: 0 0 10px;
+    color: #ffffff;
     transition: all .3s ease-in-out;
 }
 
@@ -12495,8 +12504,8 @@ img.img-shadow,
     .header,
     .header.header-small,
     .header.header-transparent {
-        background: #fff;
-        border-bottom: 1px solid rgba(240, 240, 240, .8);
+        background: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(240, 240, 240, 1);
     }
 
     .header .inner-brand,
@@ -14202,4 +14211,15 @@ body.off-canvas-sidebar-open:after {
 
 .nav-sidebar a:hover {
     color: #505cfd;
+}
+
+.blinking-cursor {
+  user-select: none;
+  -webkit-animation: blink 0.8s infinite;
+}
+
+@-webkit-keyframes blink {
+  0% {color: #222}
+  50% {color: #fff}
+  100% {color: #222}
 }

@@ -11,9 +11,41 @@
       gtag('config', 'G-LG0VM866XL');
     </script>        
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Link to AR world">
-    <meta name="author" content="APLY Inc.">
+    <meta name="author" content="APLY Inc.">    
+    <meta name="keywords"
+        content="drone, quadcopter, advanced, platform, mobile, software, service, emotion, emotional, 드론, 감성, 서비스, 소프트웨어, sw, vision, anomaly, detection, machine, ai, bigdata">
+    <meta name="description" content="즐겁고 재미있게 일하기 위한 진보된 플랫폼">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="즐겁고 재미있게 일하기 위한 진보된 플랫폼">
+    <meta name="twitter:title" content="APLY Inc. | Advanced platform to fly">
+    <meta name="twitter:image" content="https://www.aply.biz/assets/images/site_title.png">
+
+    <meta property="analytics-track" content="APLY Inc." />
+    <meta property="analytics-s-channel" content="APLY" />
+
+    <meta property="og:site_name" content="APLY - ARink">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="어플라이 | APLY Inc. - Advanced platform to fly" />
+    <meta property="og:image" content="https://www.aply.biz/assets/images/site_title.png" />
+    <meta property="og:url" content="https://www.aply.biz" />
+    <meta property="og:description" content="즐겁고 재미있게 일하기 위한 진보된 플랫폼을 만나보세요!" />
+
+    <meta itemprop="name" content="APLY - ARink">
+    <meta itemprop="image" content="https://www.aply.biz/assets/images/site_title.png">
+    <meta itemprop="description"
+        content="drone, quadcopter, advanced, platform, mobile, software, service, emotion, emotional, data, bigdata, AI, 드론, 감성, 서비스, 소프트웨어, sw">
+    <meta itemprop="keywords"
+        content="drone, quadcopter, advanced, platform, mobile, software, service, emotion, emotional, data, bigdata, AI, 드론, 감성, 서비스, 소프트웨어, sw">
+    <meta itemprop="url" content="https://www.aply.biz/">
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="alternate" href="https://www.aply.biz/" hreflang="x-default">
+    <link rel="canonical" href="https://www.aply.biz/">
+
     <title>ARink - Link to AR World</title>
     <!-- Favicons-->
     <link rel="shortcut icon" href="assets/images/favicon.ico">        
@@ -26,7 +58,15 @@
     <link href="assets/css/template.css" rel="stylesheet">
     </head>
     <body>
-
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=109453656066856&autoLogAppEvents=1';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -47,8 +87,9 @@
                 <div class="inner-navigation collapse">
                     <div class="inner-nav onepage-nav">
                         <ul>
-                            <li><a href="#home"><span class="menu-item-span">Home</span></a></li>                            
-                            <li><a href="cs/"><span class="menu-item-span">Demos</span></a></li>
+                            <li><a href="#home"><span class="menu-item-span">Home</span></a></li>
+                            <li><a href="objet/"><span class="menu-item-span">Demos</span></a></li>
+                            <li><a href="#contact"><span class="menu-item-span">Contact</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -65,16 +106,29 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>A link to AR world<br>: ARink</strong></h1>
                             <p class="m-b-40">See how your users experience your AR world in realtime</p>
-                            <p><a class="btn btn-lg btn-circle btn-brand" href="/cs/">Get Started</a></p>
+                            <p><a class="btn btn-lg btn-circle btn-brand" href="/objet/">Get Started</a></p>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- Hero end-->
 
+            <!-- Features-->
+            <section class="module-cover bg-white text-center" data-overlay="0.25">                            
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 m-auto text-center">
+                        <h3><b>ARink</b><span class="blinking-cursor">_</span></b></h5>
+                        <h5>APLY가 준비하고 있는 기업 및 소상공인을 위한<br>증강현실 기술 기반의 마케팅 플랫폼입니다.</h5>
+                        <small>ARink는 현재 임시 명칭입니다. 향후 변경된 명칭으로 정식 런칭 예정입니다.<br><a href="#contact">문의하기 ></a></small>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <!-- Features end-->
 
             <!-- Footer-->
-            <footer class="footer">
+            <footer class="footer" id="contact">
                 <div class="footer-widgets">
                     <div class="container">
                         <div class="row">
@@ -99,6 +153,8 @@
                                                 style="background-color: #333; color: #aaa; border-color: #888;"
                                                 onChange="changedSelector">
                                                 <option selected>Family site</option>
+                                                <option>-------------------------------------</option>
+                                                <option value="aply">APLY HOMEPAGE</option>
                                                 <option>-------------------------------------</option>
                                                 <option value="recruit">RECRUIT</option>
                                                 <option value="blog">BLOG</option>
@@ -218,8 +274,8 @@
         <script src="assets/js/custom/jquery-3.2.1.min.js"></script>
         <script src="assets/js/custom/popper.min.js"></script>
         <script src="assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="assets/js/custom/plugins.min.js"></script>
-        <script src="assets/js/custom/custom.min.js"></script>
+        <script src="assets/js/custom/anime.min.js"></script>
+        <script src="assets/js/custom/custom.js"></script>
     </body>
 </html>
