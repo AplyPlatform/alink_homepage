@@ -38,23 +38,35 @@ function sendApplicationData(form_id, token)
 	let form_content = $("#form_content").val();
 	if (form_content == "") {
 		showDialog("문의 내용을 입력해 주세요.", null);
+		if ($('div').is('.page-loader')) {
+			$('.page-loader').delay(200).fadeOut(800);
+		}
 		return false;
 	}
 
 	let form_phone = $(form_id).find('input[name="form_phone"]').val();
 	if (form_phone == "") {
 		showDialog("전화번호를 입력해 주세요.", null);
+		if ($('div').is('.page-loader')) {
+			$('.page-loader').delay(200).fadeOut(800);
+		}
 		return false;
 	}
 
 	let form_email = $(form_id).find('input[name="form_email"]').val();
 	if (form_email == "") {
 		showDialog("이메일을 입력해 주세요.", null);
+		if ($('div').is('.page-loader')) {
+			$('.page-loader').delay(200).fadeOut(800);
+		}
 		return false;
 	}
 
 	if ($(form_id).find("#agree_1").length > 0 && $(form_id).find("#agree_1").is(":checked") == false) {
 		showDialog("개인정보 처리방침에 동의해주세요.", null);
+		if ($('div').is('.page-loader')) {
+			$('.page-loader').delay(200).fadeOut(800);
+		}
 		return false;
 	}
 
@@ -90,9 +102,15 @@ function sendApplicationData(form_id, token)
 			}
 
 			$(form_id + " input").last().remove();
+			if ($('div').is('.page-loader')) {
+				$('.page-loader').delay(200).fadeOut(800);
+			}
 		},
 		error: function(jqXHR, text, error){
 			showDialog("죄송합니다, 일시적인 오류가 발생하였습니다. 다시 시도 부탁드립니다.", null);
+			if ($('div').is('.page-loader')) {
+				$('.page-loader').delay(200).fadeOut(800);
+			}
 		}
 	});
 }
@@ -111,6 +129,8 @@ function setSubmitHandler(form_p_id) {
 			}
 		}
 
+		$('.page-loader').show();
+		
 		grecaptcha.ready(function() {
 	      grecaptcha.execute('6LfPn_UUAAAAAN-EHnm2kRY9dUT8aTvIcfrvxGy7', {action: 'homepage'}).then(function(token) {
 	         sendApplicationData(form_id, token);
