@@ -64,6 +64,8 @@ function sendApplicationData(form_id, token)
 	$(form_id).append(ref);	
 	ref = $('<input type="hidden" value="' + min_type + '" name="min_type">');	
 	$(form_id).append(ref);	
+	ref = $('<input type="hidden" value="arinkcontact" name="form_kind">');	
+	$(form_id).append(ref);
 		
 	let sed = new FormData($(form_id)[0]);
 
