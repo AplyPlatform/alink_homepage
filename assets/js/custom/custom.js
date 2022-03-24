@@ -772,12 +772,14 @@
             return !(Math.max($(window).width(), window.innerWidth) > 736);
         }
 
+        /*
         if (detectMob()) {
             $("#ytbg2").attr("data-youtube", "https://www.youtube.com/watch?v=L6NgEkfEqHA");
             isMobileView = true;
             $('#top_logo').attr("src", "/assets/images/logo.png");
             currentLogoKind = 0;
         }
+        */
 
 
         function setExtendAni() {
