@@ -825,7 +825,6 @@
             });
         }        
 
-        setExtendAni();
         $('[data-youtube]').youtube_background();
     });
 })(jQuery);
