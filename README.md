@@ -1,1 +1,3 @@
-"# alink_homepage" 
+---
+permalink: /404.html
+---
