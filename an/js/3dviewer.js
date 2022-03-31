@@ -1,7 +1,7 @@
  $(function(){
   updateMindSet();  
   function updateMindSet() {
-    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: ./assets/an2.mind;';    
+    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: ./assets/an.mind; filterMinCF:0.7; filterBeta: 5; warmupTolerance: 1; missTolerance: 1;';    
 
     let bodyStr = mindStr
                   + 'showStats: false; autoStart: false; maxTrack: 5" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">'              
