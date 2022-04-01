@@ -55,7 +55,7 @@
 
       $modal.on('shown.bs.modal', function () {
         cropper = new Cropper(image, {          
-          viewMode: 3
+          autoCropArea: 0.5,
         });
       }).on('hidden.bs.modal', function () {
         cropper.destroy();
