@@ -1,8 +1,12 @@
 
   
   let currentBlob = null;
-
   const compiler = new MINDAR.IMAGE.Compiler();
+
+  $(function() {
+    setDefaultUIStatus();
+    imageCropperSetup();
+  });  
 
   const setDefaultUIStatus = () => {
     $("#short_url_field").hide();        
@@ -266,5 +270,4 @@
     });
   }
 
-
-  setDefaultUIStatus();
+  
