@@ -84,6 +84,7 @@
           
           canvas.toBlob(function (blob) {            
             currentBlob = blob;
+            $("#startButton").show();
           });        
         }
       });
