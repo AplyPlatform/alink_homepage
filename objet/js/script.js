@@ -53,9 +53,15 @@
         }
       });
 
+      var cropBoxData;
+      var canvasData;
       $modal.on('shown.bs.modal', function () {
         cropper = new Cropper(image, {          
           autoCropArea: 0.5,
+          ready: function () {
+            //Should set crop box data first here
+            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+          }
         });
       }).on('hidden.bs.modal', function () {
         cropper.destroy();
