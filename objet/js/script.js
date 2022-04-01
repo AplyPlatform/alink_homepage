@@ -1,5 +1,6 @@
 
-  Dropzone.autoDiscover = false;
+  
+  let currentBlob = null;
 
   const compiler = new MINDAR.IMAGE.Compiler();
 
@@ -10,6 +11,70 @@
     $("#progressArea").hide();
     $("#fileDropArea").show();
     $("#progress-bar").css("width", "0%");
+  }
+
+  function imageCropperSetup() {
+
+      var avatar = document.getElementById('avatar');
+      var image = document.getElementById('image');
+      var input = document.getElementById('inputimage_file');    
+      var $alert = $('.alert');
+      var $modal = $('#modal');
+      var cropper;
+
+      input.addEventListener('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+          input.value = '';
+          image.src = url;
+          $alert.hide();
+          $modal.modal('show');
+        };
+        var reader;
+        var file;
+        if (files && files.length > 0) {
+          file = files[0];
+
+          if (URL) {
+            done(URL.createObjectURL(file));
+          } else if (FileReader) {
+            reader = new FileReader();
+            reader.onload = function (e) {
+              done(reader.result);
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      });
+
+      $modal.on('shown.bs.modal', function () {
+        cropper = new Cropper(image, {          
+          viewMode: 3
+        });
+      }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+        cropper = null;
+      });
+
+      document.getElementById('crop').addEventListener('click', function () {      
+        var canvas;
+
+        $modal.modal('hide');
+
+        if (cropper) {
+          canvas = cropper.getCroppedCanvas({
+            width: 800,
+            height: 800,
+          });
+          initialAvatarURL = avatar.src;
+          avatar.src = canvas.toDataURL();
+          $alert.removeClass('alert-success alert-warning');
+          
+          canvas.toBlob(function (blob) {            
+            currentBlob = blob;
+          });        
+        }
+      });
   }
     
   const uploadToServer = (blob) => {
@@ -134,9 +199,11 @@
       $("#progress-bar").css("width", progress.toFixed(2) + "%");
     });
     //console.log('exec time compile: ', new Date().getTime() - _start);
+    
     for (let i = 0; i < dataList.length; i++) {
       showData(dataList[i]);
     }
+    
     const exportedBuffer = await compiler.exportData();
     //document.getElementById("downloadButton").addEventListener("click", function() {
     download(exportedBuffer);
@@ -154,28 +221,15 @@
     reader.readAsArrayBuffer(file);
   }
   
-  document.addEventListener('DOMContentLoaded', function(event) {
-    const myDropzone = new Dropzone("#dropzone", { url: "#", autoProcessQueue: false, addRemoveLinks: true, dictDefaultMessage:"이곳을 터치해서 AR대상을 촬영하세요" });
-    myDropzone.on("addedfile", function(file) {
-        $("#startButton").show();
-    });
+  document.getElementById("startButton").addEventListener("click", function() {
+    if (currentBlob == null) return;
 
-    document.getElementById("startButton").addEventListener("click", function() {
-      $("#fileDropArea").hide();
-      $("#startButton").hide();
-      $("#progressArea").show();
-      $("#progress").text("어디가지마, 기다려!");
-      const files = myDropzone.files;
-      if (files.length === 0) return;
-      const ext = files[0].name.split('.').pop();
-      if (ext === 'mind') {
-        loadMindFile(files[0]); 
-      } else {            
-        compileFiles(files);
-      }
-
-      return false;
-    });
+    $("#fileDropArea").hide();
+    $("#startButton").hide();
+    $("#progressArea").show();
+    $("#progress").text("어디가지마, 기다려!");        
+    compileFiles([currentBlob]);    
+    return false;
   });
 
   document.getElementById("startAgain").addEventListener("click", function(){
