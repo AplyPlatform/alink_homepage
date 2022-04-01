@@ -26,14 +26,16 @@
       var $modal = $('#modal');
       var cropper;
       
-      $('[data-toggle="tooltip"]').tooltip();
+      $('[data-toggle="tooltip"]').tooltip();      
 
       input.addEventListener('change', function (e) {
+        $('[data-toggle="tooltip"]').tooltip('hide')
+        
         var files = e.target.files;
         var done = function (url) {
           input.value = '';
           image.src = url;
-          $alert.hide();
+          $alert.hide();          
           $modal.modal('show');
         };
         var reader;
