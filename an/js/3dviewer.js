@@ -11,7 +11,7 @@
                   + ' <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#raccoonModel" animation-mixer></a-gltf-model>'
                   + '</a-entity></a-scene></div>';                  
     
-    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="https://aply.biz/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
+    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
 
     $('body').html(bodyStr);
     setTimeout(doStart, 1000);    

@@ -22,7 +22,7 @@ $(function(){
                   + '<a-entity mindar-image-target="targetIndex: 0">'
                   + '<a-plane geometry="primitive:plane;width:2;height:2;" material="shader:gif;src:url(/objet/assets/6.gif);opacity:0.8"></a-plane>'
                   + '</a-entity></a-scene></div>';
-    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="https://aply.biz/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
+    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
 
     $('body').html(bodyStr);
     $('body').click(function(e){
