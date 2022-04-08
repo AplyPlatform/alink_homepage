@@ -8,7 +8,7 @@ $(function(){
             setTimeout(() => {
               showPortfolio(() => {
                 setTimeout(() => {
-                  showInfo();
+                  setButtons();
                 }, 300);
               });
             }, 300);          
