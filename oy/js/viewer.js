@@ -39,7 +39,7 @@ $(function(){
     portfolio.setAttribute("visible", true);
 
     const id = setInterval(() => {
-      y += 0.008;
+      y -= 0.008;
       if (y >= 0.6) {
         clearInterval(id);          
         paintandquestPreviewButton.addEventListener('click', () => {
