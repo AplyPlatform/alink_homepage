@@ -5,7 +5,7 @@ $(function(){
     AFRAME.registerComponent('mytarget', {
       init: function () {
         this.el.addEventListener('targetFound', event => {                      
-            const cardTarget = document.querySelector("#example-scanning-overlay");
+            const cardTarget = document.querySelector("#guidecard");
             cardTarget.setAttribute("visible", false);
 
             setTimeout(() => {
@@ -17,7 +17,7 @@ $(function(){
             }, 300);          
         });
         this.el.addEventListener('targetLost', event => {
-            const cardTarget = document.querySelector("#example-scanning-overlay");
+            const cardTarget = document.querySelector("#guidecard");
             cardTarget.setAttribute("visible", true);
         });
       }
@@ -26,24 +26,22 @@ $(function(){
 
   const setButtons = () => {
     const couponButton = document.querySelector("#coupon-button");
-    setTimeout(() => {
-      couponButton.setAttribute("visible", true);
-    }, 600);
-
-    paintandquestPreviewButton.addEventListener('click', () => {
-      paintandquestPreviewButton.setAttribute("visible", false);            
-      document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-      document.querySelector("#paintandquest-video-mp4").play();            
-    });
+    const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
 
     couponButton.addEventListener('click', function (evt) {
       window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
     });    
+
+    setTimeout(() => {
+      couponButton.setAttribute("visible", true);
+      paintandquestPreviewButton.setAttribute("visible", false);
+      document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+      document.querySelector("#paintandquest-video-mp4").play();
+    }, 600);    
   }
 
   const showPortfolio = (done) => {
-    const portfolio = document.querySelector("#portfolio-panel");
-    const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
+    const portfolio = document.querySelector("#portfolio-panel");    
 
     let y = 0;
     portfolio.setAttribute("visible", true);
