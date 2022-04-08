@@ -4,7 +4,10 @@ $(function(){
   function updateMindSet() {
     AFRAME.registerComponent('mytarget', {
       init: function () {
-        this.el.addEventListener('targetFound', event => {  
+        this.el.addEventListener('targetFound', event => {                      
+            const cardTarget = document.querySelector("#example-scanning-overlay");
+            cardTarget.setAttribute("visible", false);
+
             setTimeout(() => {
               showPortfolio(() => {
                 setTimeout(() => {
@@ -14,14 +17,15 @@ $(function(){
             }, 300);          
         });
         this.el.addEventListener('targetLost', event => {
-          console.log("target found");
+            const cardTarget = document.querySelector("#example-scanning-overlay");
+            cardTarget.setAttribute("visible", true);
         });
       }
     });    
   }
 
   const setButtons = () => {
-    const couponButton = document.querySelector("#coupon-button");   
+    const couponButton = document.querySelector("#coupon-button");
     setTimeout(() => {
       couponButton.setAttribute("visible", true);
     }, 600);
