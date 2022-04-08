@@ -30,6 +30,12 @@ $(function(){
       couponButton.setAttribute("visible", true);
     }, 600);
 
+    paintandquestPreviewButton.addEventListener('click', () => {
+      paintandquestPreviewButton.setAttribute("visible", false);            
+      document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+      document.querySelector("#paintandquest-video-mp4").play();            
+    });
+
     couponButton.addEventListener('click', function (evt) {
       window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
     });    
@@ -45,13 +51,7 @@ $(function(){
     const id = setInterval(() => {
       y += 0.008;
       if (y >= 0.6) {
-        clearInterval(id);          
-        paintandquestPreviewButton.addEventListener('click', () => {
-          paintandquestPreviewButton.setAttribute("visible", false);            
-          document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-          document.querySelector("#paintandquest-video-mp4").play();            
-        });
-
+        clearInterval(id);
         setTimeout(() => {
           done();
         }, 500);
