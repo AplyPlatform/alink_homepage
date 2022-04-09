@@ -26,7 +26,12 @@ $(function(){
 
   const setButtons = () => {
     const couponButton = document.querySelector("#coupon-button");
+    const couponText = document.querySelector("#coupon-text");
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
+
+    couponText.addEventListener('click', function (evt) {
+      window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
+    });    
 
     couponButton.addEventListener('click', function (evt) {
       window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
@@ -34,6 +39,7 @@ $(function(){
 
     setTimeout(() => {
       couponButton.setAttribute("visible", true);
+      couponText.setAttribute("visible", true);
       paintandquestPreviewButton.setAttribute("visible", false);
       document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
       document.querySelector("#paintandquest-video-mp4").play();
