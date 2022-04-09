@@ -43,12 +43,12 @@ $(function(){
     const goButton = document.querySelector("#go-button");
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
 
-    couponButton.addEventListener('click', function (evt) {
+    goButton.addEventListener('click', function (evt) {
       window.open("https://aply.biz");
     });    
 
     setTimeout(() => {
-      couponButton.setAttribute("visible", true);
+      goButton.setAttribute("visible", true);
       paintandquestPreviewButton.setAttribute("visible", false);
       document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
       document.querySelector("#paintandquest-video-mp4").play();
