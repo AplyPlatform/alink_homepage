@@ -7,7 +7,7 @@ $(function(){
         this.el.addEventListener('targetFound', event => {                      
             const cardTarget = document.querySelector("#guidecard");
             cardTarget.setAttribute("visible", false);
-
+            setInterval(createSnow, 100);
             setTimeout(() => {
               showPortfolio(() => {
                 setTimeout(() => {
@@ -62,5 +62,22 @@ $(function(){
       }
       portfolio.setAttribute("position", "0 " + y + " -0.01");
     }, 10);
+  }
+  
+  function createSnow() {
+    const snow = document.createElement('i');
+    snow.classList.add('fas');
+    snow.classList.add('fa-snowflake');
+    snow.style.left = Math.random() * window.innerWidth + 'px';
+    snow.style.animationDirection = Math.random() * 3 + 2 + 's';
+    snow.style.opacity = Math.random();
+    snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+    const snowlayer = document.querySelector("#snowlayer");      
+    snowlayer.appendChild(snow);
+  
+    setTimeout(() => {
+        snow.remove();
+    }, 5000);
   }
 });    

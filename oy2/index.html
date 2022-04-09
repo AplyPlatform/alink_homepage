@@ -24,6 +24,7 @@
     <meta property="og:title" content="올리브영 - ARink 테스트 페이지" />
     <meta property="og:description" content="올리브영 - ARink 테스트 페이지" />
     <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="../objet/js/mindar-image.prod.js"></script>
     <script src="../objet/js/aframe.js"></script>
     <script src="../objet/js/mindar-image-aframe.prod.js"></script>
@@ -121,10 +122,27 @@
         height: 30px;
         padding-top: 10px;
         cursor: pointer;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .fa-snowflake {
+      animation: fall 5s linear forwards;
+      color: #fff;
+      position: absolute;
+    }
+    
+    @keyframes fall {
+      to {
+        transform: translateY(90vh);
       }
+    }
   </style>  
 </head>
 <body>
+  <div id="snowlayer"></div>
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
