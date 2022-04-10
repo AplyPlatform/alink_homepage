@@ -2,26 +2,24 @@
 $(function(){ 
   updateMindSet();  
   function updateMindSet() {
-    AFRAME.registerComponent('mytarget', {
-      init: function () {
-        this.el.addEventListener('targetFound', event => {                      
-            const cardTarget = document.querySelector("#guidecard");
-            cardTarget.setAttribute("visible", false);
-            setInterval(createSnow, 100);
-            setTimeout(() => {
-              showPortfolio(() => {
-                setTimeout(() => {
-                  setButtons();
-                }, 300);
-              });
-            }, 300);          
+    const sceneEl = document.querySelector('a-scene');
+    sceneEl.addEventListener('targetFound', event => {                      
+      const cardTarget = document.querySelector("#guidecard");
+      cardTarget.setAttribute("visible", false);
+      setInterval(createSnow, 100);
+      setTimeout(() => {
+        showPortfolio(() => {
+          setTimeout(() => {
+            setButtons();
+          }, 300);
         });
-        this.el.addEventListener('targetLost', event => {
-            const cardTarget = document.querySelector("#guidecard");
-            cardTarget.setAttribute("visible", true);
-        });
-      }
-    });    
+      }, 300);   
+    });
+
+    sceneEl.addEventListener('targetLost', event => {
+      const cardTarget = document.querySelector("#guidecard");
+      cardTarget.setAttribute("visible", true);
+    });
   }
 
   const setButtons = () => {
