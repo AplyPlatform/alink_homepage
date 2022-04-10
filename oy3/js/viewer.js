@@ -43,10 +43,13 @@ $(function(){
   }
 
   const showPortfolio = (done) => {
-    const portfolio = document.querySelector("#portfolio-panel");    
+    const personButton = document.querySelector("#person-button");    
+    personButton.addEventListener('click', function (evt) {
+      window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
+    }); 
 
     let y = 0;
-    portfolio.setAttribute("visible", true);
+    personButton.setAttribute("visible", true);
 
     const id = setInterval(() => {
       y += 0.008;
@@ -56,7 +59,7 @@ $(function(){
           done();
         }, 500);
       }
-      portfolio.setAttribute("position", "0 " + y + " -0.01");
+      personButton.setAttribute("position", "0 " + y + " -0.01");
     }, 10);
   }
   
