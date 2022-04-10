@@ -43,7 +43,7 @@ $(function(){
   }
 
   const showPortfolio = (done) => {
-    const personButton = document.querySelector("#person-button");    
+    const personButton = document.querySelector("#person-button");
     personButton.addEventListener('click', function (evt) {
       window.open("https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159707&dispCatNo=90000010001&trackingCd=Home_Planshop3");
     }); 
