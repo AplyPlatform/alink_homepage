@@ -1,22 +1,5 @@
 
-$(function(){ 
-  updateMindSet();  
-  function updateMindSet() {
-    const sceneEl = document.querySelector('a-scene');
-    const cardTarget = document.querySelector("#guidecard");
-    setButtons();
-
-    sceneEl.addEventListener('targetFound', event => {                            
-      cardTarget.setAttribute("visible", false);
-      setInterval(createSnow, 100);
-      showPortfolio();
-    });
-      
-    sceneEl.addEventListener('targetLost', event => {      
-      cardTarget.setAttribute("visible", true);
-    });    
-  }
-
+$(function() {     
   const setButtons = () => {    
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
     document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
@@ -48,4 +31,22 @@ $(function(){
         snow.remove();
     }, 5000);
   }
+
+  function updateMindSet() {
+    const sceneEl = document.querySelector('a-scene');
+    const cardTarget = document.querySelector("#guidecard");
+    setButtons();
+
+    sceneEl.addEventListener('targetFound', event => {                            
+      cardTarget.setAttribute("visible", false);
+      setInterval(createSnow, 100);
+      showPortfolio();
+    });
+      
+    sceneEl.addEventListener('targetLost', event => {      
+      cardTarget.setAttribute("visible", true);
+    });    
+  }
+
+  updateMindSet();
 });    
