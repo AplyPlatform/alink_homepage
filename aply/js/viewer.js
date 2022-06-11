@@ -48,6 +48,7 @@ $(function(){
     });    
 
     paintandquestPreviewButton.addEventListener('click', function (evt) {
+      paintandquestPreviewButton.setAttribute("visible", false);            
       document.querySelector("#paintandquest-video-mp4").play();
     });
 
@@ -64,7 +65,7 @@ $(function(){
 
     done();
     return;
-    
+
 
     const id = setInterval(() => {
       y += 0.008;
