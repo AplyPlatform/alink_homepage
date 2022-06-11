@@ -4,82 +4,32 @@ $(function(){
   function updateMindSet() {
     const sceneEl = document.querySelector('a-scene');
     const cardTarget = document.querySelector("#guidecard");
+    setButtons();
 
     sceneEl.addEventListener('targetFound', event => {                            
       cardTarget.setAttribute("visible", false);
-
       setInterval(createSnow, 100);
-      showAvatar(() => {
-        setTimeout(() => {
-          showPortfolio(() => {
-            setTimeout(() => {
-              setButtons();
-            }, 300);
-          });
-        }, 300);          
-      });      
+      showPortfolio();
     });
-
+      
     sceneEl.addEventListener('targetLost', event => {      
       cardTarget.setAttribute("visible", true);
-    });
+    });    
   }
 
-  const showAvatar = (onDone) => {
-    const avatar = document.querySelector("#avatar");
-    let z = -0.3;
-    const id = setInterval(() => {
-      z += 0.02;
-      if (z >= 1.5) {
-        clearInterval(id);
-        onDone();
-      }
-      avatar.setAttribute("position", "0 -0.25 " + z);
-    }, 10);
-  }
-
-  const setButtons = () => {
-    const goButton = document.querySelector("#go-button");
+  const setButtons = () => {    
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
     document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-
-    goButton.addEventListener('click', function (evt) {
-      window.open("https://aply.biz");
-    });    
-
+    
     paintandquestPreviewButton.addEventListener('click', function (evt) {
       paintandquestPreviewButton.setAttribute("visible", false);            
       document.querySelector("#paintandquest-video-mp4").play();
     });
-
-    goButton.setAttribute("visible", true);
-    return;
-
-    setTimeout(() => {
-      goButton.setAttribute("visible", true);            
-    }, 600);    
   }
 
-  const showPortfolio = (done) => {
-    const portfolio = document.querySelector("#portfolio-panel");    
-
-    let y = 0;
+  const showPortfolio = () => {
+    const portfolio = document.querySelector("#portfolio-panel");
     portfolio.setAttribute("visible", true);
-
-    done();
-    return;
-
-
-    const id = setInterval(() => {
-      y += 0.008;
-      if (y >= 0.6) {
-        clearInterval(id);
-        setTimeout(() => {
-          done();
-        }, 500);
-      }
-      portfolio.setAttribute("position", "0 " + y + " -0.01");
-    }, 10);
   }
 
   function createSnow() {
