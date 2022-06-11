@@ -41,16 +41,18 @@ $(function(){
   const setButtons = () => {
     const goButton = document.querySelector("#go-button");
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
+    document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
 
     goButton.addEventListener('click', function (evt) {
       window.open("https://aply.biz");
     });    
 
-    setTimeout(() => {
-      goButton.setAttribute("visible", true);
-      paintandquestPreviewButton.setAttribute("visible", false);
-      document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+    paintandquestPreviewButton.addEventListener('click', function (evt) {
       document.querySelector("#paintandquest-video-mp4").play();
+    });
+
+    setTimeout(() => {
+      goButton.setAttribute("visible", true);            
     }, 600);    
   }
 
@@ -59,6 +61,10 @@ $(function(){
 
     let y = 0;
     portfolio.setAttribute("visible", true);
+
+    done();
+    return;
+    
 
     const id = setInterval(() => {
       y += 0.008;
