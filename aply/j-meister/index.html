@@ -23,28 +23,130 @@
     <meta property="og:site_name" content="APLY - APLX" />
     <meta property="og:title" content="APLY - 변지숙 CDO" />
     <meta property="og:description" content="APLY - 변지숙 CDO 프로필" />
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">    
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="../../objet/js/mindar-image.prod.js"></script>
     <script src="../../objet/js/aframe.js"></script>
     <script src="../../objet/js/mindar-image-aframe.prod.js"></script>
     <script src="../../objet/js/aframe-gif-shader.js"></script>    
     <script src="../../objet/js/jquery.min.js"></script>
-    <script src="./js/viewer.js"></script>    
-    <style>
-      #flipButton {        
-          text-decoration: none;
-          position: fixed;
-          background-color: rgba(0,0,0,0.5); color: white;
-          bottom: 0;
-          left: 0;
-          width: 100vw;
-          text-align: center;
-          z-index: 3;
-          height: 30px;
-          padding-top: 10px;
-          cursor: pointer;
-        }
-    </style>  
+    <script src="./js/viewer.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+    .example-container {
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+   
+    #example-scanning-overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: transparent;
+      z-index: 2;
+    }
+    @media (min-aspect-ratio: 1/1) {
+      #example-scanning-overlay .inner {
+        width: 50vh;
+        height: 50vh;
+      }
+    }
+    @media (max-aspect-ratio: 1/1) {
+      #example-scanning-overlay .inner {
+        width: 80vw;
+        height: 80vw;
+      }
+    }
+
+    #example-scanning-overlay .inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      background:
+        linear-gradient(to right, white 10px, transparent 10px) 0 0,
+        linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+        linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+        linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 40px 40px;
+    }
+
+    #example-scanning-overlay.hidden {
+      display: none;
+    }
+
+    #example-scanning-overlay img {
+      opacity: 0.6;
+      width: 90%;
+      align-self: center;
+    }
+
+    #example-scanning-overlay .inner .scanline {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: white;
+      animation: move 2s linear infinite;
+    }
+    @keyframes move {
+      0%, 100% { top: 0% }
+      50% { top: calc(100% - 10px) }
+    }
+
+    #flipButton {        
+        text-decoration: none;
+        position: fixed;
+        background-color: rgba(0,0,0,0.5); color: white;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        text-align: center;
+        z-index: 3;
+        height: 30px;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .fa-snowflake {
+      animation: fall 5s linear forwards;
+      color: rgb(255, 255, 255);
+      position: absolute;
+    }
+    
+    @keyframes fall {
+      to {
+        transform: translateY(90vh);
+      }
+    }      
+
+    #snowlayer {                
+        position: fixed;        
+        top: 0;
+        left: 0;
+        width: 100vw;        
+        z-index: 3;
+        height: 1px;                
+    }
+  </style>  
 </head>
 <body>
   <div id="snowlayer"></div>
@@ -58,9 +160,9 @@
 
     <a-scene mindar-image="imageTargetSrc: ./j-meister.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <img id="card" src="../assets/card.png" />        
+        <img id="card" src="../assets/card.png" />
         <img id="paintandquest-preview" src="../assets/play.png" />
-        <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="../assets/j-meister_title.mp4"></video>        
+        <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="../assets/j-meister_title.mp4"></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
@@ -71,9 +173,8 @@
         <a-entity visible=false id="portfolio-panel" position="0 0 0">          
           <a-entity id="portfolio-item0">
             <a-video id="paintandquest-video-link" webkit-playsinline playsinline width="1" height="0.552" position="0 0 0"></a-video>
-            <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0 0" width="1" height="0.552">
-            </a-image>
-          </a-entity>                    
+            <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0 0" width="1" height="0.552"></a-image>
+          </a-entity>
         </a-entity>
       </a-entity>
     </a-scene>
