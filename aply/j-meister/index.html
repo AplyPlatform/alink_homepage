@@ -108,48 +108,18 @@
       50% { top: calc(100% - 10px) }
     }
 
-    #flipButton {        
-        text-decoration: none;
-        position: fixed;
-        background-color: rgba(0,0,0,0.5); color: white;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        text-align: center;
-        z-index: 3;
-        height: 30px;
-        padding-top: 10px;
-        cursor: pointer;
-    }
-
     * {
       box-sizing: border-box;
     }
 
-    .fa-snowflake {
-      animation: fall 5s linear forwards;
-      color: rgb(255, 255, 255);
-      position: absolute;
-    }
-    
     @keyframes fall {
       to {
         transform: translateY(90vh);
       }
-    }      
-
-    #snowlayer {                
-        position: fixed;        
-        top: 0;
-        left: 0;
-        width: 100vw;        
-        z-index: 3;
-        height: 1px;                
-    }
+    }    
   </style>  
 </head>
-<body>
-  <div id="snowlayer"></div>
+<body>  
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
@@ -178,7 +148,6 @@
         </a-entity>
       </a-entity>
     </a-scene>
-  </div>
-  <div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>
+  </div>  
 </body>
 </html>
