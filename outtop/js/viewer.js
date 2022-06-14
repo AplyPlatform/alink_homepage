@@ -22,7 +22,7 @@ $(function(){
   });
 
   function updateMindSet() {
-    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: ./assets/target.mind;"';
+    let mindStr = '<div><a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/target.mind;"';
 
     let bodyStr = mindStr
                   + ' color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"><a-assets></a-assets>'
