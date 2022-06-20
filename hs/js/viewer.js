@@ -3,7 +3,7 @@ $(function(){
   updateMindSet();
 
   function updateMindSet() {
-    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: ./assets/target.mind;"';
+    let mindStr = '<div><a-scene mindar-image="imageTargetSrc: ./assets/target.mind; ;filterMinCF:0.0001; filterBeta: 0.001;"';
 
     let bodyStr = mindStr
                   + ' color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"><a-assets></a-assets>'
