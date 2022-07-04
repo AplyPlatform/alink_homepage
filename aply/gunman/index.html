@@ -29,6 +29,7 @@
     <script src="../../objet/js/aframe.js"></script>
     <script src="../../objet/js/mindar-image-aframe.prod.js"></script>
     <script src="../../objet/js/aframe-gif-shader.js"></script>    
+    <script src='../../objet/js/aframe-extras.loaders.min.js'></script>
     <script src="../../objet/js/jquery.min.js"></script>
     <script src="./js/viewer.js"></script>
     <style>
@@ -134,6 +135,7 @@
         <img id="card" src="../assets/card.png" />
         <img id="paintandquest-preview" src="../assets/play.png" />
         <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="../assets/gunman_title.mp4"></video>
+        <a-asset-item id="avatarModel" src="../assets/aplydrone.glb"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
@@ -146,6 +148,7 @@
             <a-video id="paintandquest-video-link" webkit-playsinline playsinline width="1" height="0.552" position="0 0 0"></a-video>
             <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0 0" width="1" height="0.552"></a-image>
           </a-entity>
+          <a-gltf-model id="avatar" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#avatarModel" animation-mixer></a-gltf-model>
         </a-entity>
       </a-entity>
     </a-scene>
