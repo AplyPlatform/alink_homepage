@@ -1,5 +1,31 @@
 
 $(function() {     
+
+  const sceneEl = document.querySelector('a-scene');
+  const exampleTarget = document.querySelector('#card-object-target');
+  // arReady event triggered when ready
+  sceneEl.addEventListener("arReady", (event) => {
+	  //loadingOverlay.style.display = "none";
+    });
+
+// arError event triggered when something went wrong. Mostly browser compatbility issue
+    sceneEl.addEventListener("arError", (event) => {
+//loadingOverlay.style.display = "none";
+//compatibilityOverlay.style.display = "block";
+    });
+
+
+	// detect target found
+    exampleTarget.addEventListener("targetFound", event => {
+      console.log("target found");
+    });
+
+// detect target lost
+    exampleTarget.addEventListener("targetLost", event => {
+      console.log("target lost");
+    });
+
+
   const setButtons = () => {    
     const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
     document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
@@ -13,6 +39,7 @@ $(function() {
   const showPortfolio = () => {
     const portfolio = document.querySelector("#portfolio-panel");
     portfolio.setAttribute("visible", true);
+    return;
     
     const avatar = document.querySelector("#avatar");
     let z = -0.3;

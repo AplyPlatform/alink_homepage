@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LG0VM866XL');
+  </script>
+  <title>은혜작가님과 함께 : APLX</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="theme-color" content="#000000" >
+  <meta name="keywords" content="APLY, 어플라이, 증강현실, AR" />
+  <meta name="description" content="은혜작가님과 함께 : APLX" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aplx.aply.biz/" />
+  <meta property="og:site_name" content="APLY - APLX" />
+  <meta property="og:title" content="은혜작가님과 함께 : APLX" />
+  <meta property="og:description" content="은혜작가님과 함께 : APLX" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+  <!-- three.js -->
+  <script src="./js/three.js"></script>
+  <script src="./js/GLTFLoader.js"></script>
+</head>
+<body>
+<!-- Starting an immersive WebXR session requires user interaction.
+    We start this one with a simple button. -->
+<button onclick="activateXR()">Start Hello WebXR</button>
+
+<script>
+var renderer;
+var getImageData = false;
+async function activateXR() {
+  // Add a canvas element and initialize a WebGL context that is compatible with WebXR.
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  const gl = canvas.getContext("webgl", {xrCompatible: true, preserveDrawingBuffer: true});
+
+    const scene = new THREE.Scene();
+
+    // Create the cube and add it to the demo scene.
+/*    
+    const defaultLight = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
+    defaultLight.position.set( 0.5, 1, 0.25 );
+    scene.add( defaultLight );
+
+    */
+
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.AmbientLight(color, intensity);
+    scene.add(light);
+
+
+    /*
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    directionalLight.position.set(0.1, 0.1, 0.1);
+    scene.add(directionalLight);    
+    */
+
+    renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        preserveDrawingBuffer: true,
+        canvas: canvas,
+        context: gl
+    });
+    renderer.autoClear = false;
+
+    // The API directly updates the camera matrices.
+    // Disable matrix auto updates so three.js doesn't attempt
+    // to handle the matrices independently.
+    const camera = new THREE.PerspectiveCamera();
+    camera.matrixAutoUpdate = false;
+
+    // Initialize a WebXR session using "immersive-ar".
+    const session = await navigator.xr.requestSession("immersive-ar", {requiredFeatures: ['hit-test']});
+    session.updateRenderState({
+    baseLayer: new XRWebGLLayer(session, gl)
+    });
+
+    // A 'local' reference space has a native origin that is located
+    // near the viewer's position at the time the session was created.
+    const referenceSpace = await session.requestReferenceSpace('local');
+
+    // Create another XRReferenceSpace that has the viewer as the origin.
+    const viewerSpace = await session.requestReferenceSpace('viewer');
+    // Perform hit testing using the viewer as origin.
+    const hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
+
+    const loader = new THREE.GLTFLoader();
+    let reticle;
+    loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function(gltf) {
+        reticle = gltf.scene;
+        reticle.visible = false;
+        scene.add(reticle);
+    });
+
+    let flower;
+    loader.load("./assets/eh.gltf", function(gltf) {
+        flower = gltf.scene;
+    });
+
+    
+    let a2;
+    loader.load("./assets/eh.gltf", function(gltf) {
+        a2 = gltf.scene;
+        //let a2mat = gltf.scene.children[0];
+        //a2mat.material.metalness = 0;
+        scene.add(a2);
+    });
+
+
+    session.addEventListener("select", (event) => {
+        if (flower) {
+            const clone = flower.clone();
+            clone.position.copy(reticle.position);
+            scene.add(clone);
+        }
+    });
+
+    const onXRFrame = (time, frame) => {
+        // Queue up the next draw request.
+        session.requestAnimationFrame(onXRFrame);
+
+        // Bind the graphics framebuffer to the baseLayer's framebuffer
+        gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer)
+
+        // Retrieve the pose of the device.
+        // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
+        const pose = frame.getViewerPose(referenceSpace);
+        if (pose) {
+            // In mobile AR, we only have one view.
+            const view = pose.views[0];
+
+            const viewport = session.renderState.baseLayer.getViewport(view);
+            renderer.setSize(viewport.width, viewport.height)
+
+            // Use the view's transform matrix and projection matrix to configure the THREE.camera.
+            camera.matrix.fromArray(view.transform.matrix)
+            camera.projectionMatrix.fromArray(view.projectionMatrix);
+            camera.updateMatrixWorld(true);
+
+
+            const hitTestResults = frame.getHitTestResults(hitTestSource);
+            if (hitTestResults.length > 0 && reticle) {
+                const hitPose = hitTestResults[0].getPose(referenceSpace);
+                reticle.visible = true;
+                reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+                reticle.updateMatrixWorld(true);
+            }
+
+            // Render the scene with THREE.WebGLRenderer.
+            renderer.render(scene, camera);
+        }
+    }
+    
+    session.requestAnimationFrame(onXRFrame);    
+}
+</script>
+</body>
+</html>
