@@ -31,7 +31,7 @@
     <script src="../../objet/js/aframe-gif-shader.js"></script>    
     <script src='../../objet/js/aframe-extras.loaders.min.js'></script>
     <script src="../../objet/js/jquery.min.js"></script>
-    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <script src="../../objet/js/aframe-troika-text.min.js"></script>
     <script src="./js/viewer.js"></script>
     <style>
       body {
@@ -154,6 +154,9 @@
           </a-entity>
           <!-- <a-gltf-model id="avatar" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#avatarModel" animation-mixer></a-gltf-model> -->
           <a-gltf-model id="avatar2" rotation="90 0 0" position="0 0.8 0" scale="0.7 0.7 0.7" src="#waving" animation-mixer></a-gltf-model>
+          <a-entity position="0 -0.67 0" troika-text="color: white; align: right; value: CEO/CTO 이건우; font:../../objet/assets/NanumGothic.ttf; fontSize:0.1;">
+          <a-entity position="0 -0.1 0" troika-text="color: #aaa; align: right; value: 010-2933-6416 | gunman@aply.biz; font:../../objet/assets/NanumGothic.ttf; fontSize:0.1;"></a-entity>
+            
           
         </a-entity>
       </a-entity>
