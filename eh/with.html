@@ -18,8 +18,22 @@
     <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+    <style>
+      model-viewer {
+        width: 100%;
+        height: 300px;
+      }
+      </style>  
 </head>
 <body>
-<model-viewer id="mv-demo" shadow-intensity="1" src="./assets/eh.glb" ios-src="./assets/eh.usdz" alt="은혜 작가님과 함께 사진을 촬영해 보세요! 터치, 터치!" ar-scale="auto" auto-rotate ar ar-modes="scene-viewer quick-look" camera-controls></model-viewer>
+<model-viewer shadow-intensity="1" src="./assets/eh.glb" ios-src="./assets/eh.usdz" alt="은혜 작가님과 함께 사진을 촬영해 보세요! 터치, 터치!" ar-scale="auto" auto-rotate ar ar-modes="scene-viewer quick-look" camera-controls>
+
+  <button slot="ar-button" style="background-color: #333; border-radius: 4px; border: none; position: absolute; left:0px; padding:15px; right: 0px; bottom: 0px; ">
+    <font color="white" size="5">👋 은혜작가와 사진촬영 하기</font>
+  </button>
+</model-viewer>
+
+</model-viewer>
 </body>
 </html>
