@@ -55,6 +55,7 @@ $(function() {
   function updateMindSet() {
     const sceneEl = document.querySelector('a-scene');
     const cardTarget = document.querySelector("#guidecard");
+    const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
     setButtons();
 
     sceneEl.addEventListener('targetFound', event => {                            
@@ -69,5 +70,50 @@ $(function() {
     });    
   }
 
+
+function get_message() {
+
+  var formData = new FormData();
+  formData.append(
+      "form_kind",
+      "get_message"
+  );
+
+  ajaxRequest(formData, function (r) {
+    const comment_a1 = document.querySelector("#comment_a1");
+    comment_a1.setAttribute("value", r[0].title);
+  }, function (r,s,e) {
+
+  });
+
+}
+
+  
+function ajaxRequest(data, callback, errorcallback) {
+  $.ajax({
+      url: "https://aply.biz/op_aplx/aplx_handler/handler.php",
+      crossDomain: true,
+      cache: false,
+      data: data,
+      type: "POST",      
+      contentType: false,
+      processData: false,
+      beforeSend: function (request) {
+          //request.setRequestHeader("droneplay-token", getCookie('user_token'));
+      },
+      success: function (r) {
+          if (r.result != "success" && r.result_code == 1) {              
+              return;
+          }
+
+          callback(r);
+      },
+      error: function (request, status, error) {         
+          errorcallback(request, status, error);
+      }
+  });
+}
+
   updateMindSet();
+  //get_message();
 });    
