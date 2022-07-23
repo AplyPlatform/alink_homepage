@@ -67,7 +67,9 @@ $(function() {
       paintandquestPreviewButton.setAttribute("visible", true);
       cardTarget.setAttribute("visible", true);
       document.querySelector("#paintandquest-video-mp4").stop();
-    });    
+    });
+
+    get_message();
   }
 
 
@@ -112,6 +114,5 @@ function ajaxRequest(data, callback, errorcallback) {
   });
 }
 
-  updateMindSet();
-  //get_message();
+  updateMindSet();  
 });    
