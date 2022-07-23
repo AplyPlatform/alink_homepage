@@ -74,10 +74,8 @@ $(function() {
 function get_message() {
 
   var formData = new FormData();
-  formData.append(
-      "form_kind",
-      "get_message"
-  );
+  formData.append("form_kind", "get_message");
+  formData.append("user", "gunman");
 
   ajaxRequest(formData, function (r) {
     const comment_a1 = document.querySelector("#comment_a1");
