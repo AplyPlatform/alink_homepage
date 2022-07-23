@@ -81,7 +81,9 @@ function get_message() {
 
   ajaxRequest(formData, function (r) {
     const comment_a1 = document.querySelector("#comment_a1");
+    const comment_a2 = document.querySelector("#comment_a2");
     comment_a1.setAttribute("value", r[0].title);
+    comment_a2.setAttribute("value", r[0].content);    
   }, function (r,s,e) {
 
   });
