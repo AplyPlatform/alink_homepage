@@ -114,8 +114,11 @@ function get_message(userid) {
         const comment_writer = document.querySelector("#comment_writer");
 
         currentPostId = r[0].docu_srl;
+
+        let regtime = r[0].regdate.substring(0,8);
+
         comment_a1.setAttribute("value", r[0].title);
-        comment_a2.setAttribute("value", r[0].content);
+        comment_a2.setAttribute("value", r[0].content + " | " + regtime);
 
         comment_a3.setAttribute("visible", false);
         comment_a4.setAttribute("visible", false);
@@ -125,7 +128,7 @@ function get_message(userid) {
         comment_writer.setAttribute("visible", false);
 
         if (r[0].comments.length > 0) {
-            comment_a3.setAttribute("visible", true);
+            comment_a3.setAttribute("visible", true);                        
             comment_a3.setAttribute("value", r[0].comments[0].content + " | " + r[0].comments[0].name);
 
             if (r[0].comments.length > 1) {
