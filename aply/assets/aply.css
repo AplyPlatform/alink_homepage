@@ -92,9 +92,25 @@ body {
       left: 0;
       right: 0;
       top: 0;
-      width: 100vw;        
+      width: 100vw;
       z-index: 3;        
       padding: 10px;
       cursor: pointer;
       text-align: center;
+}
+
+.comment_writer_area_test {  
+  height: 600px;
+  text-align: center;
+}
+
+.comment_writer_area {  
+  height: 300px;  
+  text-align: center;
+}
+
+.btn-c-writer {
+  padding: 10% 0; 
+  /* define values in pixels / Percentage or em. whatever suits 
+     your requirements */
 }

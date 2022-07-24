@@ -1,4 +1,4 @@
 $(function() {
   updateMindSet();
-  get_message("gunman");
+  get_message("gunman");  
 });    

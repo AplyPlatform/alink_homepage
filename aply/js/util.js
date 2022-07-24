@@ -40,11 +40,6 @@ function updateMindSet() {
             document.querySelector("#paintandquest-video-mp4").play();
         });
 
-        const comment_writer = document.querySelector("#comment_writer");
-        comment_writer.addEventListener('click', function (evt) {                        
-            $("#area_comment_writer").show();
-        });
-
         $("#closeButton").click(function(){
             $("#area_comment_writer").hide();
         });
@@ -73,7 +68,7 @@ function updateMindSet() {
         paintandquestPreviewButton.setAttribute("visible", true);
         cardTarget.setAttribute("visible", true);
         document.querySelector("#paintandquest-video-mp4").stop();
-    });    
+    });
 }
   
 function writeMessage()  {
@@ -97,46 +92,38 @@ function writeMessage()  {
 }
 
 
-function get_message(userid) {
+function get_message(userid) {    
     currentUserId = userid;
 
     var formData = new FormData();
     formData.append("form_kind", "get_message");
     formData.append("user", userid);
 
-    ajaxRequest(formData, function (r) {
-        
-        const comment_a1 = document.querySelector("#comment_a1");
-        const comment_a2 = document.querySelector("#comment_a2");        
-        const comment_a3 = document.querySelector("#comment_a3");
-        const comment_a4 = document.querySelector("#comment_a4");
-        const comment_more = document.querySelector("#comment_more");
-        const comment_writer = document.querySelector("#comment_writer");
-
+    ajaxRequest(formData, function (r) {                
         currentPostId = r[0].docu_srl;
 
         let regtime = r[0].regdate.substring(0,8);
 
-        comment_a1.setAttribute("value", r[0].title);
-        comment_a2.setAttribute("value", r[0].content + " | " + regtime);
+        $("#comment_a1").text(r[0].title);
+        $("#comment_a2").text(r[0].content + " | " + regtime);        
 
-        comment_a3.setAttribute("visible", false);
-        comment_a4.setAttribute("visible", false);
-        comment_more.setAttribute("visible", false);        
-
-        //TODO
-        comment_writer.setAttribute("visible", false);
+        $("#comment_a3").hide();
+        $("#comment_a4").hide();
+        $("#comment_more").hide();
+        
+        // Todo
+        $("#comment_writer").hide();
 
         if (r[0].comments.length > 0) {
-            comment_a3.setAttribute("visible", true);                        
-            comment_a3.setAttribute("value", r[0].comments[0].content + " | " + r[0].comments[0].name);
+            $("#comment_a3").show();
+            $("#comment_a3").text(r[0].comments[0].content + " | " + r[0].comments[0].name);
 
             if (r[0].comments.length > 1) {
-                comment_a4.setAttribute("visible", true);
-                comment_a4.setAttribute("value", r[0].comments[1].content + " | " + r[0].comments[1].name);                
+                $("#comment_a4").show();
+                $("#comment_a4").text(r[0].comments[1].content + " | " + r[0].comments[1].name);
 
                 if (r[0].comments.length > 2) {
-                    comment_more.setAttribute("visible", true);
+                    $("#comment_more").show();
                     $("#comment_more").click(function() {
                         alert("개발중입니다.");
                     });
