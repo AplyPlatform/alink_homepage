@@ -30,8 +30,7 @@ $(function(){
                   + '<a-entity mindar-image-target="targetIndex: 0">'
                   + '<a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1;height:0.56;" position="0 0 0" material="shader:gif;src:url(./assets/eh.gif);opacity:1.0"></a-plane>'                  
                   
-                  + '<a-troika-text id="comment_a1" position="0 0.54 0.1" value="정은혜 작가의 증강현실 프로필 입니다." color="white" align="right" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.08" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>'
-                  + '<a-plane id="bplane" geometry="primitive:plane;width:1;height:0.13;" position="0 0.55 0.09" color="#f00" material="opacity:1.0"></a-plane>'                  
+                  + '<a-troika-text id="comment_a1" position="0 0.54 0.1" value="정은혜 작가의 증강현실 프로필 입니다." color="white" align="right" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.08" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>'                  
                   + '<a-troika-text id="comment_a2" max-width="1" line-height="1.5" position="0 0.40 0.1" value="하하하" color="white" align="center" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.07"></a-troika-text>'
 
                   + '</a-entity></a-scene></div>';
