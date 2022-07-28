@@ -31,7 +31,7 @@ $(function(){
                   + '<a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1;height:1.75;" position="0.01 0.05 0.05" material="shader:gif;src:url(./mb.gif);opacity:1.0"></a-plane>'
                   + '<a-plane id="aplane2" class="clickable" geometry="primitive:plane;width:0.8;height:0.8;" position="-0.17 0.55 0.06" material="shader:gif;src:url(./mb2.gif);opacity:1.0"></a-plane>'
                   + '</a-entity></a-scene></div>';
-    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
+    bodyStr += '<div id="flipButton"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>';
 
     $('body').html(bodyStr);
 

@@ -34,7 +34,7 @@ $(function(){
                   + '<a-troika-text id="comment_a2" max-width="1" line-height="1.5" position="0 0.40 0.1" value="하하하" color="white" align="center" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.07"></a-troika-text>'
 
                   + '</a-entity></a-scene></div>';
-    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
+    bodyStr += '<div id="flipButton"><font size="1" color="white" face="arial">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>';
 
     $('body').html(bodyStr);
 
