@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LG0VM866XL');
+    </script>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="theme-color" content="#000000" >
+    <meta name="keywords" content="APLY, 어플라이, 증강현실, AR" />
+    <meta name="description" content="APLY - 이건우 CEO 프로필" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aplx.aply.biz/" />
+    <meta property="og:site_name" content="APLY - APLX" />
+    <meta property="og:title" content="APLY - 이건우 CEO" />
+    <meta property="og:description" content="APLY - 이건우 CEO 프로필" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/aply.css">
+    <script src="../../objet/js/mindar-image.prod.js"></script>
+    <script src="../../objet/js/aframe.js"></script>
+    <script src="../../objet/js/mindar-image-aframe.prod.js"></script>
+    <script src="../../objet/js/aframe-gif-shader.js"></script>    
+    <script src='../../objet/js/aframe-extras.loaders.min.js'></script>
+    <script src="../../objet/js/jquery.min.js"></script>
+    <script src="../../objet/js/aframe-troika-text.min.js"></script>    
+    <script src="./js/viewer.js"></script>
+    
+</head>
+<body>
+  <div class="example-container">
+    <div id="example-scanning-overlay" class="hidden">
+      <div class="inner">
+        <img src="../assets/card.png"/>
+        <div class="scanline"></div>
+      </div>
+    </div>
+
+    <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/target.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>                
+        <a-asset-item id="waving" src="./p.glb"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+
+      <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">        
+        <a-gltf-model id="avatar2" rotation="90 0 0" position="0 0 0" scale="0.1 0.1 0.1" src="#waving" animation-mixer></a-gltf-model>                  
+      </a-entity>
+    </a-scene>
+  </div>
+  
+  <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

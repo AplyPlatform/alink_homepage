@@ -30,7 +30,7 @@ $(function(){
                   + '<a-entity mindar-image-target="targetIndex: 0">'
                   + '<a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1.2;height:0.6;" position="0.05 0 0" material="shader:gif;src:url(/objet/assets/8.gif);opacity:1.0"></a-plane>'
                   + '</a-entity></a-scene></div>';
-    bodyStr += '<div id="flipButton"><font size="3" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="45px"></a></font></div>';
+    bodyStr += '<div id="flipButton"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="/assets/images/logo_white.png" border="0" width="25px"></a></font></div>';
 
     $('body').html(bodyStr);
 
