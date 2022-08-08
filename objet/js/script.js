@@ -110,7 +110,7 @@
             // print the output from the upload.php script
             //console.log(data);
             //alert("처리 완료!");
-            generateShortURL("https://arink.aply.biz/objet/viewer.html?mname=" + fname)            
+            generateShortURL("https://aplx.aply.biz/objet/viewer.html?mname=" + fname)            
         });
     };      
     // trigger the read from the reader...

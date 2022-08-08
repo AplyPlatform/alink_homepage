@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LG0VM866XL');
+    </script>
+    <title>정은혜 작가 '포옹전' 초대장 - APLX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="theme-color" content="#000000" >
+    <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/aply.css">
+    <script src="../objet/js/mindar-image.prod.js"></script>
+    <script src="../objet/js/aframe.js"></script>
+    <script src="../objet/js/mindar-image-aframe.prod.js"></script>
+    <script src="../objet/js/aframe-gif-shader.js"></script>    
+    <script src='../objet/js/aframe-extras.loaders.min.js'></script>
+    <script src="../objet/js/jquery.min.js"></script>
+    <script src="../objet/js/aframe-troika-text.min.js"></script>    
+    <script src="./js/inv.js"></script>
+    <style>
+      #flipButton {        
+        text-decoration: none;
+        position: fixed;
+        background-color: rgba(0,0,0,0.5); color: white;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        text-align: center;
+        z-index: 3;
+        height: 16px;
+        padding-top: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>    
+    <div class="example-container">
+      <div id="example-scanning-overlay" class="hidden">
+        <div class="inner">
+          <img src="./assets/invitation_card.jpg"/>
+          <div class="scanline"></div>
+        </div>
+      </div>
+  
+      <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-assets>
+          <img id="hearticon" src="./assets/icon_heart.png" />
+          <img id="paintandquest-write" src="./assets/write.png" />          
+          <a-asset-item id="heartbeat" src="../objet/assets/heart.glb"></a-asset-item>
+        </a-assets>
+  
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+  
+        <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">          
+          <a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1;height:1;" position="0 0 0" color="#fff" material="opacity:0.6"></a-plane>
+  
+          <a-entity visible=false id="portfolio-panel" position="0 0 0">
+            <a-gltf-model visible=false id="heart_asset_0" rotation="0 0 0" position="0 0.1 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+            <a-gltf-model visible=false id="heart_asset_1" rotation="0 0 0" position="0 0.2 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+            <a-gltf-model visible=false id="heart_asset_2" rotation="0 0 0" position="0 0.3 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+            <a-gltf-model visible=false id="heart_asset_3" rotation="0 0 0" position="0 0.4 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+            <a-gltf-model visible=false id="heart_asset_4" rotation="0 0 0" position="0 0.5 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+            <a-gltf-model visible=false id="heart_asset_5" rotation="0 0 0" position="0 0.6 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+
+            <a-troika-text id="comment_a1" position="0 -0.40 0.1" value="증강현실 프로필 입니다." color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.08" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>          
+            <a-troika-text id="comment_a2" max-width="1" line-height="1.5" position="0 -0.56 0.1" value="41234123" color="white" align="center" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.07"></a-troika-text>
+            <a-troika-text id="comment_a3" max-width="1" line-height="1.5" position="0 -0.94 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
+            <a-troika-text id="comment_a4" max-width="1" line-height="1.5" position="0 -1.05 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
+            <a-troika-text class="clickable" id="comment_more" max-width="1" line-height="1.5" position="0 -1.15 0.1" value="댓글 더보기" color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
+            <a-image class="clickable" id="comment_writer" src="#paintandquest-write" position="0 -1.43 0.1" alpha-test="0.5" width="0.6" height="0.18"></a-image>
+            <a-image class="clickable" id="like_button" src="#hearticon" position="0 -0.95 0" alpha-test="0.5" width="0.6" height="0.18"></a-image>
+          </a-entity>
+        </a-entity>
+      </a-scene>
+    </div>
+    
+    <div id="area_comment_writer">
+      <div class="row">
+        <div class="col-12">
+          댓글 작성하기
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요"><br>
+        </div>         
+      </div>
+      <div class="row">
+         <div class="col-9">
+            <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름">
+          </div>        
+          <div class="col-3">
+            <button id="replyButton" type="button" class="btn btn-primary btn-block">쓰기</button>
+          </div>
+      </div>     
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <hr>
+          <button id="closeButton" type="button" class="btn btn-warning btn-block">취소</button>
+        </div>
+      </div>
+    </div>
+    <div id="flipButton"><font size="1" color="white" face="arial">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>
+    <script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+  </body>
+</html>

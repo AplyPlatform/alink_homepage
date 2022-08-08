@@ -16,12 +16,15 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta name="theme-color" content="#000000" >
     <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/aply.css">
     <script src="../objet/js/mindar-image.prod.js"></script>
     <script src="../objet/js/aframe.js"></script>
     <script src="../objet/js/mindar-image-aframe.prod.js"></script>
-    <script src="../objet/js/aframe-gif-shader.js"></script>
+    <script src="../objet/js/aframe-gif-shader.js"></script>    
+    <script src='../objet/js/aframe-extras.loaders.min.js'></script>
     <script src="../objet/js/jquery.min.js"></script>
-    <script src="../objet/js/aframe-troika-text.min.js"></script>
+    <script src="../objet/js/aframe-troika-text.min.js"></script>    
     <script src="./js/viewer.js"></script>
     <style>
       #flipButton {        
@@ -40,6 +43,23 @@
     </style>
   </head>
   <body>    
+    <div class="example-container">
+      <div id="example-scanning-overlay" class="hidden">
+        <div class="inner">
+          <img src="./assets/card.jpg"/>
+          <div class="scanline"></div>
+        </div>
+      </div>
+  
+      <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/target.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">        
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+  
+        <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">          
+          <a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1;height:0.56;" position="0 0 0" material="shader:gif;src:url(./assets/eh.gif);opacity:1.0"></a-plane>  
+        </a-entity>
+      </a-scene>
+    </div>
     
+    <div id="flipButton"><font size="1" color="white" face="arial">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>    
   </body>
 </html>
