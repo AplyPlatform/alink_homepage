@@ -7,13 +7,84 @@ $(function(){
   };
 
   InitARS();
-  //get_message();
+  setButtons();
+  get_message();
 });
 
 
-
-function InitARS() {
+function setButtons() {
     $("#area_comment_writer").hide();
+
+    $("#bird1_button").click(function() {
+        setFirstPage();
+    });
+
+    $("#bird2_button").click(function() {
+        setSecondPage();
+    });
+
+    $("#bird3_button").click(function() {
+        setThirdPage();
+    });
+
+    $("#mapicon").click(function() {
+        setMapPage();
+    });
+}
+
+function playSound(id) {
+    new Audio("./assets/ex/button.wav").play();
+}
+
+
+function setFirstPage() {
+    playSound(0);
+    $("#main_image_area1").attr("src", "#selfi_image");
+    $("#main_image_area1").attr("width", "0.5");
+    $("#main_image_area1").attr("height", "0.7");
+    $("#main_image_area1").attr("position", "0 0.1 0");
+
+    $("#main_image_area2").attr("visible", "false");
+    $("#main_image_area3").attr("visible", "false");
+    $("#main_image_area4").attr("visible", "false");
+}
+
+function setSecondPage() {
+    playSound(1);
+    $("#main_image_area1").attr("src", "#pencil1_image");
+    $("#main_image_area1").attr("width", "0.2");
+    $("#main_image_area1").attr("height", "0.6");
+    $("#main_image_area1").attr("position", "0 0.15 0.02");
+
+    $("#main_image_area1").attr("src", "#pencil2_image");
+    $("#main_image_area2").attr("visible", "true");
+    $("#main_image_area2").attr("width", "0.2");
+    $("#main_image_area2").attr("height", "0.6");
+    $("#main_image_area2").attr("position", "0.2 0.15 0.1");
+
+    $("#main_image_area1").attr("src", "#desk1_image");
+    $("#main_image_area3").attr("visible", "true");
+    $("#main_image_area3").attr("width", "0.6");
+    $("#main_image_area3").attr("height", "0.2");
+    $("#main_image_area3").attr("position", "0 0.15 -0.1");
+
+    $("#main_image_area1").attr("src", "#desk2_image");
+    $("#main_image_area4").attr("visible", "true");
+    $("#main_image_area4").attr("width", "0.6");
+    $("#main_image_area4").attr("height", "0.2");
+    $("#main_image_area4").attr("position", "0 -0.06 0.2");
+
+}
+
+function setThirdPage() {
+    
+}
+
+function setMapPage() {
+    
+}
+
+function InitARS() {    
     const sceneEl = document.querySelector('a-scene');
     const exampleTarget = document.querySelector('#card-object-target');
     // arReady event triggered when ready
