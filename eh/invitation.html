@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/aply.css">
     <script src="../objet/js/mindar-image.prod.js"></script>
+    <script src="../objet/js/mindar-image-aframe.prod.js"></script>    
     <script src="../objet/js/aframe.js"></script>
-    <script src="../objet/js/mindar-image-aframe.prod.js"></script>
     <script src="../objet/js/aframe-gif-shader.js"></script>    
     <script src='../objet/js/aframe-extras.loaders.min.js'></script>
     <script src="../objet/js/jquery.min.js"></script>
@@ -45,7 +45,7 @@
   </head>
   <body>    
     <div class="example-container">
-      <div id="example-scanning-overlay" class="hidden">
+      <div id="scanning-overlay" class="hidden">
         <div class="inner">
           <img src="./assets/invitation_card.jpg"/>
           <div class="scanline"></div>
@@ -59,7 +59,13 @@
           <img id="birdicon1" src="./assets/ex/icon_bird1@3x.png" />
           <img id="birdicon2" src="./assets/ex/icon_bird2@3x.png" />
           <img id="birdicon3" src="./assets/ex/icon_bird3@3x.png" />
-          <img id="mapicon" src="./assets/ex/icon_map@3x.png" />          
+          <img id="mapicon" src="./assets/ex/icon_map@3x.png" />
+          <img id="selfi_image" src="./assets/ex/selfie@3x.png" />
+          <img id="selfidraw_image" src="./assets/ex/selfimage@3x.png" />
+          <img id="pencil1_image" src="./assets/ex/p1@3x.png" />
+          <img id="pencil2_image" src="./assets/ex/p2@3x.png" />
+          <img id="desk1_image" src="./assets/ex/d1@3x.png" />
+          <img id="desk2_image" src="./assets/ex/d2@3x.png" />
           <img id="paintandquest-write" src="./assets/write.png" />
         </a-assets>
   
@@ -78,13 +84,18 @@
           <a-plane id="aplane3" geometry="primitive:plane;width:0.74;height:0.04;" position="0.0 0.5 0" color="#fff" material="opacity:1"></a-plane>
           <a-plane id="aplane4" geometry="primitive:plane;width:0.74;height:0.4;" position="0.0 -0.5 0" color="#fff" material="opacity:1"></a-plane>
 
+          <a-image class="clickable" id="main_image_area1" src="#pencil1_image" position="0 0.15 0.02" alpha-test="0.5" width="0.2" height="0.6"></a-image>
+          <a-image class="clickable" id="main_image_area2" src="#pencil2_image" position="0.2 0.15 0.1" alpha-test="0.5" width="0.2" height="0.6"></a-image>
+          <a-image class="clickable" id="main_image_area3" src="#desk1_image" position="0 0.15 -0.1" alpha-test="0.5" width="0.6" height="0.2"></a-image>
+          <a-image class="clickable" id="main_image_area4" src="#desk2_image" position="0 -0.06 0.2" alpha-test="0.5" width="0.6" height="0.2"></a-image>
+
           <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.59 0.01" alpha-test="0.5" width="0.1" height="0.1"></a-image>          
                       
           <a-troika-text id="comment_a2" max-width="1" line-height="1.5" position="0 -0.56 0.1" value="41234123" color="white" align="center" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.07"></a-troika-text>
           <a-troika-text id="comment_a3" max-width="1" line-height="1.5" position="0 -0.94 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
           <a-troika-text id="comment_a4" max-width="1" line-height="1.5" position="0 -1.05 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
           <a-troika-text class="clickable" id="comment_more" max-width="1" line-height="1.5" position="0 -1.15 0.1" value="댓글 더보기" color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
-          <a-image class="clickable" id="comment_writer" src="#paintandquest-write" position="0 -1.43 0.1" alpha-test="0.5" width="0.6" height="0.18"></a-image>          
+          <a-image class="clickable" id="comment_writer" src="#paintandquest-write" position="0 -1.43 0.1" alpha-test="0.5" width="0.6" height="0.18"></a-image>
 
         </a-entity>
       </a-scene>
