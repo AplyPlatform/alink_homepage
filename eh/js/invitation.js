@@ -1,12 +1,13 @@
 $(function(){   
   eventOC_IN();
 
-  window.onbeforeunload = function (e) {
-    eventOC_OUT();
-  }
+  window.onbeforeunload = function (e) {    
+      eventOC_OUT();
+      return 'Bye';   
+  };
 
   InitARS();
-  get_message();
+  //get_message();
 });
 
 

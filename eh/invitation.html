@@ -26,7 +26,7 @@
     <script src="../objet/js/jquery.min.js"></script>
     <script src="../objet/js/aframe-troika-text.min.js"></script>    
     <script src="../objet/js/aplxevent.js"></script>
-    <script src="./js/inv.js"></script>
+    <script src="./js/invitation.js"></script>
     <style>
       #flipButton {        
         text-decoration: none;
@@ -55,29 +55,37 @@
       <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
           <img id="hearticon" src="./assets/icon_heart.png" />
-          <img id="paintandquest-write" src="./assets/write.png" />          
-          <a-asset-item id="heartbeat" src="../objet/assets/heart.glb"></a-asset-item>
+          <img id="hearticon_before" src="./assets/ex/icon_heart1@3x.png" />
+          <img id="birdicon1" src="./assets/ex/icon_bird1@3x.png" />
+          <img id="birdicon2" src="./assets/ex/icon_bird2@3x.png" />
+          <img id="birdicon3" src="./assets/ex/icon_bird3@3x.png" />
+          <img id="mapicon" src="./assets/ex/icon_map@3x.png" />          
+          <img id="paintandquest-write" src="./assets/write.png" />
         </a-assets>
   
-        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>        
   
         <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">          
-          <a-plane id="aplane" class="clickable" geometry="primitive:plane;width:1;height:1;" position="0 0 0" color="#fff" material="opacity:0.6"></a-plane>
-            
-          <a-gltf-model visible=false id="heart_asset_0" rotation="0 0 0" position="0 0.1 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
-          <a-gltf-model visible=false id="heart_asset_1" rotation="0 0 0" position="0 0.2 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
-          <a-gltf-model visible=false id="heart_asset_2" rotation="0 0 0" position="0 0.3 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
-          <a-gltf-model visible=false id="heart_asset_3" rotation="0 0 0" position="0 0.4 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
-          <a-gltf-model visible=false id="heart_asset_4" rotation="0 0 0" position="0 0.5 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
-          <a-gltf-model visible=false id="heart_asset_5" rotation="0 0 0" position="0 0.6 0" scale="0.03 0.03 0.03" src="#heartbeat" animation-mixer></a-gltf-model>
+          
+          <a-image class="clickable" id="bird1_button" src="#birdicon1" position="-0.35 0.7 0" alpha-test="0.5" width="0.08" height="0.13"></a-image>
+          <a-image class="clickable" id="bird2_button" src="#birdicon2" position="-0.21 0.7 0" alpha-test="0.5" width="0.08" height="0.13"></a-image>
+          <a-image class="clickable" id="bird3_button" src="#birdicon3" position="-0.07 0.7 0" alpha-test="0.5" width="0.08" height="0.13"></a-image>
+          <a-image class="clickable" id="map_button" src="#mapicon" position="0.35 0.7 0" alpha-test="0.5" width="0.08" height="0.13"></a-image>
+          <a-troika-text id="comment_a1" position="-0.12 0.6 0" value="증강현실 프로필 입니다." color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.05" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>
 
-          <a-troika-text id="comment_a1" position="0 -0.40 0.1" value="증강현실 프로필 입니다." color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.08" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>          
+          <a-plane id="aplane" geometry="primitive:plane;width:0.04;height:1;" position="-0.35 0 0" color="#fff" material="opacity:1"></a-plane>
+          <a-plane id="aplane2" geometry="primitive:plane;width:0.04;height:1;" position="0.35 0 0" color="#fff" material="opacity:1"></a-plane>
+          <a-plane id="aplane3" geometry="primitive:plane;width:0.74;height:0.04;" position="0.0 0.5 0" color="#fff" material="opacity:1"></a-plane>
+          <a-plane id="aplane4" geometry="primitive:plane;width:0.74;height:0.4;" position="0.0 -0.5 0" color="#fff" material="opacity:1"></a-plane>
+
+          <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.59 0.01" alpha-test="0.5" width="0.1" height="0.1"></a-image>          
+                      
           <a-troika-text id="comment_a2" max-width="1" line-height="1.5" position="0 -0.56 0.1" value="41234123" color="white" align="center" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.07"></a-troika-text>
           <a-troika-text id="comment_a3" max-width="1" line-height="1.5" position="0 -0.94 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
           <a-troika-text id="comment_a4" max-width="1" line-height="1.5" position="0 -1.05 0.1" value="41234123" color="yellow" align="left" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
           <a-troika-text class="clickable" id="comment_more" max-width="1" line-height="1.5" position="0 -1.15 0.1" value="댓글 더보기" color="white" align="right" font="../objet/assets/NotoSansKR-Regular.otf" font-size="0.06"></a-troika-text>
-          <a-image class="clickable" id="comment_writer" src="#paintandquest-write" position="0 -1.43 0.1" alpha-test="0.5" width="0.6" height="0.18"></a-image>
-          <a-image class="clickable" id="like_button" src="#hearticon" position="0 -0.95 0" alpha-test="0.5" width="0.6" height="0.18"></a-image>          
+          <a-image class="clickable" id="comment_writer" src="#paintandquest-write" position="0 -1.43 0.1" alpha-test="0.5" width="0.6" height="0.18"></a-image>          
+
         </a-entity>
       </a-scene>
     </div>
