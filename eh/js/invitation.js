@@ -1,35 +1,63 @@
-$(function(){   
-  eventOC_IN();
+$(function() {
+    eventOC_IN();
 
-  window.onbeforeunload = function (e) {    
-      eventOC_OUT();
-      return 'Bye';   
-  };
+    window.onbeforeunload = function (e) {    
+        eventOC_OUT();
+        return 'Bye';   
+    };
+    
+    updateMindSet();
+    get_message();    
+  });  
 
-  InitARS();
-  setButtons();
-  get_message();
-});
 
+function updateMindSet() {    
+    const setButtons = () => {            
+        mSel("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
 
-function setButtons() {
-    $("#area_comment_writer").hide();
+        $("#area_comment_writer").hide();
+    
+        mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {
+            mSel("#paintandquest-preview-button").setAttribute("visible", false);
+            mSel("#paintandquest-video-mp4").play();
+        });        
 
-    $("#bird1_button").click(function() {
-        setFirstPage();
+        mSel("#bird1_button").addEventListener('click', function (evt) {       
+            setFirstPage();
+        });
+
+        mSel("#bird2_button").addEventListener('click', function (evt) {       
+            setSecondPage();
+        });
+
+        mSel("#bird3_button").addEventListener('click', function (evt) {       
+            setThirdPage();
+        });
+
+        mSel("#map_button").addEventListener('click', function (evt) {
+            setMapPage();
+        });
+    };
+
+    const showPortfolio = () => {
+        const portfolio = document.querySelector("#portfolio-panel");
+        portfolio.setAttribute("visible", true);  
+    };
+    
+    const sceneEl = document.querySelector('a-scene');
+    const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
+    setButtons();
+
+    sceneEl.addEventListener('targetFound', event => {      
+        showPortfolio();
     });
-
-    $("#bird2_button").click(function() {
-        setSecondPage();
-    });
-
-    $("#bird3_button").click(function() {
-        setThirdPage();
-    });
-
-    $("#mapicon").click(function() {
-        setMapPage();
-    });
+        
+    sceneEl.addEventListener('targetLost', event => {
+        mSel("#paintandquest-video-mp4").currentTime = 0;
+        mSel("#paintandquest-video-mp4").pause();
+    }); 
+    
+    setFirstPage();    
 }
 
 function playSound(id) {
@@ -39,113 +67,141 @@ function playSound(id) {
 
 function setFirstPage() {
     playSound(0);
-    $("#main_image_area1").attr("src", "#selfi_image");
-    $("#main_image_area1").attr("width", "0.5");
-    $("#main_image_area1").attr("height", "0.7");
-    $("#main_image_area1").attr("position", "0 0.1 0");
 
-    $("#main_image_area2").attr("visible", "false");
-    $("#main_image_area3").attr("visible", "false");
-    $("#main_image_area4").attr("visible", "false");
+    mSel("#portfolio-item0").setAttribute("visible", false);
+    mSel("#paintandquest-video-mp4").currentTime = 0;
+    mSel("#paintandquest-video-mp4").pause();
+
+    mSel("#main_image_area1").setAttribute("src", "#selfi_image");
+    mSel("#main_image_area1").setAttribute("visible", true);
+    mSel("#main_image_area1").setAttribute("width", "0.5");
+    mSel("#main_image_area1").setAttribute("height", "0.7");
+    mSel("#main_image_area1").setAttribute("position", "0 0.1 0");
+
+    mSel("#main_image_area2").setAttribute("visible", false);
+    mSel("#main_image_area3").setAttribute("visible", false);
+    mSel("#main_image_area4").setAttribute("visible", false);
 }
 
 function setSecondPage() {
     playSound(1);
-    $("#main_image_area1").attr("src", "#pencil1_image");
-    $("#main_image_area1").attr("width", "0.2");
-    $("#main_image_area1").attr("height", "0.6");
-    $("#main_image_area1").attr("position", "0 0.15 0.02");
 
-    $("#main_image_area1").attr("src", "#pencil2_image");
-    $("#main_image_area2").attr("visible", "true");
-    $("#main_image_area2").attr("width", "0.2");
-    $("#main_image_area2").attr("height", "0.6");
-    $("#main_image_area2").attr("position", "0.2 0.15 0.1");
+    mSel("#portfolio-item0").setAttribute("visible", false);
+    mSel("#paintandquest-video-mp4").currentTime = 0;
+    mSel("#paintandquest-video-mp4").pause();
 
-    $("#main_image_area1").attr("src", "#desk1_image");
-    $("#main_image_area3").attr("visible", "true");
-    $("#main_image_area3").attr("width", "0.6");
-    $("#main_image_area3").attr("height", "0.2");
-    $("#main_image_area3").attr("position", "0 0.15 -0.1");
+    mSel("#main_image_area1").setAttribute("src", "#pencil1_image");
+    mSel("#main_image_area2").setAttribute("visible", true);
+    mSel("#main_image_area1").setAttribute("width", "0.2");
+    mSel("#main_image_area1").setAttribute("height", "0.6");
+    mSel("#main_image_area1").setAttribute("position", "0 0.15 0.02");
 
-    $("#main_image_area1").attr("src", "#desk2_image");
-    $("#main_image_area4").attr("visible", "true");
-    $("#main_image_area4").attr("width", "0.6");
-    $("#main_image_area4").attr("height", "0.2");
-    $("#main_image_area4").attr("position", "0 -0.06 0.2");
+    mSel("#main_image_area1").setAttribute("src", "#pencil2_image");
+    mSel("#main_image_area2").setAttribute("visible", true);
+    mSel("#main_image_area2").setAttribute("width", "0.2");
+    mSel("#main_image_area2").setAttribute("height", "0.6");
+    mSel("#main_image_area2").setAttribute("position", "0.2 0.15 0.1");
+
+    mSel("#main_image_area3").setAttribute("src", "#desk1_image");
+    mSel("#main_image_area3").setAttribute("visible", true);
+    mSel("#main_image_area3").setAttribute("width", "0.6");
+    mSel("#main_image_area3").setAttribute("height", "0.2");
+    mSel("#main_image_area3").setAttribute("position", "0 0.15 -0.1");
+
+    mSel("#main_image_area4").setAttribute("src", "#desk2_image");
+    mSel("#main_image_area4").setAttribute("visible", true);
+    mSel("#main_image_area4").setAttribute("width", "0.6");
+    mSel("#main_image_area4").setAttribute("height", "0.2");
+    mSel("#main_image_area4").setAttribute("position", "0 -0.06 0.2");
 
 }
 
-function setThirdPage() {
+function setThirdPage() {    
+
+    playSound(1);
+
+    mSel("#main_image_area1").setAttribute("visible", false);
+    mSel("#main_image_area2").setAttribute("visible", false);
+    mSel("#main_image_area3").setAttribute("visible", false);
+    mSel("#main_image_area4").setAttribute("visible", false);
+
+    mSel("#portfolio-item0").setAttribute("visible", true);
+    mSel("#paintandquest-preview-button").setAttribute("visible", true);
     
+    mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {    
+        mSel("#paintandquest-preview-button").setAttribute("visible", false);
+        mSel("#paintandquest-video-link").play();
+    });    
 }
 
 function setMapPage() {
-    
+    playSound(1);
+    mSel("#paintandquest-video-mp4").currentTime = 0;
+    mSel("#paintandquest-video-mp4").pause();  
 }
 
-function InitARS() {    
-    const sceneEl = document.querySelector('a-scene');
-    const exampleTarget = document.querySelector('#card-object-target');
-    // arReady event triggered when ready
-    sceneEl.addEventListener("arReady", (event) => {
+function mSel(id) {
+    return document.querySelector(id);
+}
+ 
+function writeMessage()  {
+    var comment = $("#commentInput").val();
+    var name = $("#nameInput").val();
+ 
+    var formData = new FormData();
+    formData.append("form_kind", "write_comment");
+    formData.append("user", currentUserId);
+    formData.append("docu_srl", currentPostId);
+    formData.append("comment", comment);
+    formData.append("name", name);
 
-    });
-
-    // arError event triggered when something went wrong. Mostly browser compatbility issue
-    sceneEl.addEventListener("arError", (event) => {
-
-    });
-
-    // detect target found
-    exampleTarget.addEventListener("targetFound", event => {
-        console.log("target found");
-    });
-
-    // detect target lost
-    exampleTarget.addEventListener("targetLost", event => {
-        console.log("target lost");
+    ajaxRequest(formData, function (r) {
+        $("#area_comment_writer").hide();
+        window.location.href = window.location.href;
+    }, function (r,s,e) {
+        $("#area_comment_writer").hide();
+        alert("작성 실패! - 잠시 후 다시 시도해 주세요.")
     });
 }
 
 
 function get_message() {
-  var formData = new FormData();
-  formData.append("form_kind", "get_message");
-  formData.append("user", "eh");
-
-  ajaxRequest(formData, function (r) {
-    const comment_a1 = document.querySelector("#comment_a1");
-    const comment_a2 = document.querySelector("#comment_a2");
-    comment_a1.setAttribute("value", r[0].title);
-    comment_a2.setAttribute("value", r[0].content);
-  }, function (r,s,e) {
-
-  });
-}
-
+    var formData = new FormData();
+    formData.append("form_kind", "get_message");
+    formData.append("user", "eh");
   
+    ajaxRequest(formData, function (r) {
+      const comment_a1 = document.querySelector("#comment_a1");
+      const comment_a2 = document.querySelector("#comment_a2");
+      comment_a1.setAttribute("value", r[0].title);
+      comment_a2.setAttribute("value", r[0].content);
+    }, function (r,s,e) {
+  
+    });
+}
+ 
+    
 function ajaxRequest(data, callback, errorcallback) {
-  $.ajax({
-      url: "https://aply.biz/op_aplx/aplx_handler/handler.php",
-      crossDomain: true,
-      cache: false,
-      data: data,
-      type: "POST",      
-      contentType: false,
-      processData: false,
-      beforeSend: function (request) {
-          //request.setRequestHeader("droneplay-token", getCookie('user_token'));
-      },
-      success: function (r) {
-          if (r.result != "success" && r.result_code == 1) {              
-              return;
-          }
+    $.ajax({
+        url: "https://aply.biz/op_aplx/aplx_handler/handler.php",
+        crossDomain: true,
+        cache: false,
+        data: data,
+        type: "POST",      
+        contentType: false,
+        processData: false,
+        beforeSend: function (request) {
+            //request.setRequestHeader("droneplay-token", getCookie('user_token'));
+        },
+        success: function (r) {
+            if (r.result != "success" && r.result_code == 1) {              
+                return;
+            }
 
-          callback(r);
-      },
-      error: function (request, status, error) {         
-          errorcallback(request, status, error);
-      }
-  });
+            callback(r);
+        },
+        error: function (request, status, error) {         
+            errorcallback(request, status, error);
+        }
+    });
 }
