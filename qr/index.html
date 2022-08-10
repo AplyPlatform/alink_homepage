@@ -10,13 +10,14 @@
     <title>APLX : QR CODE READER</title>    
     <style>
         #wait-screen {
-            z-index: 1;
+            z-index: 5;
             position: absolute;
         }
 
         #qr-reader {
             z-index: 3;
-            position: absolute;
+            width: 100vw;
+            position: absolute;            
         }
 
         #flipButton {        
@@ -27,11 +28,27 @@
             left: 0;
             width: 100vw;
             text-align: center;
-            z-index: 3;
+            z-index: 11;
             height: 16px;
             padding-top: 5px;
             cursor: pointer;
         }
+        
+        #top_left_menu {
+            text-decoration: none;
+            position: fixed;          
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 50px;
+            z-index: 12;        
+            padding: 20px;
+            cursor: pointer;
+            padding-top: 20px;
+            padding-left: 20px;
+            text-align: left;
+            visibility: hidden;
+        }    
     </style>
 </head>
     <body bgcolor="#000">        
@@ -41,46 +58,52 @@
                 <font color="white" size="3">Success !</font>
             </td></tr></table>
         </div>
-        <div id="qr-reader" style="width:100%;"></div>
+        <div id="qr-reader"></div>
+        <div id="top_left_menu"><a href="javascript:history.back(-1);"><img src="./back.png" width="40px" height="40px" border="0"/></a></div>
         <div id="flipButton"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>
-    </body>
-<script src="./html5-qrcode.min.js"></script>
-<script>
-    function docReady(fn) {
-        // see if DOM is already available
-        if (document.readyState === "complete"
-            || document.readyState === "interactive") {
-            // call on next available tick
-            setTimeout(fn, 1);
-        } else {
-            document.addEventListener("DOMContentLoaded", fn);
-        }
-    }
-
-    docReady(function () {        
-
-        var resultContainer = document.getElementById('qr-reader');
-        var waitContainer = document.getElementById('wait-screen');
-        var lastResult, countResults = 0;
-        function qrCodeSuccessCallback(decodedText, decodedResult) {
-            if (decodedText !== lastResult) {
-                ++countResults;
-                lastResult = decodedText;
-                // Handle on success condition with the decoded message.
-                //console.log(`Scan result ${decodedText}`, decodedResult);
-                //resultContainer.innerText = decodedText;
-                waitContainer.style.visibility = "visible";
-                resultContainer.style.visibility = "hidden";
-                window.location.href = decodedText;
-                // todo: WAIT 표시 !!
-                return;
+        <script src="./html5-qrcode.min.js"></script>
+    <script>
+        function docReady(fn) {
+            top_left_menu.style.visibility = "visible";
+            // see if DOM is already available
+            if (document.readyState === "complete"
+                || document.readyState === "interactive") {
+                // call on next available tick
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
             }
         }
 
-        var html5QrCode = new Html5Qrcode("qr-reader");
-        const config = { fps: 15, qrbox: { width: 250, height: 250 } };
+        docReady(function () {        
 
-        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-    });
-</script>
+            var resultContainer = document.getElementById('qr-reader');
+            var waitContainer = document.getElementById('wait-screen');
+            var top_left_menu = document.getElementById('top_left_menu');
+            
+            var lastResult, countResults = 0;
+            function qrCodeSuccessCallback(decodedText, decodedResult) {
+                if (decodedText !== lastResult) {
+                    ++countResults;
+                    lastResult = decodedText;
+                    // Handle on success condition with the decoded message.
+                    //console.log(`Scan result ${decodedText}`, decodedResult);
+                    //resultContainer.innerText = decodedText;
+                    waitContainer.style.visibility = "visible";
+                    resultContainer.style.visibility = "hidden";
+                    top_left_menu.style.visibility = "hidden";
+                    window.location.href = decodedText;
+                    // todo: WAIT 표시 !!
+                    return;
+                }
+            }
+
+            var html5QrCode = new Html5Qrcode("qr-reader");
+            const config = { fps: 20, qrbox: { width: 250, height: 250 } };
+
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+        });
+    </script>
+
+    </body>
 </html>
