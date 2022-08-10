@@ -102,12 +102,12 @@ function setSecondPage() {
     mSel("#paintandquest-video-mp4").pause();
 
     mSel("#main_image_area1").setAttribute("src", "#pencil1_image");
-    mSel("#main_image_area2").setAttribute("visible", true);
+    mSel("#main_image_area1").setAttribute("visible", true);
     mSel("#main_image_area1").setAttribute("width", "0.2");
     mSel("#main_image_area1").setAttribute("height", "0.6");
     mSel("#main_image_area1").setAttribute("position", "0 0.15 0.02");
 
-    mSel("#main_image_area1").setAttribute("src", "#pencil2_image");
+    mSel("#main_image_area2").setAttribute("src", "#pencil2_image");
     mSel("#main_image_area2").setAttribute("visible", true);
     mSel("#main_image_area2").setAttribute("width", "0.2");
     mSel("#main_image_area2").setAttribute("height", "0.6");
@@ -124,7 +124,6 @@ function setSecondPage() {
     mSel("#main_image_area4").setAttribute("width", "0.6");
     mSel("#main_image_area4").setAttribute("height", "0.2");
     mSel("#main_image_area4").setAttribute("position", "0 -0.06 0.03");
-
 }
 
 function setThirdPage() {    
@@ -148,7 +147,8 @@ function setThirdPage() {
 function setMapPage() {
     playSound(1);
     mSel("#paintandquest-video-mp4").currentTime = 0;
-    mSel("#paintandquest-video-mp4").pause();  
+    mSel("#paintandquest-video-mp4").pause();
+    window.open("https://naver.me/xkx9kjNi", "_black");
 }
 
 function mSel(id) {
