@@ -47,12 +47,12 @@ function updateMindSet() {
     };
     
     const sceneEl = document.querySelector('a-scene');
-    if (getMobileOperatingSystem() == "iOS") {        
-        sceneEl.setAttribute("mindar-image", "imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay;");
-    }
-    else {
+    //if (getMobileOperatingSystem() == "iOS") {        
+    //    sceneEl.setAttribute("mindar-image", "imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay;");
+    //}
+    //else {
         sceneEl.setAttribute("mindar-image", "imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;");
-    }
+    //}
 
     sceneEl.addEventListener('targetFound', event => {      
         showPortfolio();
