@@ -34,6 +34,7 @@
     <style>
       #bottom_border {
         font-family: 'Poor Story', cursive;
+        color:black;
         background-color: rgba(255,255,255,1); color: black;
         bottom: 0;
         left: 0;
@@ -47,13 +48,14 @@
 
       #top_border {
         font-family: 'Poor Story', cursive;
-        background-color: rgba(255,255,255,1); color: black;        
+        color:white;
+        background-color: rgba(255,255,255,0); color: white;        
         left: 0;
         top: 0;
         right: 0;        
         width: 100vw;
-        padding: 8px;
-        height: 120px;
+        padding: 6px;
+        height: 85px;
         position: fixed;
         z-index: 8;
       }
@@ -111,25 +113,25 @@
   <div id="top_border" style="display:none;">
     <table border="0" cellpadding="2px" width="100%">
       <tr>
-        <td width="60px">
-          <img src="./assets/ex/icon_bird1@3x.png" border="0" width="50px" id="bird1_button">
+        <td width="40px">
+          <img src="./assets/ex/icon_bird1@3x.png" border="0" width="30px" id="bird1_button">
         </td>
-        <td width="60px">
-          <img src="./assets/ex/icon_bird2@3x.png" border="0" width="50px" id="bird2_button">
+        <td width="40px">
+          <img src="./assets/ex/icon_bird2@3x.png" border="0" width="30px" id="bird2_button">
         </td>
-        <td width="60px">
-          <img src="./assets/ex/icon_bird3@3x.png" border="0" width="50px" id="bird3_button">
+        <td width="40px">
+          <img src="./assets/ex/icon_bird3@3x.png" border="0" width="30px" id="bird3_button">
         </td>
         <td align="right">
-          <img src="./assets/ex/icon_map@3x.png" border="0" width="50px" id="map_button">
+          <img src="./assets/ex/icon_map@3x.png" border="0" width="30px" id="map_button">&nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr>
         <td colspan="3" align="left">
-          <span id="comment_a1"></span>
+          <span id="comment_a1" style="color:white;"></span>
         </td>                    
         <td align="right">
-          <span id="comment_a1">오시는 길</span>
+          <span id="comment_a1" style="color:white;">오시는 길</span>
         </td>      
       </tr>    
     </table>      

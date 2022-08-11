@@ -8,6 +8,11 @@ $(function() {
     };
     
     updateMindSet();    
+
+    setTimeout(function(){
+        // This hides the address bar:
+        window.scrollTo(0, 1);
+    }, 0);
   });  
 
 
@@ -227,11 +232,13 @@ function get_message(docu_id) {
   formData.append("docu_srl", docu_id);
 
   ajaxRequest(formData, function (r) {        
+    if (isSet(r) && r.length > 0) {
         const comment_a1 = document.querySelector("#comment_a1");
         const comment_a2 = document.querySelector("#comment_a2");
         comment_a1.innerHTML = r[0].title;
         comment_a2.setAttribute("value", r[0].content);
         currentPostId = r[0].docu_srl;
+    }
 
     }, function (r,s,e) {
 
