@@ -26,6 +26,7 @@
     <script src="../objet/js/aframe-troika-text.min.js"></script>    
 
     <script src="../objet/js/aplxevent.js"></script>
+    <script src="../objet/js/common.js"></script>
     <script src="./js/invitation.js"></script>
     
 </head>
@@ -33,12 +34,12 @@
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
-        <img src="./assets/card.jpg"/>
+        <img src="./assets/ex/inv_fr.jpg"/>
         <div class="scanline"></div>
       </div>
     </div>
 
-    <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; " embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
         <img id="hearticon" src="./assets/icon_heart.png" />
         <img id="line_plane" src="./assets/ex/plane.png" />
