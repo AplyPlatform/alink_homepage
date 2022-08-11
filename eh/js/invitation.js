@@ -1,4 +1,5 @@
 $(function() {
+    document.title = "정은혜 작가 '포옹전' 초대장 | APLX";    
     eventOC_IN();
 
     window.onbeforeunload = function (e) {    
@@ -6,8 +7,7 @@ $(function() {
         return 'Bye';   
     };
     
-    updateMindSet();
-    get_message();
+    updateMindSet();    
   });  
 
 
@@ -64,11 +64,7 @@ function updateMindSet() {
     });
 
     setButtons();
-    setFirstPage();
-
-    if (getCookie("user_like") == "liked") {
-        mSel("#like_button").setAttribute("src", "#hearticon");
-    }
+    setFirstPage();    
 }
 
 function playSound(id) {
@@ -83,8 +79,6 @@ function playSound(id) {
     }
 }
 
-var title_str;
-var content_str;
 
 function setFirstPage() {
     playSound(1);
@@ -103,8 +97,8 @@ function setFirstPage() {
     mSel("#main_image_area3").setAttribute("visible", false);
     mSel("#main_image_area4").setAttribute("visible", false);
 
-    mSel("#comment_a1").setAttribute("value", title_str);
-    mSel("#comment_a2").setAttribute("value", content_str);
+    get_message(230);
+    setLikeButtonStatus(230);
 }
 
 
@@ -139,7 +133,8 @@ function setSecondPage() {
     mSel("#main_image_area4").setAttribute("height", "0.3");
     mSel("#main_image_area4").setAttribute("position", "0 -0.06 0.012");
 
-    mSel("#comment_a2").setAttribute("value", "오늘도 작업실에서 그림작업을 하고 있읍니다. 이제는 자유롭게 그림도 그리고 편안하게 할거예요. 좋아요.");
+    get_message(238);
+    setLikeButtonStatus(238);
 }
 
 
@@ -160,7 +155,8 @@ function setThirdPage() {
         mSel("#paintandquest-video-link").play();
     });
 
-    mSel("#comment_a2").setAttribute("value", "포옹 전시를 할 겁니다. 인사동 토포하우스에서 8월 24일부터 30일까지 합니다. 오셔서 작가님 배우와 만나서 포옹안겨줄께요.");
+    get_message(240);
+    setLikeButtonStatus(240);
 }
 
 
@@ -171,20 +167,28 @@ function setMapPage() {
     window.open("https://naver.me/xkx9kjNi", "_blank");
 }
 
-
 var currentPostId = 0;
 
-function likeMessage()  {
+function setLikeButtonStatus(docu_id) {
+    if (getCookie("user_like_" + docu_id) == "liked") {        
+        mSel("#like_button").setAttribute("src", "#hearticon");        
+        return;
+    }    
+  
+    mSel("#like_button").setAttribute("src", "#hearticon_before");
+}
 
-  if (getCookie("user_like") == "liked") {
-      setCookie("user_like", "", 1);
-      likeCancelMessage();
+
+function likeMessage()  {
+  if (getCookie("user_like_" + currentPostId) == "liked") {
+      setCookie("user_like_" + currentPostId, "", 1);
+      likeCancelMessage(currentPostId);
       mSel("#like_button").setAttribute("src", "#hearticon_before");
       return;
   }
 
   playSound(0);
-  setCookie("user_like", "liked", 1);
+  setCookie("user_like_" + currentPostId, "liked", 1);
   mSel("#like_button").setAttribute("src", "#hearticon");
 
   var formData = new FormData();
@@ -197,12 +201,12 @@ function likeMessage()  {
   });
 }
 
-function likeCancelMessage()  {
+function likeCancelMessage(docu_id)  {
 
   var formData = new FormData();
   formData.append("form_kind", "like_action_cancel");
   formData.append("user", "eh");
-  formData.append("docu_srl", currentPostId);    
+  formData.append("docu_srl", docu_id);    
 
   ajaxRequest(formData, function (r) {        
     }, function (r,s,e) {        
@@ -211,16 +215,14 @@ function likeCancelMessage()  {
 }
 
 
-function get_message() {
+function get_message(docu_id) {
 
   var formData = new FormData();
   formData.append("form_kind", "get_message");
   formData.append("user", "eh");
+  formData.append("docu_srl", docu_id);
 
-  ajaxRequest(formData, function (r) {
-        title_str = r[0].title;
-        content_str = r[0].content;
-
+  ajaxRequest(formData, function (r) {        
         const comment_a1 = document.querySelector("#comment_a1");
         const comment_a2 = document.querySelector("#comment_a2");
         comment_a1.setAttribute("value", r[0].title);
