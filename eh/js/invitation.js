@@ -55,10 +55,14 @@ function updateMindSet() {
     //}
 
     sceneEl.addEventListener('targetFound', event => {      
+        mSel("#bottom_border").style.display = 'block';
+        mSel("#top_border").style.display = 'block';
         showPortfolio();
     });
         
     sceneEl.addEventListener('targetLost', event => {
+        mSel("#bottom_border").style.display = 'none';
+        mSel("#top_border").style.display = 'none';
         mSel("#paintandquest-video-mp4").currentTime = 0;
         mSel("#paintandquest-video-mp4").pause();
     });
@@ -225,7 +229,7 @@ function get_message(docu_id) {
   ajaxRequest(formData, function (r) {        
         const comment_a1 = document.querySelector("#comment_a1");
         const comment_a2 = document.querySelector("#comment_a2");
-        comment_a1.setAttribute("value", r[0].title);
+        comment_a1.innerHTML = r[0].title;
         comment_a2.setAttribute("value", r[0].content);
         currentPostId = r[0].docu_srl;
 
