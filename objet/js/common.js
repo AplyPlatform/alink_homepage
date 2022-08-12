@@ -24,7 +24,27 @@ function getMobileOperatingSystem() {
   return "unknown";
 }
 
-  
+
+function isSet(value) {
+  if (typeof (value) === 'number')
+      return true;
+  if (value == "" || value == null || value == "undefined" || value == undefined)
+      return false;
+  return true;
+}
+
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+          return decodeURIComponent(pair[1]);
+      }
+  }
+}
+
+
 function ajaxRequest(data, callback, errorcallback) {
   $.ajax({
       url: "https://aply.biz/op_aplx/aplx_handler/handler.php",

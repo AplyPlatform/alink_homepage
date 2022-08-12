@@ -87,7 +87,7 @@
   #area_comment_writer {        
       text-decoration: none;
       position: fixed;
-      background-color: rgba(0,0,0,0.5); color: white;
+      background-color: rgba(255,255,255,0.4); color: black;
       bottom: 0;
       left: 0;
       right: 0;
@@ -99,4 +99,23 @@
       text-align: center;
   }
 
+  .btn-comment, .btn-comment:hover, .btn-comment:active, .btn-comment:visited {
+    background-color: #ffffff !important;
+  }
+
+  .fade { 
+    animation: fadein 5s;
+  
+  }
+  @keyframes fadein {
+    from {
+      opacity:1;
+    }
+    50% {
+      opacity: 0;
+    }
+    to {
+      opacity:1;
+    }
+  }
  

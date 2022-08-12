@@ -40,10 +40,11 @@
         left: 0;
         right: 0;        
         width: 100vw;
-        padding: 10px;
+        padding: 3px;
         height: 150px;
         position: fixed;
         z-index: 8;
+        text-overflow: ellipsis;
       }
 
       #top_border {
@@ -138,8 +139,8 @@
   </div>
   
   <div id="bottom_border" style="display:none;">
-    <table border="0" cellpadding="10px" width="100%"><tr>
-      <td><span>정은혜 아홉번째 개인전<br>
+    <table border="0" cellpadding="5px" width="100%"><tr>
+      <td><span style="font-size:small">정은혜 아홉번째 개인전<br>
         전시기간 : 2022년 8월 24일~30일<br>
         전시장소 : 토포하우스<br>
         서울시 종로구 인사동 11길 6<br></span>        
@@ -148,7 +149,17 @@
         <img src="./assets/ex/hug2@3x.png" width="90" height="90">
       </td>
     </tr>
-    <tr>
+    <tr>      
+      <td>
+        <div style="text-overflow: ellipsis; overflow: hidden; width:100%; white-space: nowrap; max-width: 100%;">
+          <span style="font-size:small;color:#555" id="comment_area"></span>
+        </div>
+      </td>
+      <td align="center" valign="center">
+        <spain id="write_comment_button"><b>댓글쓰기</b></spain>
+      </td>
+    </tr>
+    <tr>      
       <td colspan="2">
         <font size="1">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
       </td>
@@ -156,24 +167,24 @@
     </table>      
   </div>
 
-  <!--
-  <div id="area_comment_writer">
+  
+  <div id="area_comment_writer" style="display: none;">
     <div class="row">
       <div class="col-12">
-        댓글 작성하기
+        댓글쓰기
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요"><br>
+        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요 (25자 이내)"><br>
       </div>         
     </div>
     <div class="row">
        <div class="col-9">
-          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름">
+          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름 (5자 이내)">
         </div>        
         <div class="col-3">
-          <button id="replyButton" type="button" class="btn btn-primary btn-block">쓰기</button>
+          <button id="replyButton" type="button" class="btn btn-comment btn-block">쓰기</button>
         </div>
     </div>     
     <div class="row">
@@ -184,11 +195,11 @@
         <br>
         <br>
         <hr>
-        <button id="closeButton" type="button" class="btn btn-warning btn-block">취소</button>
+        <button id="closeButton" type="button" class="btn btn-comment btn-block">취소</button>
       </div>
     </div>
   </div>  
   <script src="../aply/js/bootstrap.min.js"></script>
-  -->
+  
 </body>
 </html>

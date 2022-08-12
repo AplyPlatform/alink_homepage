@@ -44,6 +44,23 @@ function updateMindSet() {
         mSel("#like_button").addEventListener('click', function (evt) {
             likeMessage();
         });        
+
+
+        mSel("#write_comment_button").addEventListener('click', function (evt) {
+            mSel("#bottom_border").style.display = 'none';
+            mSel("#top_border").style.display = 'none';
+            mSel("#paintandquest-video-mp4").currentTime = 0;
+            mSel("#paintandquest-video-mp4").pause();
+            $("#area_comment_writer").show();
+        });
+
+        mSel("#closeButton").addEventListener('click', function(evt) {
+            $("#area_comment_writer").hide();
+        });
+
+        mSel("#replyButton").addEventListener('click', function(evt) {            
+            writeMessage();            
+        });
     };
 
     const showPortfolio = () => {
@@ -223,6 +240,28 @@ function likeCancelMessage(docu_id)  {
 
 }
 
+var commentArrayData = [];
+var currentCommentCount = 0;
+
+function showComment() {
+    if (currentCommentCount >= commentArrayData.length) currentCommentCount = 0;    
+    var textToShow = commentArrayData[currentCommentCount];
+    currentCommentCount++;
+
+    if (textToShow.length > 28) {
+        textToShow = textToShow.substring(0, 28);
+        textToShow += " ...";
+    }
+
+    mSel("#comment_area").innerHTML = textToShow + " <img src='./assets/icon_heart.png' width='8px'>";
+    mSel("#comment_area").classList.remove("fade");
+    window.setTimeout(hideComment, 3500);
+}
+
+function hideComment() {    
+    mSel("#comment_area").classList.add("fade");
+    window.setTimeout(showComment, 1000);
+}
 
 function get_message(docu_id) {
 
@@ -232,16 +271,66 @@ function get_message(docu_id) {
   formData.append("docu_srl", docu_id);
 
   ajaxRequest(formData, function (r) {        
-    if (isSet(r) && r.length > 0) {
+    if (isSet(r) && r.length > 0) {        
         const comment_a1 = document.querySelector("#comment_a1");
         const comment_a2 = document.querySelector("#comment_a2");
         comment_a1.innerHTML = r[0].title;
         comment_a2.setAttribute("value", r[0].content);
         currentPostId = r[0].docu_srl;
+
+        if ("comments" in r[0] && r[0].comments.length > 0) {
+            commentArrayData = [];
+            r[0].comments.forEach(function (v, i, arr) {                
+                commentArrayData.push(v.content + " | " + v.name);                
+            });
+
+            showComment();
+        }
     }
 
     }, function (r,s,e) {
 
   });
 
+}
+
+function writeMessage()  {
+    var comment = $("#commentInput").val();
+    var name = $("#nameInput").val();
+
+    if (!isSet(comment) && comment == "") {
+        alert("댓글을 작성해 주세요 :)");
+        return;
+    }
+
+    if (comment.length > 25) {
+        alert("댓글의 길이가 너무 길어요. 25자 이내로 굵고, 짧게 작성 부탁드려요 :)");
+        return;
+    }
+
+    if (!isSet(name) && name == "") {
+        alert("이름을 작성해 주세요 :)");
+        return;
+    }
+
+    if (name.length > 10) {
+        alert("이름의 길이가 너무 길어요. 10자 이내로 작성 부탁드려요 :)");
+        return;
+    }
+ 
+    var formData = new FormData();
+    formData.append("form_kind", "write_comment");
+    formData.append("user", 'eh');
+    formData.append("docu_srl", currentPostId);
+    formData.append("comment", comment);
+    formData.append("name", name);
+
+    ajaxRequest(formData, function (r) {        
+        commentArrayData.push(comment + " | " + name);        
+        $("#area_comment_writer").hide();
+        alert("감사합니다, '포옹전'에서 뵈어요!");
+    }, function (r,s,e) {
+        $("#area_comment_writer").hide();
+        alert("작성 실패! - 잠시 후 다시 시도해 주세요.")
+    });
 }
