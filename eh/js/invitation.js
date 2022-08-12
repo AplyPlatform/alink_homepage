@@ -16,6 +16,10 @@ $(function() {
   });  
 
 
+var commentArrayData = [];
+var currentCommentCount = 0;
+var hideTimeout = -1, showTimeout = -1;
+
 function updateMindSet() {
     const setButtons = () => {            
         mSel("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
@@ -62,7 +66,7 @@ function updateMindSet() {
 
         mSel("#replyButton").addEventListener('click', function(evt) {            
             writeMessage();            
-        });
+        });        
     };
 
     const showPortfolio = () => {
@@ -90,9 +94,10 @@ function updateMindSet() {
         mSel("#paintandquest-video-mp4").currentTime = 0;
         mSel("#paintandquest-video-mp4").pause();
     });
-
+    
     setButtons();
-    setFirstPage();    
+    setFirstPage();
+    showComment();
 }
 
 function playSound(id) {
@@ -242,10 +247,13 @@ function likeCancelMessage(docu_id)  {
 
 }
 
-var commentArrayData = [];
-var currentCommentCount = 0;
 
-function showComment() {
+function showComment() {    
+    if (commentArrayData.length <= 0) {
+        hideTimeout = window.setTimeout(hideComment, 1000);
+        return;
+    }
+
     if (currentCommentCount >= commentArrayData.length) currentCommentCount = 0;    
     var textToShow = commentArrayData[currentCommentCount];
     currentCommentCount++;
@@ -257,12 +265,13 @@ function showComment() {
 
     mSel("#comment_area").innerHTML = textToShow + " <img src='./assets/icon_heart.png' width='8px'>";
     mSel("#comment_area").classList.remove("fade");
-    window.setTimeout(hideComment, 3500);
+    
+    hideTimeout = window.setTimeout(hideComment, 3500);
 }
 
 function hideComment() {    
     mSel("#comment_area").classList.add("fade");
-    window.setTimeout(showComment, 1000);
+    showTimeout = window.setTimeout(showComment, 1000);
 }
 
 function get_message(docu_id) {
@@ -284,9 +293,7 @@ function get_message(docu_id) {
             commentArrayData = [];
             r[0].comments.forEach(function (v, i, arr) {                
                 commentArrayData.push(v.content + " | " + v.name);                
-            });
-
-            showComment();
+            });            
         }
     }
 
