@@ -326,7 +326,7 @@ function writeMessage()  {
     formData.append("name", name);
 
     ajaxRequest(formData, function (r) {        
-        commentArrayData.push(comment + " | " + name);        
+        commentArrayData.unshift(comment + " | " + name);        
         $("#area_comment_writer").hide();
         alert("감사합니다, '포옹전'에서 뵈어요!");
     }, function (r,s,e) {
