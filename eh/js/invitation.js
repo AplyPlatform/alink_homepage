@@ -55,6 +55,8 @@ function updateMindSet() {
         });
 
         mSel("#closeButton").addEventListener('click', function(evt) {
+            mSel("#bottom_border").style.display = 'block';
+            mSel("#top_border").style.display = 'block';
             $("#area_comment_writer").hide();
         });
 
@@ -328,9 +330,13 @@ function writeMessage()  {
     ajaxRequest(formData, function (r) {        
         commentArrayData.unshift(comment + " | " + name);        
         $("#area_comment_writer").hide();
+        mSel("#bottom_border").style.display = 'block';
+        mSel("#top_border").style.display = 'block';
         alert("감사합니다, '포옹전'에서 뵈어요!");
     }, function (r,s,e) {
         $("#area_comment_writer").hide();
+        mSel("#bottom_border").style.display = 'block';
+        mSel("#top_border").style.display = 'block';
         alert("작성 실패! - 잠시 후 다시 시도해 주세요.")
     });
 }
