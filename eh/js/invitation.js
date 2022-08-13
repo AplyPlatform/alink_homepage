@@ -18,6 +18,7 @@ $(function() {
 
 var commentArrayData = [];
 var currentCommentCount = 0;
+var currrentPage = 0;
 var hideTimeout = -1, showTimeout = -1;
 
 function updateMindSet() {
@@ -114,6 +115,7 @@ function playSound(id) {
 
 
 function setFirstPage() {
+    currrentPage = 0;
     playSound(1);
 
     mSel("#portfolio-item0").setAttribute("visible", false);
@@ -136,6 +138,7 @@ function setFirstPage() {
 
 
 function setSecondPage() {
+    currrentPage = 1;
     playSound(1);
 
     mSel("#portfolio-item0").setAttribute("visible", false);
@@ -172,7 +175,7 @@ function setSecondPage() {
 
 
 function setThirdPage() {    
-
+    currrentPage = 2;
     playSound(1);
 
     mSel("#main_image_area1").setAttribute("visible", false);
@@ -263,7 +266,22 @@ function showComment() {
         textToShow += " ...";
     }
 
-    mSel("#comment_area").innerHTML = textToShow + " <img src='./assets/icon_heart.png' width='8px'>";
+    var frontStr = "";
+    switch (currrentPage) {
+        case 0:
+            frontStr = "<img src='./assets/ex/icon_bird1@3x.png' width='10px' height='12px'> ";
+            break;
+
+        case 1:
+            frontStr = "<img src='./assets/ex/icon_bird2@3x.png' width='10px' height='12px'> ";
+            break;
+
+        case 2:
+            frontStr = "<img src='./assets/ex/icon_bird3@3x.png' width='10px' height='12px'> ";
+            break;
+    }
+
+    mSel("#comment_area").innerHTML = frontStr + textToShow + " <img src='./assets/icon_heart.png' width='8px'>";
     mSel("#comment_area").classList.remove("fade");
     
     hideTimeout = window.setTimeout(hideComment, 3500);
