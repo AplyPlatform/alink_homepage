@@ -1,12 +1,12 @@
 $(function() {
     document.title = "정은혜 작가 '포옹전' 초대장 | APLX";    
-    eventOC_IN();
-
+    
+    eventOC_IN();    
     window.onbeforeunload = function (e) {    
         eventOC_OUT();
-        return 'Bye';   
+        return undefined;   
     };
-    
+
     updateMindSet();    
 
     setTimeout(function(){

@@ -1,6 +1,13 @@
 
-$(function(){ 
-  InitARS();
+$(function(){
+
+    eventOC_IN();    
+    window.onbeforeunload = function (e) {    
+        eventOC_OUT();
+        return undefined;   
+    };
+    
+    InitARS();
 });
 
 function InitARS() {

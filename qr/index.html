@@ -16,8 +16,7 @@
 
         #qr-reader {
             z-index: 3;
-            width: 100vw;
-            position: absolute;            
+            width: 100%;          
         }
 
         #flipButton {        
@@ -52,13 +51,16 @@
     </style>
 </head>
     <body bgcolor="#000">        
-        <div id="wait-screen" style="width:100%;height:400px;visibility:hidden;">
-            <table border="0" width="100%" height="500px"><tr><td align="center" valign="center">
-                <img src="./success.gif" width="100px" height="100px" border="0"><br>
-                <font color="white" size="3">Success !</font>
-            </td></tr></table>
+        <div id="wait-screen" style="width:90%;height:400px;visibility:hidden;">
+            <table border="0" width="80%" height="400px" align="center">
+                <tr><td align="center" valign="center">
+                    <img src="./success.gif" width="100px" height="100px" border="0"><br>
+                    <font color="white" size="3">Success !</font>
+                </td></tr>
+            </table>
         </div>
         <div id="qr-reader"></div>
+        <div style="background-color: rgba(255,255,255,0.6)"><center><font size="4" face="돋움" color="white"><B>QR코드 리더</B></font></center></div>
         <div id="top_left_menu"><a href="javascript:history.back(-1);"><img src="./back.png" width="40px" height="40px" border="0"/></a></div>
         <div id="flipButton"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>
         <script src="./html5-qrcode.min.js"></script>
@@ -99,7 +101,7 @@
             }
 
             var html5QrCode = new Html5Qrcode("qr-reader");
-            const config = { fps: 20, qrbox: { width: 250, height: 250 } };
+            const config = { fps: 20, qrbox: 250 };
 
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
         });

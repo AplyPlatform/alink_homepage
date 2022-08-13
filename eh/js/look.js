@@ -1,12 +1,10 @@
 $(function() {
     document.title = "포옹전 작품 관람 | APLX";
-    eventOC_IN();
-
+    eventOC_IN();    
     window.onbeforeunload = function (e) {    
         eventOC_OUT();
-        return 'Bye';   
+        return undefined;   
     };
-    
     updateMindSet();    
 
     setTimeout(function(){
