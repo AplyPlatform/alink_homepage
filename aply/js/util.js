@@ -28,10 +28,12 @@ function updateMindSet(userid) {
 
         $("#write_comment_button").click(function(){       
             $("#area_comment_writer").show();
+            $("#bottom_border").hide();
         });
 
         $("#closeButton").click(function(){
             $("#area_comment_writer").hide();
+            $("#bottom_border").show();
         });
 
         $("#replyButton").click(function(){            
@@ -102,7 +104,7 @@ function writeMessage()  {
  
     var formData = new FormData();
     formData.append("form_kind", "write_comment");
-    formData.append("user", 'eh');
+    formData.append("user", currentUserId);
     formData.append("docu_srl", currentPostId);
     formData.append("comment", comment);
     formData.append("name", name);
@@ -110,11 +112,11 @@ function writeMessage()  {
     ajaxRequest(formData, function (r) {        
         commentArrayData.unshift(comment + " | " + name);        
         $("#area_comment_writer").hide();
-        mSel("#bottom_border").style.display = 'block';
+        $("#bottom_border").show();
         alert("감사합니다!");
     }, function (r,s,e) {
         $("#area_comment_writer").hide();
-        mSel("#bottom_border").style.display = 'block';
+        $("#bottom_border").show();
         alert("작성 실패! - 잠시 후 다시 시도해 주세요.")
     });
 }
