@@ -18,6 +18,20 @@ function updateMindSet() {
             playSound(1);
             return;
         });
+
+        mSel("#touch_area").addEventListener('click', function (evt) {       
+            if (isTopShow) {
+                mSel("#top_border").style.visibility = "hidden";
+                isTopShow = false;
+            }
+            else {
+                mSel("#top_border").style.visibility = "visible";
+                isTopShow = true;
+            }
+
+            playSound(1);   
+            return;
+        });
     };
 
     const showPortfolio = () => {

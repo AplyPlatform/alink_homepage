@@ -1,3 +1,6 @@
+
+var isTopShow = false;
+
 $(function() {
     document.title = "포옹전 | 정은혜 작가와 사진을 | APLX";
     eventOC_IN();    
@@ -8,7 +11,9 @@ $(function() {
 
     setTimeout(function() {
         mSel("#top_border").style.visibility = "visible";
+        isTopShow = true;
     }, 3000);
+
     updateMindSet();
 });  
 
@@ -16,6 +21,20 @@ function updateMindSet() {
     const setButtons = () => {
         mSel("#qrscan_button").addEventListener('click', function (evt) {       
             playSound(1);
+            return;
+        });
+
+        mSel("#touch_area").addEventListener('click', function (evt) {       
+            if (isTopShow) {
+                mSel("#top_border").style.visibility = "hidden";
+                isTopShow = false;
+            }
+            else {
+                mSel("#top_border").style.visibility = "visible";
+                isTopShow = true;
+            }
+
+            playSound(1);   
             return;
         });
     };
