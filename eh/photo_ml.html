@@ -43,7 +43,7 @@
     
       #touch_area {
         background-color: rgba(255,255,255,0);
-        top: 0px;
+        top: 85px;
         bottom:0px;
         right: 0px;
         left:0px;
@@ -66,7 +66,7 @@
     </a-assets>
 
     <a-camera position="-0.9 0.8 7" rotation-reader my-camera></a-camera>
-    <a-entity look-at="[my-camera]" position="0.5 0 0">
+    <a-entity look-at="[my-camera]" position="0.8 0 0">
       <a-image id="selfimage" src="#selfdraw" position="0.5 0.4 -0.01" width="2" height="2.5"></a-image>
       <a-image id="aplane" src="#line_plane" position="-0.8 -1.15 -0.01" width="4.5" height="0.6"></a-image>
 
@@ -81,7 +81,7 @@
     </a-entity>
   </a-scene>  
 
-  <div id="touch_area"></div>
+  <!-- <div id="touch_area"></div> -->
   <div id="top_border" style="visibility:hidden">
     <a href="https://aplx.aply.biz/qr" target="_self"><img src="./assets/ex/icon_qrscan@3x.png" border="0" width="50px" id="qrscan_button"></a>
   </div>  

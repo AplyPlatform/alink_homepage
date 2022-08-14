@@ -24,6 +24,7 @@ function updateMindSet() {
             return;
         });
 
+        return;
         mSel("#touch_area").addEventListener('click', function (evt) {       
             if (isTopShow) {
                 mSel("#top_border").style.visibility = "hidden";
