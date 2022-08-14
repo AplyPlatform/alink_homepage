@@ -216,10 +216,6 @@ function playSound(id) {
     }
 }
 
-mSel("#like_button").addEventListener('click', function (evt) {
-    likeMessage();
-});
-
 function setLikeButtonStatus(docu_id) {
     if (getCookie("user_like_" + docu_id) == "liked") {        
         mSel("#like_button").setAttribute("src", "#hearticon");        
@@ -342,7 +338,7 @@ function setCommonTag() {
                 <a-video id="paintandquest-video-link" webkit-playsinline playsinline width="1.09" height="0.59" position="0 0.01 0"></a-video> \
                 <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0.01 0" width="1.09" height="0.59"></a-image> \
             </a-entity> \
-            <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.46 -0.22 0.1" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image> \
+            <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.44 -0.22 0.1" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image> \
             <a-gltf-model id="avatar2" rotation="90 0 0" position="0 0.55 0" scale="0.2 0.2 0.2" src="#waving" animation-mixer></a-gltf-model> \
             <a-troika-text id="comment_a1" position="0 -0.40 0.1" value="증강현실 프로필 입니다." color="white" align="right" font="../../objet/assets/NotoSansKR-Regular.otf" font-size="0.08" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-troika-text>           \
             <a-troika-text id="comment_a2" max-width="1.2" line-height="1.5" position="0 -0.59 0.1" value="41234123" color="white" align="center" font="../../objet/assets/NotoSansKR-Regular.otf" font-size="0.04"></a-troika-text> \
