@@ -42,8 +42,7 @@ function updateMindSet() {
 
         mSel("#like_button").addEventListener('click', function (evt) {
             likeMessage();
-        });        
-
+        });
 
         mSel("#write_comment_button").addEventListener('click', function (evt) {
             mSel("#bottom_border").style.display = 'none';
