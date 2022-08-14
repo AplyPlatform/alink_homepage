@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LG0VM866XL');
+    </script>
+    <title>정은혜 작가 '포옹전' 가는길 | APLX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="theme-color" content="#000000" >    
+    <script type='text/javascript' src="../objet/js/aframe.min.js"></script>
+    <script type='text/javascript' src="../objet/js/aframe-look-at-component.js"></script>    
+    <script type='text/javascript' src='../objet/js/aframe-ar-nft.js'></script>
+    <script type='text/javascript' src='../objet/js/aframe-gif-shader.js'></script>    
+    <style>
+        #bottomTitle {
+          text-decoration: none;
+          position: fixed;
+          background-color: rgba(255,255,255,0.4); color: white;
+          bottom: 0;
+          left: 0;
+          width: 100vw;
+          text-align: center;
+          z-index: 3;
+          height: 20px;
+          padding-top: 5px;
+          cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style='margin: 0; overflow: hidden;'>    
+    <a-scene
+        vr-mode-ui="enabled: false"
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>        
+        <a-camera gps-camera rotation-reader></a-camera>
+        <a-entity geometry="primitive:plane;" material="shader:gif;src:url(./assets/ex/arrow.gif);opacity:.8" scale="15 7 0" look-at="[gps-camera]" gps-entity-place="latitude: 37.7532305; longitude: 126.7710123;"></a-entity>
+        <a-link id="destplace" gps-entity-place="latitude: 37.7532305; longitude: 126.7710123;" scale="15 15 15" href="https://aplx.aply.biz" title="토포하우스"></a-link>
+    </a-scene>
+    <div id="bottomTitle"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>
+    <script>
+      let text = document.querySelector('#destplace');
+      
+      text.addEventListener('loaded', () => {
+          window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}))
+      });
+    </script>
+</body>
+</html>
