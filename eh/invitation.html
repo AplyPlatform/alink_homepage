@@ -87,14 +87,10 @@
         <img id="line_plane" src="./assets/ex/plane.png" />
         <img id="hearticon_before" src="./assets/ex/icon_heart1@3x.png" />        
         <img id="selfi_image" src="./assets/ex/selfie@3x.png" />
-        <img id="selfidraw_image" src="./assets/ex/selfimage@3x.png" />
-        <img id="pencil1_image" src="./assets/ex/p1@3x.png" />
-        <img id="pencil2_image" src="./assets/ex/p2@3x.png" />
-        <img id="desk1_image" src="./assets/ex/d1@3x.png" />
-        <img id="desk2_image" src="./assets/ex/d2@3x.png" />        
+        <img id="selfidraw_image" src="./assets/ex/selfimage@3x.png" />        
         <img id="paintandquest-preview" src="./assets/play.png" />
         <img id="paintandquest-write" src="./assets/write.png" />
-        <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="./assets/ex/inv.mp4"></video>        
+        <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="./assets/ex/inv.mp4"></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
@@ -103,10 +99,7 @@
         <a-entity visible=false id="portfolio-panel" position="0 0 0">                    
           <a-image id="aplane" src="#line_plane" position="0 0 -0.01" width="0.7" height="1"></a-image>
                     
-          <a-image id="main_image_area1" src="#pencil1_image" position="0 0.15 0.02" width="0.3" height="0.8"></a-image>
-          <a-image id="main_image_area2" src="#pencil2_image" position="0.2 0.15 0.1" width="0.2" height="0.6"></a-image>
-          <a-image id="main_image_area3" src="#desk1_image" position="0 0.15 0.01" width="0.6" height="0.2"></a-image>
-          <a-image id="main_image_area4" src="#desk2_image" position="0 -0.06 0.03" width="0.6" height="0.2"></a-image>
+          <a-image id="main_image_area" src="#work_image" position="0 0.1 0" width="0.62" height="0.76"></a-image>          
 
           <a-troika-text id="comment_a2" max-width="0.41" line-height="1.5" position="-0.05 -0.33 0.1" value="41234123" color="#333" align="left" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.03"></a-troika-text>
           <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.39 0.01" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image>

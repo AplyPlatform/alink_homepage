@@ -11,14 +11,16 @@ $(function() {
 });
 
 var commentArrayData = [];
+var pageContents = [];
 var currentCommentCount = 0;
 var currrentPage = 0;
+var currentPostId = 0;
+
 var hideTimeout = -1, showTimeout = -1;
+var jobIds = [230, 238, 240];
 
 function updateMindSet() {
-    const setButtons = () => {            
-        mSel("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-
+    const setButtons = () => {
         mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {
             mSel("#paintandquest-preview-button").setAttribute("visible", false);
             mSel("#paintandquest-video-mp4").play();
@@ -60,7 +62,12 @@ function updateMindSet() {
 
         mSel("#replyButton").addEventListener('click', function(evt) {            
             writeMessage();            
-        });        
+        });
+
+        mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {    
+            mSel("#paintandquest-preview-button").setAttribute("visible", false);
+            mSel("#paintandquest-video-link").play();
+        });
     };
 
     const showPortfolio = () => {
@@ -87,11 +94,12 @@ function updateMindSet() {
         mSel("#top_border").style.display = 'none';
         mSel("#paintandquest-video-mp4").currentTime = 0;
         mSel("#paintandquest-video-mp4").pause();
-    });
-    
-    setButtons();
-    setFirstPage();
+    });        
+
+    setButtons();    
     showComment();
+
+    get_messages();
 }
 
 function playSound(id) {
@@ -107,85 +115,58 @@ function playSound(id) {
 }
 
 
+function setPageAssets(docu_id) {
+    var curContent = pageContents[docu_id];
+    
+    commentArrayData = curContent.comments;
+    currentPostId = docu_id;
+
+    const comment_a1 = document.querySelector("#comment_a1");
+    const comment_a2 = document.querySelector("#comment_a2");
+    comment_a1.innerHTML = curContent.title;
+    comment_a2.setAttribute("value", curContent.content);
+    
+
+    if (curContent.filename != "") {
+        if (getFileExt(curContent.filename).toLowerCase() == "mp4") {                
+            mSel("#paintandquest-video-mp4").setAttribute("src", "");
+            mSel("#paintandquest-video-link").setAttribute("src", "");
+            mSel("#paintandquest-video-mp4").setAttribute("src", curContent.filename);                
+            mSel("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+            mSel("#main_image_area").setAttribute("visible", false);                
+            mSel("#portfolio-item0").setAttribute("visible", true);
+        }
+        else {
+            mSel("#main_image_area").setAttribute("src", curContent.filename);
+            mSel("#main_image_area").setAttribute("visible", true);
+            mSel("#portfolio-item0").setAttribute("visible", false);                
+        }
+    }
+
+    mSel("#paintandquest-video-mp4").currentTime = 0;
+    mSel("#paintandquest-video-mp4").pause();
+    mSel("#paintandquest-preview-button").setAttribute("visible", true);
+
+    setLikeButtonStatus(docu_id);
+}
+
 function setFirstPage() {
     currrentPage = 0;
     playSound(1);
-
-    mSel("#portfolio-item0").setAttribute("visible", false);
-    mSel("#paintandquest-video-mp4").currentTime = 0;
-    mSel("#paintandquest-video-mp4").pause();
-
-    mSel("#main_image_area1").setAttribute("src", "#selfi_image");
-    mSel("#main_image_area1").setAttribute("visible", true);
-    mSel("#main_image_area1").setAttribute("width", "0.62");
-    mSel("#main_image_area1").setAttribute("height", "0.76");
-    mSel("#main_image_area1").setAttribute("position", "0 0.1 0");
-
-    mSel("#main_image_area2").setAttribute("visible", false);
-    mSel("#main_image_area3").setAttribute("visible", false);
-    mSel("#main_image_area4").setAttribute("visible", false);
-
-    get_message(230);
-    setLikeButtonStatus(230);
+    setPageAssets(230);
 }
 
 
 function setSecondPage() {
     currrentPage = 1;
-    playSound(1);
-
-    mSel("#portfolio-item0").setAttribute("visible", false);
-    mSel("#paintandquest-video-mp4").currentTime = 0;
-    mSel("#paintandquest-video-mp4").pause();
-
-    mSel("#main_image_area1").setAttribute("src", "#pencil1_image");
-    mSel("#main_image_area1").setAttribute("visible", true);
-    mSel("#main_image_area1").setAttribute("width", "0.4");
-    mSel("#main_image_area1").setAttribute("height", "0.6");
-    mSel("#main_image_area1").setAttribute("position", "-0.1 0.15 0.011");
-
-    mSel("#main_image_area2").setAttribute("src", "#pencil2_image");
-    mSel("#main_image_area2").setAttribute("visible", true);
-    mSel("#main_image_area2").setAttribute("width", "0.4");
-    mSel("#main_image_area2").setAttribute("height", "0.6");
-    mSel("#main_image_area2").setAttribute("position", "0.1 0.15 0.014");
-
-    mSel("#main_image_area3").setAttribute("src", "#desk1_image");
-    mSel("#main_image_area3").setAttribute("visible", true);
-    mSel("#main_image_area3").setAttribute("width", "0.6");
-    mSel("#main_image_area3").setAttribute("height", "0.3");
-    mSel("#main_image_area3").setAttribute("position", "0 0.15 0.013");
-
-    mSel("#main_image_area4").setAttribute("src", "#desk2_image");
-    mSel("#main_image_area4").setAttribute("visible", true);
-    mSel("#main_image_area4").setAttribute("width", "0.6");
-    mSel("#main_image_area4").setAttribute("height", "0.3");
-    mSel("#main_image_area4").setAttribute("position", "0 -0.06 0.012");
-
-    get_message(238);
-    setLikeButtonStatus(238);
+    playSound(1);    
+    setPageAssets(238);
 }
-
 
 function setThirdPage() {    
     currrentPage = 2;
-    playSound(1);
-
-    mSel("#main_image_area1").setAttribute("visible", false);
-    mSel("#main_image_area2").setAttribute("visible", false);
-    mSel("#main_image_area3").setAttribute("visible", false);
-    mSel("#main_image_area4").setAttribute("visible", false);
-
-    mSel("#portfolio-item0").setAttribute("visible", true);
-    mSel("#paintandquest-preview-button").setAttribute("visible", true);    
-    
-    mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {    
-        mSel("#paintandquest-preview-button").setAttribute("visible", false);
-        mSel("#paintandquest-video-link").play();
-    });
-
-    get_message(240);
-    setLikeButtonStatus(240);
+    playSound(1);    
+    setPageAssets(240);
 }
 
 
@@ -196,7 +177,6 @@ function setMapPage() {
     window.open("https://naver.me/xkx9kjNi", "_blank");
 }
 
-var currentPostId = 0;
 
 function setLikeButtonStatus(docu_id) {
     if (getCookie("user_like_" + docu_id) == "liked") {        
@@ -285,7 +265,16 @@ function hideComment() {
     showTimeout = window.setTimeout(showComment, 1000);
 }
 
-function get_message(docu_id) {
+function getFileExt(filename) {
+    return filename.split('.').pop();
+}
+
+
+var currentJobIndex = 0;
+function get_messages() {
+
+  var docu_id = jobIds[currentJobIndex];
+  currentJobIndex++;
 
   var formData = new FormData();
   formData.append("form_kind", "get_message");
@@ -293,18 +282,21 @@ function get_message(docu_id) {
   formData.append("docu_srl", docu_id);
 
   ajaxRequest(formData, function (r) {        
-    if (isSet(r) && r.length > 0) {        
-        const comment_a1 = document.querySelector("#comment_a1");
-        const comment_a2 = document.querySelector("#comment_a2");
-        comment_a1.innerHTML = r[0].title;
-        comment_a2.setAttribute("value", r[0].content);
-        currentPostId = r[0].docu_srl;
-
+    if (isSet(r) && r.length > 0) {                   
         if ("comments" in r[0] && r[0].comments.length > 0) {
-            commentArrayData = [];
+            var commentArray = [];
             r[0].comments.forEach(function (v, i, arr) {                
-                commentArrayData.push(v.content + " | " + v.name);                
+                commentArray.push(v.content + " | " + v.name);                
             });            
+        }
+
+        pageContents[docu_id] = {title : r[0].title, content : r[0].content, filename : r[0].file, comments : commentArray};
+
+        if (currentJobIndex < jobIds.length) {
+            get_messages();            
+        }
+        else {
+            setFirstPage();
         }
     }
 
