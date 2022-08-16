@@ -1,6 +1,10 @@
+  @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+  @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+  
   body {
     margin: 0;
   }
+
   .example-container {
     overflow: hidden;
     position: absolute;
@@ -118,4 +122,13 @@
       opacity:1;
     }
   }
- 
+
+  .aplx_title {
+    font-family:'NanumSquare', san-serif;
+    font-size:10px;
+    line-height:1.5;
+  }
+    
+  .eh_comment {
+    font-family: 'Poor Story', cursive;
+  }

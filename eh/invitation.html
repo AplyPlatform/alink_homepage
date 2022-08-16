@@ -16,7 +16,7 @@
     <meta name="theme-color" content="#000000" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">    
     <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/aply.css">    
@@ -31,9 +31,8 @@
     <script src="../objet/js/aplxevent.js"></script>
     <script src="../objet/js/common.js"></script>
     <script src="./js/invitation.js"></script>
-    <style>
-      #bottom_border {
-        font-family: 'Poor Story', cursive;
+    <style>      
+      #bottom_border {        
         color:black;
         background-color: rgba(255,255,255,1); color: black;
         bottom: 0;
@@ -44,7 +43,7 @@
         padding-right: 25px;
         padding-top: 2px;
         padding-bottom: 2px;        
-        height: 170px;
+        height: 160px;
         position: fixed;
         z-index: 8;
         text-overflow: ellipsis;        
@@ -66,8 +65,8 @@
 
       hr {
         padding: 0px;
-        margin-top: 4px;
-        margin-bottom: 4px;
+        margin-top: 7px;
+        margin-bottom: 7px;
       }
     </style>
     
@@ -124,17 +123,18 @@
         </td>
         <td width="40px">
           <img src="./assets/ex/icon_bird3@3x.png" border="0" width="30px" id="bird3_button">
-        </td>
+        </td>                  
         <td align="right">
-          <img src="./assets/ex/icon_map@3x.png" border="0" width="30px" id="map_button">&nbsp;&nbsp;&nbsp;
+          <a href="https://aplx.aply.biz/eh/photo_ml.html" target="_self"><img src="./assets/ex/icon_arphoto@3x.png" border="0" width="30px" id="arphoto_button"></a>        
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./assets/ex/icon_map@3x.png" border="0" width="30px" id="map_button">&nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr>
         <td colspan="3" align="left">
           <span id="comment_a1" style="color:white;"></span>
-        </td>                    
+        </td>
         <td align="right">
-          <span id="comment_a1" style="color:white;">오시는 길</span>
+          <span style="color:white;">AR 포토</span>&nbsp;&nbsp;&nbsp;<span id="comment_a1" style="color:white;">오시는 길</span>
         </td>      
       </tr>    
     </table>      
@@ -142,28 +142,27 @@
   
   <div id="bottom_border" style="display:none;">
     <div class="row" style="margin-top: 13px; margin-bottom: 15px">
-        <div class="col-8 justify-content-center align-self-center">
-           <span style="font-size:small;color:#555" id="comment_area"></span>
+        <div class="col-8 justify-content-center align-self-center eh_comment">
+           <span style="font-size:small;color:#000" id="comment_area"></span>
         </div>      
         <div class="col-4 justify-content-center align-self-center text-center">
-          <img id="write_comment_button" src="./assets/ex/icon_write.png" width="30px">
+          <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
         </div>              
         <div class="col-12">
-          <hr size="1" width="100%" color="#aaa">
+          <hr size="2" width="100%" color="#BABABA">
         </div>
-        <div class="col-8">
-          <span style="font-size:12px">정은혜 아홉번째 개인전<br>
+        <div class="col-8 eh_comment">
+          <font size="1" color="#969696">정은혜 아홉번째 개인전<br>
           전시기간 : 2022년 8월 24일~30일<br>
           전시장소 : 토포하우스<br>
-          서울시 종로구 인사동 11길 6<br></span>        
+          서울시 종로구 인사동 11길 6<br></font>
         </div>
         <div class="col-4 justify-content-center align-self-center text-center">
           <img src="./assets/ex/hug2@3x.png" width="60" height="60">
         </div>
-        <div class="col-12">
-          <hr size="1" width="100%" color="#aaa">
-          <font size="1">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
-          <hr size="1" width="100%" color="#aaa">
+        <div class="col-12 aplx_title">
+          <hr size="1" width="100%" color="#BABABA">
+          <font color="#969696">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
           <br>
         </div>        
     </div>                                   

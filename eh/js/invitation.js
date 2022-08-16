@@ -38,6 +38,10 @@ function updateMindSet() {
             setThirdPage();
         });
 
+        mSel("#arphoto_button").addEventListener('click', function (evt) {       
+            setForthPage();
+        });        
+
         mSel("#map_button").addEventListener('click', function (evt) {
             setMapPage();
         });
@@ -168,7 +172,6 @@ function setThirdPage() {
     playSound(1);    
     setPageAssets(240);
 }
-
 
 function setMapPage() {
     playSound(1);
