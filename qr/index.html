@@ -9,6 +9,9 @@
     <meta name="description" content="QR CODE Reader : APLX" />
     <title>APLX : QR CODE READER</title>    
     <style>
+        @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+        @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
         #wait-screen {
             z-index: 5;
             position: absolute;
@@ -19,16 +22,17 @@
             width: 100%;          
         }
 
-        #flipButton {        
+        #flipButton {
             text-decoration: none;
+            font-family:'NanumSquare', san-serif;
             position: fixed;
-            background-color: rgba(0,0,0,0.5); color: white;
+            background-color: rgba(0,0,0,0); color: white;
             bottom: 0;
             left: 0;
             width: 100vw;
             text-align: center;
             z-index: 11;
-            height: 16px;
+            height: 40px;
             padding-top: 5px;
             cursor: pointer;
         }
@@ -47,7 +51,11 @@
             padding-left: 20px;
             text-align: left;
             visibility: hidden;
-        }    
+        }   
+        
+        .aplx_title {
+            font-family:'NanumSquare', san-serif;
+        }
     </style>
 </head>
     <body bgcolor="#000">        
@@ -60,9 +68,9 @@
             </table>
         </div>
         <div id="qr-reader"></div>
-        <div style="background-color: rgba(255,255,255,0.6)"><center><font size="4" face="돋움" color="white"><B>QR코드 리더</B></font></center></div>
-        <div id="top_left_menu"><a href="javascript:history.back(-1);"><img src="./back.png" width="40px" height="40px" border="0"/></a></div>
-        <div id="flipButton"><font size="1" color="white">© 2022 <a href="https://aply.biz" target="_blank"><img src="../assets/images/logo_white.png" border="0" width="25px"></a></font></div>
+        <div style="background-color: rgba(0,0,0,0)" class="center_text"><center><font size="4" color="white"><B>QR코드를 스캔합니다.</B></font></center></div>
+        <div id="top_left_menu"><a href="javascript:history.back(-1);"><img src="./icon_arrow1@3x.png" width="40px" height="40px" border="0"/></a></div>
+        <div id="flipButton"><a href="https://aply.biz" target="_blank" style="text-decoration: none;"><font color="white" size="3">APLX</font></a></div>
         <script src="./html5-qrcode.min.js"></script>
     <script>
         function docReady(fn) {
@@ -101,7 +109,7 @@
             }
 
             var html5QrCode = new Html5Qrcode("qr-reader");
-            const config = { fps: 20, qrbox: 250 };
+            const config = { fps: 20, qrbox: 200 };
 
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
         });
