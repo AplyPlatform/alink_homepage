@@ -9,11 +9,6 @@ $(function() {
         return undefined;   
     };
 
-    setTimeout(function() {
-        mSel("#top_border").style.visibility = "visible";
-        isTopShow = true;
-    }, 3000);
-
     updateMindSet();
 });  
 
