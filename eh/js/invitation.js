@@ -286,8 +286,9 @@ function get_messages() {
 
   ajaxRequest(formData, function (r) {        
     if (isSet(r) && r.length > 0) {                   
-        if ("comments" in r[0] && r[0].comments.length > 0) {
-            var commentArray = [];
+        
+        var commentArray = [];
+        if ("comments" in r[0] && r[0].comments.length > 0) {            
             r[0].comments.forEach(function (v, i, arr) {                
                 commentArray.push(v.content + " | " + v.name);                
             });            

@@ -32,18 +32,21 @@
     <script src="../objet/js/aplxevent.js"></script>
     <script src="./js/look.js"></script>
     <style>
-      #bottom_border {
-        font-family: 'Poor Story', cursive;
+      #bottom_border {        
         color:black;
         background-color: rgba(255,255,255,1); color: black;
         bottom: 0;
         left: 0;
         right: 0;        
         width: 100vw;
-        padding: 8px;
-        height: 85px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 2px;
+        padding-bottom: 2px;        
+        height: 120px;
         position: fixed;
         z-index: 8;
+        text-overflow: ellipsis;        
       }
 
       #top_border {        
@@ -56,67 +59,68 @@
         position: fixed;
         z-index: 8;
       }
+
+      hr {
+        padding: 0px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+      }
     </style>
     
 </head>
 <body>
-  <div class="example-container">
+  <div id="example-container" class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
-        <img src="./assets/ex/inv_fr.jpg"/>
+        <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
         <div class="scanline"></div>
       </div>
     </div>
-
-    <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-assets>
-        <img id="hearticon" src="./assets/icon_heart.png" />
-        <img id="line_plane" src="./assets/ex/plane.png" />
-        <img id="hearticon_before" src="./assets/ex/icon_heart1@3x.png" />
-      </a-assets>
-
-      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
-
-      <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">
-        <a-entity visible=false id="portfolio-panel" position="0 0 0">                    
-          <a-image id="over_image" src="#line_plane" position="0 0 -0.01" width="1" height="1"></a-image>
-          <a-image id="aplane" src="#line_plane" position="0 0 -0.01" width="1" height="1"></a-image>
-                    
-          <a-troika-text id="comment_a2" max-width="0.41" line-height="1.5" position="-0.05 -0.33 0.1" value="41234123" color="#333" align="left" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.03"></a-troika-text>
-          <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.39 0.01" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image>
-        </a-entity>
-      </a-entity>
-    </a-scene>
   </div>
 
   <div id="top_border">
     <a href="https://aplx.aply.biz/qr" target="_self"><img src="./assets/ex/icon_qrscan@3x.png" border="0" width="50px" id="qrscan_button"></a>
   </div>
   
-  <div id="bottom_border" style="display:none;">    
-      <span id="comment_a1"></span>
-      <hr size="1" width="100%">
-      <font size="1">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>    
+  <div id="bottom_border" style="display:none;">
+    <div class="row" style="margin-top: 13px; margin-bottom: 15px">        
+        <div class="col-8 justify-content-center align-self-center eh_comment">
+          <span style="font-size:small;color:#77`7" id="comment_a1"></span>
+        </div>
+        <div class="col-12">
+          <hr size="2" width="100%" color="#BABABA">
+        </div>        
+        <div class="col-8 justify-content-center align-self-center eh_comment">
+            <span style="font-size:small;color:#000" id="comment_area"></span>
+        </div>
+        <div class="col-4 justify-content-center align-self-center text-center">
+          <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
+        </div>
+        <div class="col-12 aplx_title">
+          <hr size="1" width="100%" color="#BABABA">
+          <font color="#969696">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
+          <br>
+        </div>        
+    </div>                                   
   </div>
 
-  <!--
-  <div id="area_comment_writer">
+  <div id="area_comment_writer" style="display: none;">
     <div class="row">
       <div class="col-12">
-        댓글 작성하기
+        <font color="white">댓글쓰기</font>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요"><br>
+        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요 (25자 이내)"><br>
       </div>         
     </div>
     <div class="row">
        <div class="col-9">
-          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름">
+          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름 (5자 이내)">
         </div>        
         <div class="col-3">
-          <button id="replyButton" type="button" class="btn btn-primary btn-block">쓰기</button>
+          <button id="replyButton" type="button" class="btn btn-comment btn-block">쓰기</button>
         </div>
     </div>     
     <div class="row">
@@ -127,11 +131,10 @@
         <br>
         <br>
         <hr>
-        <button id="closeButton" type="button" class="btn btn-warning btn-block">취소</button>
+        <button id="closeButton" type="button" class="btn btn-comment btn-block">취소</button>
       </div>
     </div>
-  </div>  
-  <script src="../aply/js/bootstrap.min.js"></script>
-  -->
+  </div>
+  <script src="../aply/js/bootstrap.min.js"></script>  
 </body>
 </html>
