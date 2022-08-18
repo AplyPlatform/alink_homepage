@@ -98,6 +98,7 @@
     reader.onload = function(event){
         let fname = Date.now() + "";
         var fd = new FormData();
+        fd.append('form_kind', "objet_upload");
         fd.append('fname', fname);
         fd.append('data', event.target.result);
         $.ajax({

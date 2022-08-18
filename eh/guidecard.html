@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG0VM866XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LG0VM866XL');
+    </script>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="theme-color" content="#000000" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/aply.css">    
+    <script src="../objet/js/mindar-image.prod.js"></script>
+    <script src="../objet/js/aframe.js"></script>
+    <script src="../objet/js/mindar-image-aframe.prod.js"></script>        
+    <script src="../objet/js/aframe-gif-shader.js"></script>    
+    <script src='../objet/js/aframe-extras.loaders.min.js'></script>
+    <script src="../objet/js/jquery.min.js"></script>
+    <script src="../objet/js/aframe-troika-text.min.js"></script>    
+    
+    <script src="../objet/js/common.js"></script>
+    <script src="../objet/js/aplxevent.js"></script>
+    <script src="./js/look.js"></script>
+    <style>
+      #bottom_border {        
+        color:black;
+        background-color: rgba(255,255,255,1); color: black;
+        bottom: 0;
+        left: 0;
+        right: 0;        
+        width: 100vw;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 2px;
+        padding-bottom: 2px;        
+        height: 120px;
+        position: fixed;
+        z-index: 8;
+        text-overflow: ellipsis;        
+      }
+
+      #top_border {        
+        background-color: rgba(255,255,255,0);
+        top: 10px;
+        right: 10px;
+        width: 60px;
+        padding: 8px;
+        height: 85px;
+        position: fixed;
+        z-index: 8;
+      }
+
+      hr {
+        padding: 0px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+      }
+    </style>
+    
+</head>
+<body>
+  <div id="example-container" class="example-container">
+    <div id="example-scanning-overlay" class="hidden">
+      <div class="inner">
+        <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
+        <div class="scanline"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="top_border">
+    <a href="https://aplx.aply.biz/qr" target="_self"><img src="./assets/ex/icon_qrscan@3x.png" border="0" width="50px" id="qrscan_button"></a>
+  </div>
+  
+  <div id="bottom_border" style="display:none;">
+    <div class="row" style="margin-top: 13px; margin-bottom: 15px">        
+        <div class="col-8 justify-content-center align-self-center eh_comment">
+          <span style="font-size:small;color:#77`7" id="comment_a1"></span>
+        </div>
+        <div class="col-12">
+          <hr size="2" width="100%" color="#BABABA">
+        </div>        
+        <div class="col-8 justify-content-center align-self-center eh_comment">
+            <span style="font-size:small;color:#000" id="comment_area"></span>
+        </div>
+        <div class="col-4 justify-content-center align-self-center text-center">
+          <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
+        </div>
+        <div class="col-12 aplx_title">
+          <hr size="1" width="100%" color="#BABABA">
+          <font color="#969696">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
+          <br>
+        </div>        
+    </div>                                   
+  </div>
+
+  <div id="area_comment_writer" style="display: none;">
+    <div class="row">
+      <div class="col-12">
+        <font color="white">댓글쓰기</font>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요 (25자 이내)"><br>
+      </div>         
+    </div>
+    <div class="row">
+       <div class="col-9">
+          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름 (5자 이내)">
+        </div>        
+        <div class="col-3">
+          <button id="replyButton" type="button" class="btn btn-comment btn-block">쓰기</button>
+        </div>
+    </div>     
+    <div class="row">
+      <div class="col-12">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <button id="closeButton" type="button" class="btn btn-comment btn-block">취소</button>
+      </div>
+    </div>
+  </div>
+  <script src="../aply/js/bootstrap.min.js"></script>  
+</body>
+</html>

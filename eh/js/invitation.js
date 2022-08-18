@@ -1,3 +1,7 @@
+/* Copyright 2022 APLY Inc. All rights reserved. */
+
+'use strict';
+
 $(function() {
     document.title = "정은혜 작가 '포옹전' 초대장 | APLX";    
     
@@ -37,10 +41,6 @@ function updateMindSet() {
         mSel("#bird3_button").addEventListener('click', function (evt) {       
             setThirdPage();
         });
-
-        mSel("#arphoto_button").addEventListener('click', function (evt) {       
-            setForthPage();
-        });        
 
         mSel("#map_button").addEventListener('click', function (evt) {
             setMapPage();
@@ -256,8 +256,8 @@ function showComment() {
             frontStr = "<img src='./assets/ex/icon_bird3@3x.png' width='10px' height='12px'> ";
             break;
     }
-
-    mSel("#comment_area").innerHTML = frontStr + textToShow + " <img src='./assets/icon_heart.png' width='8px'>";
+    
+    $("#comment_area").html(frontStr + textToShow + " <img src='./assets/icon_heart.png' width='8px'>");
     mSel("#comment_area").classList.remove("fade");
     
     hideTimeout = window.setTimeout(hideComment, 3500);
@@ -267,11 +267,6 @@ function hideComment() {
     mSel("#comment_area").classList.add("fade");
     showTimeout = window.setTimeout(showComment, 1000);
 }
-
-function getFileExt(filename) {
-    return filename.split('.').pop();
-}
-
 
 var currentJobIndex = 0;
 function get_messages() {

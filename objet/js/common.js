@@ -4,6 +4,12 @@ function mSel(id) {
   return document.querySelector(id);
 }
 
+
+function getFileExt(filename) {
+  return filename.split('.').pop();
+}
+
+
 function getMobileOperatingSystem() {
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 

@@ -16,10 +16,10 @@
     <meta name="theme-color" content="#000000" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../objet/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/aply.css">    
+    <link rel="stylesheet" href="./assets/aply.css">
     <script src="../objet/js/mindar-image.prod.js"></script>
     <script src="../objet/js/aframe.js"></script>
     <script src="../objet/js/mindar-image-aframe.prod.js"></script>        
@@ -27,11 +27,11 @@
     <script src='../objet/js/aframe-extras.loaders.min.js'></script>
     <script src="../objet/js/jquery.min.js"></script>
     <script src="../objet/js/aframe-troika-text.min.js"></script>    
-
+    
     <script src="../objet/js/common.js"></script>
-    <script src="../objet/js/aplxevent.js"></script>    
-    <script src="./js/invitation.js"></script>
-    <style>      
+    <script src="../objet/js/aplxevent.js"></script>
+    <script src="./js/postcard.js"></script>
+    <style>
       #bottom_border {        
         color:black;
         background-color: rgba(255,255,255,1); color: black;
@@ -43,7 +43,7 @@
         padding-right: 25px;
         padding-top: 2px;
         padding-bottom: 2px;        
-        height: 160px;
+        height: 100px;
         position: fixed;
         z-index: 8;
         text-overflow: ellipsis;        
@@ -72,69 +72,34 @@
     
 </head>
 <body>
-  <div class="example-container">
+  <div id="example-container" class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
-        <img src="./assets/ex/inv_fr.jpg"/>
+        <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
         <div class="scanline"></div>
       </div>
     </div>
-
-    <a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-assets>
-        <img id="hearticon" src="./assets/icon_heart.png" />
-        <img id="line_plane" src="./assets/ex/plane.png" />
-        <img id="hearticon_before" src="./assets/ex/icon_heart1@3x.png" />        
-        <img id="selfi_image" src="./assets/ex/selfie@3x.png" />
-        <img id="selfidraw_image" src="./assets/ex/selfimage@3x.png" />        
-        <img id="paintandquest-preview" src="./assets/play.png" />
-        <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="./assets/ex/inv.mp4"></video>
-      </a-assets>
-
-      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
-
-      <a-entity id="card-object-target" mindar-image-target="targetIndex: 0">
-        <a-entity visible=false id="portfolio-panel" position="0 0 0">                    
-          <a-image id="aplane" src="#line_plane" position="0 0 -0.01" width="0.7" height="1"></a-image>
-                    
-          <a-image id="main_image_area" src="#work_image" position="0 0.1 0" width="0.62" height="0.76"></a-image>          
-
-          <a-troika-text id="comment_a2" max-width="0.41" line-height="1.5" position="-0.05 -0.33 0.1" value="41234123" color="#333" align="left" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.03"></a-troika-text>
-          <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.39 0.01" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image>
-
-          <a-entity id="portfolio-item0">
-            <a-video id="paintandquest-video-link" webkit-playsinline playsinline width="0.65" height="0.43" position="0 0.1 0"></a-video>
-            <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0.1 0" width="0.65" height="0.43"></a-image>
-          </a-entity>          
-        </a-entity>
-      </a-entity>
-    </a-scene>
   </div>
 
   <div id="top_border" style="display:none;">
     <table border="0" cellpadding="2px" width="100%">
       <tr>
-        <td width="50px" align="center">          
+        <td width="40px">
           <img src="./assets/ex/icon_bird1@3x.png" border="0" width="30px" id="bird1_button">
         </td>
-        <td width="50px" align="center">
+        <td width="40px">
           <img src="./assets/ex/icon_bird2@3x.png" border="0" width="30px" id="bird2_button">
-        </td>
-        <td width="50px" align="center">
-          <img src="./assets/ex/icon_bird3@3x.png" border="0" width="30px" id="bird3_button">
-        </td>                  
+        </td>       
         <td align="right">
-          <a href="https://aplx.aply.biz/eh/photo_ml.html" target="_self"><img src="./assets/ex/icon_arphoto@3x.png" border="0" width="30px" id="arphoto_button"></a>        
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./assets/ex/icon_map@3x.png" border="0" width="30px" id="map_button">&nbsp;&nbsp;&nbsp;
+          <a href="https://aplx.aply.biz/eh/photo_ml.html" target="_self"><img src="./assets/ex/icon_arphoto@3x.png" border="0" width="30px" id="arphoto_button"></a><br>
+          AR 포토
+          &nbsp;&nbsp;
         </td>
       </tr>
       <tr>
         <td colspan="3" align="left">
           <span id="comment_a1" style="color:white;"></span>
-        </td>
-        <td align="right">
-          <span style="color:white;">AR 포토</span>&nbsp;&nbsp;&nbsp;<span style="color:white;">오시는 길</span>
-        </td>      
+        </td>        
       </tr>    
     </table>      
   </div>
@@ -142,22 +107,10 @@
   <div id="bottom_border" style="display:none;">
     <div class="row" style="margin-top: 13px; margin-bottom: 15px">
         <div class="col-8 justify-content-center align-self-center eh_comment">
-           <span style="font-size:small;color:#000" id="comment_area"></span>
-        </div>      
+            <span style="font-size:small;color:#000" id="comment_area"></span>
+        </div>
         <div class="col-4 justify-content-center align-self-center text-center">
           <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
-        </div>              
-        <div class="col-12">
-          <hr size="2" width="100%" color="#BABABA">
-        </div>
-        <div class="col-8 eh_comment">
-          <font size="1" color="#969696">정은혜 아홉번째 개인전<br>
-          전시기간 : 2022년 8월 24일~30일<br>
-          전시장소 : 토포하우스<br>
-          서울시 종로구 인사동 11길 6<br></font>
-        </div>
-        <div class="col-4 justify-content-center align-self-center text-center">
-          <img src="./assets/ex/hug2@3x.png" width="60" height="60">
         </div>
         <div class="col-12 aplx_title">
           <hr size="1" width="100%" color="#BABABA">
@@ -167,7 +120,6 @@
     </div>                                   
   </div>
 
-  
   <div id="area_comment_writer" style="display: none;">
     <div class="row">
       <div class="col-12">
@@ -198,8 +150,7 @@
         <button id="closeButton" type="button" class="btn btn-comment btn-block">취소</button>
       </div>
     </div>
-  </div>  
-  <script src="../aply/js/bootstrap.min.js"></script>
-  
+  </div>
+  <script src="../aply/js/bootstrap.min.js"></script>  
 </body>
 </html>
