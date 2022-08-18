@@ -131,7 +131,7 @@ function setFirstPage(curContent, mid) {
     var a_likePos = a_planePos;
     mSel("#like_button").setAttribute("position", "0.36 -" + a_likePos + " 0.01");    
 
-    var a_commPos = a_likePos + 0.06;
+    var a_commPos = a_likePos;
     mSel("#comment_a2").setAttribute("position", "-0.1 -" + a_commPos + " 0.01");
 
 
