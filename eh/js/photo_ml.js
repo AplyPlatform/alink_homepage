@@ -20,15 +20,9 @@ function updateMindSet() {
         });
     };
 
-    const showPortfolio = () => {
-        const portfolio = document.querySelector("#portfolio-panel");
-        portfolio.setAttribute("visible", true);  
-    };
-    
     const sceneEl = document.querySelector('a-scene');        
 
-    sceneEl.addEventListener('targetFound', event => {              
-        showPortfolio();        
+    sceneEl.addEventListener('targetFound', event => {
         mSel("#top_border").style.display = 'none';        
     });
         
@@ -55,24 +49,5 @@ function playSound(id) {
     }
     catch(e) {
 
-    }
-}
-
-function isSet(value) {
-    if (typeof (value) === 'number')
-        return true;
-    if (value == "" || value == null || value == "undefined" || value == undefined)
-        return false;
-    return true;
-}
-
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
     }
 }

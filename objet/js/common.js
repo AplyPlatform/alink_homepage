@@ -6,6 +6,7 @@ function mSel(id) {
 
 
 function getFileExt(filename) {
+  if (filename == undefined || filename == null || filename == "") return "";
   return filename.split('.').pop();
 }
 
