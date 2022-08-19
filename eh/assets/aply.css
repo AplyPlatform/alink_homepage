@@ -45,14 +45,14 @@
     position: relative;
 
     background:
-      linear-gradient(to right, red 5px, transparent 5px) 0 0,
-      linear-gradient(to right, red 5px, transparent 5px) 0 100%,
-      linear-gradient(to left, red 5px, transparent 5px) 100% 0,
-      linear-gradient(to left, red 5px, transparent 5px) 100% 100%,
-      linear-gradient(to bottom, red 5px, transparent 5px) 0 0,
-      linear-gradient(to bottom, red 5px, transparent 5px) 100% 0,
-      linear-gradient(to top, red 5px, transparent 5px) 0 100%,
-      linear-gradient(to top, red 5px, transparent 5px) 100% 100%;
+      linear-gradient(to right, white 5px, transparent 5px) 0 0,
+      linear-gradient(to right, white 5px, transparent 5px) 0 100%,
+      linear-gradient(to left, white 5px, transparent 5px) 100% 0,
+      linear-gradient(to left, white 5px, transparent 5px) 100% 100%,
+      linear-gradient(to bottom, white 5px, transparent 5px) 0 0,
+      linear-gradient(to bottom, white 5px, transparent 5px) 100% 0,
+      linear-gradient(to top, white 5px, transparent 5px) 0 100%,
+      linear-gradient(to top, white 5px, transparent 5px) 100% 100%;
     background-repeat: no-repeat;
     background-size: 20px 20px;
   }
@@ -71,7 +71,7 @@
     position: absolute;
     width: 80%;
     height: 3px;
-    background: red;
+    background: #fff;
     animation: move 2s linear infinite;
   }
   @keyframes move {

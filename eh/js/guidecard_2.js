@@ -1,8 +1,12 @@
-'use strict';
+var currentPostId = 496;
+var targetFileId = 470;
+
+var intervalHandle = null;
+var isStop = false;
 
 $(function() {
     
-    document.title = "포옹전 작품 가이드 | APLX";
+    document.title = "포옹전 작품 가이드 : " + currentPostId + " | APLX";
     eventOC_IN();    
     window.onbeforeunload = function (e) {    
         eventOC_OUT();
@@ -16,17 +20,11 @@ $(function() {
     }, 0);
 });  
 
-var targetFileId = 470;
-var currentPostId = -1;
-var jobIds = [496, 517];
+
 var commentArrayData = [];
-var pageContents = [];
-var currrentPage = 0;
+var curContent;
 var currentCommentCount = 0;
 var hideTimeout = -1, showTimeout = -1;
-
-var intervalHandle = null;
-var isStop = true;
 
 function updateMindSet() {
     var mindFileName = targetFileId + ".mind";
@@ -35,14 +33,6 @@ function updateMindSet() {
     setARContent(mindFileName);
 
     const setButtons = () => {
-        mSel("#bird1_button").addEventListener('click', function (evt) {       
-            setFirstPage();
-        });
-
-        mSel("#bird2_button").addEventListener('click', function (evt) {       
-            setSecondPage();
-        });
-
         mSel("#qrscan_button").addEventListener('click', function (evt) {       
             playSound(1);
             return;
@@ -84,23 +74,33 @@ function updateMindSet() {
         
     sceneEl.addEventListener('targetLost', event => {
         //mSel("#bottom_border").style.display = 'none';
-        pauseScroll();
+        isStop = true;
+        clearInterval(intervalHandle);
     });
 
-    $("#oScroll").height(window.innerHeight - 238);
     setButtons();
     showComment();
-    get_messages();
+    get_message(currentPostId);    
 }
 
 function setARContent(mindFileName) {
     var strContent = '<a-scene loading-screen="dotsColor: red; backgroundColor: black" mindar-image="imageTargetSrc: ./assets/ex/targets/' + mindFileName + '; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"> \
+      <a-assets> \
+        <img id="hearticon" src="./assets/icon_heart.png" /> \
+        <img id="line_plane" src="./assets/ex/plane.png" /> \
+        <img id="hearticon_before" src="./assets/ex/icon_heart1@3x.png" /> \
+      </a-assets> \
       \
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera> \
       \
       <a-entity id="card-object-target" mindar-image-target="targetIndex: 0"> \
-        <a-entity visible=false id="portfolio-panel" position="0 0 0"> \
-          <a-image id="over_image" position="0 0 0.02" width="1.02" height="1.02"></a-image> \
+        <a-entity visible=false id="portfolio-panel" position="0 0 0" alpha-test="0.5" > \
+        <a-entity htmlembed position="0 0 0" class="clickable"> \
+            <pre id="oScroll" onmouseover="javascript:pauseScroll();"> \
+                <div id="scroll"><span eh_comment style="font-size:15px;color:#777" id="comment_a1"></span></div> \
+            </pre> \
+        </a-entity> \
+          <a-image class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.39 0.01" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image> \
         </a-entity> \
       </a-entity> \
     </a-scene>';
@@ -120,66 +120,50 @@ function playSound(id) {
     }
 }
 
-function setPageAssets(docu_id) {
-    currentPostId = docu_id;
-
-    var curContent = pageContents[currentPostId];    
+function setFirstPage(curContent, mid) {
     commentArrayData = curContent.comments;
-    
     mSel("#over_image").setAttribute("src", curContent.filename);
 
     var ratio = curContent.height / curContent.width;
     mSel("#over_image").setAttribute("height", ratio + 0.02);
     mSel("#over_image").setAttribute("width", 1.02);
 
-    mSel("#comment_a1").innerHTML = curContent.title;
-    mSel("#comment_a2").innerHTML = curContent.content;    
+    var a_planePos = (ratio / 2) + (ratio / 7);    
+    mSel("#aplane").setAttribute("position", "0 -" + a_planePos + " 0");
+    mSel("#aplane").setAttribute("height", ratio / 6);
 
-    setLikeButtonStatus(currentPostId);    
-}
+    var a_likePos = a_planePos;
+    mSel("#like_button").setAttribute("position", "0.36 -" + a_likePos + " 0.01");    
+
+    var a_commPos = a_likePos;
+    mSel("#comment_a2").setAttribute("position", "-0.1 -" + a_commPos + " 0.01");
 
 
-function setFirstPage() {
-    currrentPage = 0;
     playSound(1);
-    pauseScroll();    
-    setPageAssets(517);
-    startHistoryScroll();
-}
-
-
-function setSecondPage() {
-    currrentPage = 1;
-    playSound(1);
-    pauseScroll();
-    setPageAssets(496);
-    startHistoryScroll();
+    setLikeButtonStatus(mid);
 }
 
 function setLikeButtonStatus(docu_id) {
-    if (getCookie("user_like_" + docu_id) == "liked") {
-        mSel("#like_button").setAttribute("src", ""); 
-        mSel("#like_button").setAttribute("src", "./assets/icon_heart.png");
+    if (getCookie("user_like_" + docu_id) == "liked") {        
+        mSel("#like_button").setAttribute("src", "#hearticon");        
         return;
     }    
   
-    mSel("#like_button").setAttribute("src", ""); 
-    mSel("#like_button").setAttribute("src", "./assets/ex/icon_heart1@3x.png");
+    mSel("#like_button").setAttribute("src", "#hearticon_before");
 }
+
 
 function likeMessage()  {
   if (getCookie("user_like_" + currentPostId) == "liked") {
       setCookie("user_like_" + currentPostId, "", 1);
       likeCancelMessage(currentPostId);
-      mSel("#like_button").setAttribute("src", ""); 
-      mSel("#like_button").setAttribute("src", "./assets/ex/icon_heart1@3x.png"); 
+      mSel("#like_button").setAttribute("src", "#hearticon_before");
       return;
   }
 
   playSound(0);
   setCookie("user_like_" + currentPostId, "liked", 1);
-  mSel("#like_button").setAttribute("src", "");
-  mSel("#like_button").setAttribute("src", "./assets/icon_heart.png");
+  mSel("#like_button").setAttribute("src", "#hearticon");
 
   var formData = new FormData();
   formData.append("form_kind", "like_action");
@@ -204,12 +188,7 @@ function likeCancelMessage(docu_id)  {
 
 }
 
-
-var currentJobIndex = 0;
-function get_messages() {
-
-  var docu_id = jobIds[currentJobIndex];
-  currentJobIndex++;
+function get_message(docu_id) {
 
   var formData = new FormData();
   formData.append("form_kind", "get_message");
@@ -217,29 +196,30 @@ function get_messages() {
   formData.append("tag", "1");
   formData.append("docu_srl", docu_id);
 
-  ajaxRequest(formData, function (r) {        
-    if (isSet(r) && r.length > 0) {                   
-        
-        var commentArray = [];
-        if ("comments" in r[0] && r[0].comments.length > 0) {            
-            r[0].comments.forEach(function (v, i, arr) {                
-                commentArray.push(v.content + " | " + v.name);                
-            });            
-        }
+  ajaxRequest(formData, function (r) {    
+        if (isSet(r) && r.length > 0) {
+            const comment_a1 = document.querySelector("#comment_a1");
+            const comment_a2 = document.querySelector("#comment_a2");
 
-        pageContents[docu_id] = {title : r[0].title, content : r[0].content, filename : r[0].file, comments : commentArray, width:r[0].width, height:r[0].height};
+            comment_a1.innerHTML = r[0].content;
+            comment_a2.setAttribute("value", r[0].title);
+            currentPostId = r[0].docu_srl;
 
-        if (currentJobIndex < jobIds.length) {
-            get_messages();            
+            var commentArray = [];
+            if ("comments" in r[0] && r[0].comments.length > 0) {                
+                r[0].comments.forEach(function (v, i, arr) {                
+                    commentArray.push(v.content + " | " + v.name);                
+                });            
+            }
+
+            var curContent = {title : r[0].title, content : r[0].content, filename : r[0].file, comments : commentArray, width: r[0].width, height: r[0].height};            
+            setFirstPage(curContent, currentPostId);
         }
-        else {
-            setFirstPage();
-        }
-    }
 
     }, function (r,s,e) {
 
   });
+
 }
 
 
@@ -322,16 +302,10 @@ function pauseScroll() {
 
     isStop = true;
     clearInterval(intervalHandle);
-    $("#scroll").scrollTop( 0 );
-    $("#oScroll").scrollTop( 0 );
-    vScroll = null;
 }
-
 function resumeScroll() {
-    isStop = false;
-    intervalHandle = setInterval("vScroll.move()", 30);
+    intervalHandle = setInterval("vScroll.move()", 10);
 }
-
 function scroll(oid, iid) {
     this.oCont = document.getElementById(oid);
     this.ele = document.getElementById(iid);
@@ -340,11 +314,12 @@ function scroll(oid, iid) {
     this.move = function () {
         this.ele.style.top = this.n + "px";
         this.n--;
+        //if (this.n < -1100) { this.n = this.oCont.clientHeight; }
+        //if (this.n < (-this.height)) { this.n = this.oCont.clientHeight; }
     }
 }
 var vScroll;
 function startHistoryScroll() {
-    isStop = false;
     vScroll = new scroll("oScroll", "scroll");
-    intervalHandle = setInterval("vScroll.move()", 30)
+    intervalHandle = setInterval("vScroll.move()", 10)
 }

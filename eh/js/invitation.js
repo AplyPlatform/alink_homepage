@@ -51,16 +51,14 @@ function updateMindSet() {
         });
 
         mSel("#write_comment_button").addEventListener('click', function (evt) {
-            mSel("#bottom_border").style.display = 'none';
-            mSel("#top_border").style.display = 'none';
+            mSel("#bottom_border").style.display = 'none';            
             mSel("#paintandquest-video-mp4").currentTime = 0;
             mSel("#paintandquest-video-mp4").pause();
             $("#area_comment_writer").show();
         });
 
         mSel("#closeButton").addEventListener('click', function(evt) {
-            mSel("#bottom_border").style.display = 'block';
-            mSel("#top_border").style.display = 'block';
+            mSel("#bottom_border").style.display = 'block';            
             $("#area_comment_writer").hide();
         });
 

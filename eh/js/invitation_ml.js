@@ -121,11 +121,12 @@ function playMedia(bhow) {
 }
 
 
-function setPageAssets(docu_id) {    
-    var curContent = pageContents[docu_id];
+function setPageAssets(docu_id) {
     
-    commentArrayData = curContent.comments;
     currentPostId = docu_id;
+
+    var curContent = pageContents[currentPostId];    
+    commentArrayData = curContent.comments;    
     
     mSel("#comment_a1").innerHTML = curContent.title;
     mSel("#comment_a2").setAttribute("value", curContent.content);
@@ -157,7 +158,7 @@ function setPageAssets(docu_id) {
 
     playMedia(false);
 
-    setLikeButtonStatus(docu_id);
+    setLikeButtonStatus(currentPostId);
 }
 
 function setFirstPage() {

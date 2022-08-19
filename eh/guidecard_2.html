@@ -24,41 +24,40 @@
     <script src="../objet/js/aframe.js"></script>
     <script src="../objet/js/mindar-image-aframe.prod.js"></script>        
     <script src="../objet/js/aframe-gif-shader.js"></script>    
-    <script src='../objet/js/aframe-extras.loaders.min.js'></script>
+    <script src='../objet/js/aframe-extras.loaders.min.js'></script>    
+    <script src="../objet/js/aframe-troika-text.min.js"></script>
+    <script src="../objet/js/html_embeder_build.js"></script>
     <script src="../objet/js/jquery.min.js"></script>
-    <script src="../objet/js/aframe-troika-text.min.js"></script>    
     
     <script src="../objet/js/common.js"></script>
     <script src="../objet/js/aplxevent.js"></script>
-    <script src="./js/guidecard.js"></script>
+    <script src="./js/guidecard_2.js"></script>
     
     <style>
-      #bottom_border {
-        background-color: rgba(255,255,255,0.9); color: black;
-        top: 92px;
-        bottom: 0;        
+      #bottom_border {        
+        color:black;
+        background-color: rgba(255,255,255,1); color: black;
+        bottom: 0;
         left: 0;
         right: 0;        
         width: 100vw;
         padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-bottom: 2px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 2px;        
+        height: 80px;
         position: fixed;
         z-index: 8;
         text-overflow: ellipsis;        
       }
 
-      #top_border {
-        font-family: 'Poor Story', cursive;
-        color:white;
-        background-color: rgba(255,255,255,0); color: white;        
-        left: 0;
-        top: 0;
-        right: 0;        
-        width: 100vw;
-        padding: 15px;
-        height: 92px;
+      #top_border {        
+        background-color: rgba(255,255,255,0);
+        top: 10px;
+        right: 10px;
+        width: 60px;
+        padding: 8px;
+        height: 85px;
         position: fixed;
         z-index: 8;
       }
@@ -76,15 +75,15 @@
       }
 
       #oScroll {
+          padding: 20px;
           font-family: 'Noto Sans KR', sans-serif;
-          margin: 10px;
-          margin-right: 25px;
-          padding: 5px;
-          padding-right: 20px;
+          font-size: 10px;          
+          color: #000;
+          background-color: rgba(255,255,255,1);
+          margin: 0px;          
           position: relative;
-          width: 98%;
-          top: 0;
-          bottom: 0;          
+          width: 250px;
+          height: 350px;
           white-space: pre-wrap;
           word-break: break-all;
           overflow: auto;
@@ -110,43 +109,12 @@
   </div>
 
   <div id="top_border">
-    <table border="0" cellpadding="2px" width="100%">
-      <tr>
-        <td width="50px" align="center">          
-          <img src="./assets/ex/icon_bird1@3x.png" border="0" width="30px" id="bird1_button">
-        </td>
-        <td width="50px" align="center">
-          <img src="./assets/ex/icon_bird2@3x.png" border="0" width="30px" id="bird2_button">
-        </td>        
-        <td></td>  
-        <td align="center" style="color:white;" width="60px">
-          <a href="https://aplx.aply.biz/eh/photo_ml.html" target="_self"><img src="./assets/ex/icon_arphoto@3x.png" border="0" width="30px" id="arphoto_button"></a>          
-        </td>
-        <td align="center" style="color:white;" width="60px">
-          <a href="https://aplx.aply.biz/qr" target="_self"><img src="./assets/ex/icon_qrscan@3x.png" border="0" width="50px" id="qrscan_button"></a>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3" align="left">
-          <span id="comment_a1" style="color:white;"></span>
-        </td>
-        <td align="center" style="color:white;" width="60px">
-          <span style="color:white;">AR 포토</span>
-        </td>
-        <td align="center" style="color:white;" width="60px">
-          <span style="color:white;">QR 인식</span>
-        </td>
-      </tr>    
-    </table>      
+    <a href="https://aplx.aply.biz/qr" target="_self"><img src="./assets/ex/icon_qrscan@3x.png" border="0" width="50px" id="qrscan_button"></a>
   </div>
   
   <div id="bottom_border" style="display:none;">
-    <div class="row" style="margin-bottom: 10px">        
-        <div class="col-12 justify-content-center align-self-center">
-          <pre id="oScroll" onmouseover="javascript:pauseScroll();">
-            <div id="scroll"><span style="font-size:20px;color:#777" id="comment_a2"></span></div>
-          </pre>
-          <img id="like_button" src="./assets/icon_heart.png" width="30px">
+    <div class="row" style="margin-bottom: 8px">        
+        <div class="col-12 justify-content-center align-self-center" eh_comment>          
           <hr size="1" width="100%" color="#BABABA">
         </div>        
         <div class="col-10 justify-content-center align-self-center eh_comment">
