@@ -142,3 +142,15 @@
     position: fixed;
     z-index: 13;
   }
+
+  .a-dialog-allow-button {
+    background-color: #8fd1e7;
+  }
+
+  .a-dialog-deny-button {
+    background-color: #ff6666;
+  }
+
+  .a-dialog-ok-button {
+    background-color: #8fd1e7;
+  }

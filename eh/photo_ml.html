@@ -29,7 +29,20 @@
     <script src="../objet/js/common.js"></script>
     <script src="../objet/js/aplxevent.js"></script>
     <script src="./js/photo_ml.js"></script>
-    <style>   
+    <style>
+      
+      .a-dialog-allow-button {
+        background-color: #8fd1e7;
+      }
+
+      .a-dialog-deny-button {
+        background-color: #ff6666;
+      }
+
+      .a-dialog-ok-button {
+        background-color: #8fd1e7;
+      }
+      
       #top_border {        
         background-color: rgba(255,255,255,0);
         top: 10px;
@@ -44,7 +57,7 @@
     
 </head>
 <body>      
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' device-orientation-permission-ui="enabled: false">
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' device-orientation-permission-ui="enabled: true">
     <a-assets>        
       <img id="flowerimage1" src="./assets/ex/flower1@3x.png" />
       <img id="flowerimage2" src="./assets/ex/flower2@3x.png" />

@@ -29,7 +29,19 @@
     <script src="../objet/js/common.js"></script>
     <script src="../objet/js/aplxevent.js"></script>
     <script src="./js/invitation_ml.js"></script>
-    <style>      
+    <style>
+      .a-dialog-allow-button {
+        background-color: #8fd1e7;
+      }
+
+      .a-dialog-deny-button {
+        background-color: #ff6666;
+      }
+
+      .a-dialog-ok-button {
+        background-color: #8fd1e7;
+      }
+      
       #bottom_border {        
         color:black;
         background-color: rgba(255,255,255,1); color: black;
@@ -70,7 +82,7 @@
     
 </head>
 <body>    
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer="colorManagement: true, physicallyCorrectLights" device-orientation-permission-ui="enabled: false">
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer="colorManagement: true, physicallyCorrectLights" device-orientation-permission-ui="enabled: true">
     <a-assets>
       <img id="hearticon" src="./assets/icon_heart.png" />
       <img id="line_plane" src="./assets/ex/plane.png" />
