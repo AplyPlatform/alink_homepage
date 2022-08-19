@@ -135,3 +135,13 @@
       opacity:1;
     }
   }
+
+  .scanText {
+    background-color: rgba(255,255,255,0);
+    top: 80px;        
+    width: 100vw;
+    padding: 8px;
+    height: 85px;
+    position: fixed;
+    z-index: 13;
+  }

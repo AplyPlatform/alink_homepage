@@ -1,13 +1,12 @@
-var currentPostId = 0;
+var currentPostId = 496;
+var targetFileId = 470;
+
+var intervalHandle = null;
+var isStop = false;
 
 $(function() {
-    currentPostId = getQueryVariable("mid");
-    if (!isSet(currentPostId)) {
-        location.href = "https://aplx.aply.biz";
-        return;
-    }
-
-    document.title = "포옹전 작품 관람 : " + currentPostId + " | APLX";
+    
+    document.title = "포옹전 작품 가이드 : " + currentPostId + " | APLX";
     eventOC_IN();    
     window.onbeforeunload = function (e) {    
         eventOC_OUT();
@@ -28,8 +27,8 @@ var currentCommentCount = 0;
 var hideTimeout = -1, showTimeout = -1;
 
 function updateMindSet() {
-    var mindFileName = currentPostId + ".mind";
-    $('#front_image').attr("src", "./assets/ex/targets/" + currentPostId + ".jpg");
+    var mindFileName = targetFileId + ".mind";
+    $('#front_image').attr("src", "./assets/ex/targets/" + targetFileId + ".jpg");
 
     setARContent(mindFileName);
 
@@ -68,12 +67,15 @@ function updateMindSet() {
 
     const sceneEl = document.querySelector('a-scene');
     sceneEl.addEventListener('targetFound', event => {      
-        mSel("#bottom_border").style.display = 'block';        
+        mSel("#bottom_border").style.display = 'block';
         showPortfolio();
+        startHistoryScroll();
     });
         
     sceneEl.addEventListener('targetLost', event => {
-        mSel("#bottom_border").style.display = 'none';
+        //mSel("#bottom_border").style.display = 'none';
+        isStop = true;
+        clearInterval(intervalHandle);
     });
 
     setButtons();
@@ -131,7 +133,7 @@ function setFirstPage(curContent, mid) {
     var a_likePos = a_planePos;
     mSel("#like_button").setAttribute("position", "0.36 -" + a_likePos + " 0.01");    
 
-    var a_commPos = a_likePos + 0.06;
+    var a_commPos = a_likePos;
     mSel("#comment_a2").setAttribute("position", "-0.1 -" + a_commPos + " 0.01");
 
 
@@ -189,14 +191,16 @@ function get_message(docu_id) {
   var formData = new FormData();
   formData.append("form_kind", "get_message");
   formData.append("user", "eh");
+  formData.append("tag", "1");
   formData.append("docu_srl", docu_id);
 
   ajaxRequest(formData, function (r) {    
         if (isSet(r) && r.length > 0) {
             const comment_a1 = document.querySelector("#comment_a1");
             const comment_a2 = document.querySelector("#comment_a2");
-            comment_a1.innerHTML = r[0].title;
-            comment_a2.setAttribute("value", r[0].content);
+
+            comment_a1.innerHTML = r[0].content;
+            comment_a2.setAttribute("value", r[0].title);
             currentPostId = r[0].docu_srl;
 
             var commentArray = [];
@@ -287,4 +291,33 @@ function writeMessage()  {
         mSel("#top_border").style.display = 'block';
         alert("작성 실패! - 잠시 후 다시 시도해 주세요.")
     });
+}
+
+function pauseScroll() {
+    if(isStop == true) {        
+        return;
+    }
+
+    isStop = true;
+    clearInterval(intervalHandle);
+}
+function resumeScroll() {
+    intervalHandle = setInterval("vScroll.move()", 20);
+}
+function scroll(oid, iid) {
+    this.oCont = document.getElementById(oid);
+    this.ele = document.getElementById(iid);
+    this.height = this.ele.clientHeight;
+    this.n = this.oCont.clientHeight;
+    this.move = function () {
+        this.ele.style.top = this.n + "px";
+        this.n--;
+        //if (this.n < -1100) { this.n = this.oCont.clientHeight; }
+        //if (this.n < (-this.height)) { this.n = this.oCont.clientHeight; }
+    }
+}
+var vScroll;
+function startHistoryScroll() {
+    vScroll = new scroll("oScroll", "scroll");
+    intervalHandle = setInterval("vScroll.move()", 20)
 }

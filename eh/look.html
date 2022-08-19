@@ -39,8 +39,8 @@
         left: 0;
         right: 0;        
         width: 100vw;
-        padding-left: 25px;
-        padding-right: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
         padding-top: 2px;
         padding-bottom: 2px;        
         height: 120px;
@@ -71,6 +71,11 @@
 <body>
   <div id="example-container" class="example-container">
     <div id="example-scanning-overlay" class="hidden">
+      <div class="scanText">
+        <center>
+          <span id="scanMe" aplx_title><font color="#fff" size="6"><b>작품을 비춰 주세요</b></font></span>
+        </center>
+      </div>
       <div class="inner">
         <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
         <div class="scanline"></div>
@@ -84,8 +89,8 @@
   
   <div id="bottom_border" style="display:none;">
     <div class="row" style="margin-top: 13px; margin-bottom: 15px">        
-        <div class="col-8 justify-content-center align-self-center eh_comment">
-          <span style="font-size:small;color:#777" id="comment_a1"></span>
+        <div class="col-12 justify-content-center align-self-center eh_comment">
+          <span style="font-size:12px;color:#777" id="comment_a1"></span>
         </div>
         <div class="col-12">
           <hr size="2" width="100%" color="#BABABA">

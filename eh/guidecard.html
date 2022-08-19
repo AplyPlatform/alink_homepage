@@ -30,7 +30,8 @@
     
     <script src="../objet/js/common.js"></script>
     <script src="../objet/js/aplxevent.js"></script>
-    <script src="./js/look.js"></script>
+    <script src="./js/guidecard.js"></script>
+    
     <style>
       #bottom_border {        
         color:black;
@@ -39,11 +40,11 @@
         left: 0;
         right: 0;        
         width: 100vw;
-        padding-left: 25px;
-        padding-right: 25px;
-        padding-top: 2px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
         padding-bottom: 2px;        
-        height: 120px;
+        height: 240px;
         position: fixed;
         z-index: 8;
         text-overflow: ellipsis;        
@@ -62,20 +63,46 @@
 
       hr {
         padding: 0px;
-        margin-top: 7px;
-        margin-bottom: 7px;
+        margin-top: 5px;
+        margin-bottom: 5px;
       }
+
+      #scroll {
+          font-family: 'Poor Story', cursive;
+          position: absolute;
+          top: 0px;
+      }
+
+      #oScroll {
+          font-family: 'Poor Story', cursive;
+          margin: 0px;
+          padding: 0px;
+          position: relative;
+          width: 100%;
+          height: 140px;
+          white-space: pre-wrap;
+          word-break: break-all;
+          overflow: auto;
+      }      
+
     </style>
+
     
 </head>
 <body>
   <div id="example-container" class="example-container">
     <div id="example-scanning-overlay" class="hidden">
-      <div class="inner">
-        <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
-        <div class="scanline"></div>
-      </div>
-    </div>
+          <div class="scanText">
+            <center>
+              <span id="scanMe" aplx_title><font color="#fff" size="6"><b>작품을 비춰 주세요</b></font></span>
+            </center>
+          </div>
+        
+          <div class="inner">        
+            <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
+            <div class="scanline"></div>
+          </div>        
+    </div>    
   </div>
 
   <div id="top_border">
@@ -83,17 +110,17 @@
   </div>
   
   <div id="bottom_border" style="display:none;">
-    <div class="row" style="margin-top: 13px; margin-bottom: 15px">        
-        <div class="col-8 justify-content-center align-self-center eh_comment">
-          <span style="font-size:small;color:#77`7" id="comment_a1"></span>
-        </div>
-        <div class="col-12">
-          <hr size="2" width="100%" color="#BABABA">
+    <div class="row" style="margin-bottom: 8px">        
+        <div class="col-12 justify-content-center align-self-center" eh_comment>
+          <pre id="oScroll" onmouseover="javascript:pauseScroll();" eh_comment>
+            <div id="scroll" eh_comment><span eh_comment style="font-size:15px;color:#777" id="comment_a1"></span></div>
+          </pre>
+          <hr size="1" width="100%" color="#BABABA">
         </div>        
-        <div class="col-8 justify-content-center align-self-center eh_comment">
+        <div class="col-10 justify-content-center align-self-center eh_comment">
             <span style="font-size:small;color:#000" id="comment_area"></span>
         </div>
-        <div class="col-4 justify-content-center align-self-center text-center">
+        <div class="col-2 justify-content-center align-self-center text-center">
           <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
         </div>
         <div class="col-12 aplx_title">
@@ -135,6 +162,6 @@
       </div>
     </div>
   </div>
-  <script src="../aply/js/bootstrap.min.js"></script>  
+  <script src="../aply/js/bootstrap.min.js"></script>
 </body>
 </html>
