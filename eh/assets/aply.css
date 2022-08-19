@@ -1,10 +1,11 @@
   @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
   @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+  @import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap);
+
   
   body {
     margin: 0;
   }
-
   .example-container {
     overflow: hidden;
     position: absolute;
@@ -134,13 +135,14 @@
   }
 
   .scanText {
+    font-family: 'Noto Sans KR', sans-serif;
     background-color: rgba(255,255,255,0);
     top: 80px;        
     width: 100vw;
     padding: 8px;
     height: 85px;
     position: fixed;
-    z-index: 13;
+    z-index: 15;
   }
 
   .a-dialog-allow-button {
