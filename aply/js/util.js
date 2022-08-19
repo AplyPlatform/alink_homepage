@@ -181,30 +181,6 @@ function showComment() {
     hideTimeout = window.setTimeout(hideComment, 3500);
 }
 
-function ajaxRequest(data, callback, errorcallback) {
-    $.ajax({
-        url: "https://aplx.link/aplx_handler/handler.php",
-        crossDomain: true,
-        cache: false,
-        data: data,
-        type: "POST",      
-        contentType: false,
-        processData: false,
-        beforeSend: function (request) {
-            //request.setRequestHeader("droneplay-token", getCookie('user_token'));
-        },
-        success: function (r) {
-            if (r.result != "success" && r.result_code == 1) {              
-                return;
-            }
-
-            callback(r);
-        },
-        error: function (request, status, error) {         
-            errorcallback(request, status, error);
-        }
-    });
-}
 
 function playSound(id) {
     try {

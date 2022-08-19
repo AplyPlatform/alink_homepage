@@ -44,7 +44,7 @@
     
 </head>
 <body>      
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
     <a-assets>        
       <img id="flowerimage1" src="./assets/ex/flower1@3x.png" />
       <img id="flowerimage2" src="./assets/ex/flower2@3x.png" />
@@ -54,7 +54,7 @@
       <img id="line_plane" src="./assets/ex/plane.png" />        
     </a-assets>
 
-    <a-camera position="-0.9 0.8 7" rotation-reader my-camera></a-camera>
+    <a-camera position="-0.9 0.8 2.3" rotation-reader my-camera raycaster="far: 10000; objects: .clickable"></a-camera>
     <a-entity look-at="[my-camera]" position="0.8 0 -0.5">
       <a-image id="selfimage" src="#selfdraw" position="0.42 0.4 -0.01" width="2" height="2.5"></a-image>
       <a-image id="aplane" src="#line_plane" position="-0.8 -1.15 -0.01" width="4.5" height="0.6"></a-image>

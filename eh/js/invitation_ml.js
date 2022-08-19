@@ -11,7 +11,7 @@ $(function() {
         return undefined;   
     };
 
-    updateMindSet();    
+    updateMindSet();
 });
 
 var commentArrayData = [];
@@ -22,13 +22,22 @@ var currentPostId = 0;
 
 var hideTimeout = -1, showTimeout = -1;
 var jobIds = [230, 238, 240];
+var isMediaPlay = false;
 
-function updateMindSet() {    
-    const setButtons = () => {
+function updateMindSet() {
+    
+    const setButtons = () => {  
+        
+        mSel("#like_button").addEventListener('click', function (evt) {       
+            likeMessage();
+        });
+
         mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {
-            mSel("#paintandquest-preview-button").setAttribute("visible", false);
-            mSel("#paintandquest-video-mp4").play();
-        });        
+            if (isMediaPlay == true)
+                playMedia(false);
+            else
+                playMedia(true);
+        });
 
         mSel("#bird1_button").addEventListener('click', function (evt) {       
             setFirstPage();
@@ -46,13 +55,8 @@ function updateMindSet() {
             setMapPage();
         });
 
-        mSel("#like_button").addEventListener('click', function (evt) {
-            likeMessage();
-        });
-
         mSel("#write_comment_button").addEventListener('click', function (evt) {            
-            mSel("#paintandquest-video-mp4").currentTime = 0;
-            mSel("#paintandquest-video-mp4").pause();
+            playMedia(false);
             $("#area_comment_writer").show();
         });
 
@@ -64,9 +68,8 @@ function updateMindSet() {
             writeMessage();            
         });
 
-        mSel("#paintandquest-preview-button").addEventListener('click', function (evt) {    
-            mSel("#paintandquest-preview-button").setAttribute("visible", false);
-            mSel("#paintandquest-video-link").play();
+        mSel("#paintandquest-video-mp4").addEventListener('play', (event) => {
+            mSel("#paintandquest-video-loader-spin").setAttribute("visible", false);
         });
     };
 
@@ -98,6 +101,25 @@ function playSound(id) {
     }
 }
 
+function playMedia(bhow) {
+    if (bhow) {
+        if (isMediaPlay == true) return;        
+        mSel("#paintandquest-preview-button").setAttribute("visible", false);
+        mSel("#paintandquest-video-loader-spin").setAttribute("visible", true);
+        mSel("#paintandquest-video-mp4").play();
+        isMediaPlay = true;
+    }
+    else {        
+        if (isMediaPlay == false) return;
+
+        mSel("#paintandquest-video-loader-spin").setAttribute("visible", false);
+        mSel("#paintandquest-preview-button").setAttribute("visible", true);
+        mSel("#paintandquest-video-mp4").currentTime = 0;
+        mSel("#paintandquest-video-mp4").pause();
+        isMediaPlay = false;
+    }
+}
+
 
 function setPageAssets(docu_id) {    
     var curContent = pageContents[docu_id];
@@ -106,7 +128,7 @@ function setPageAssets(docu_id) {
     currentPostId = docu_id;
     
     mSel("#comment_a1").innerHTML = curContent.title;
-    mSel("#comment_a2").setAttribute("value", curContent.content);    
+    mSel("#comment_a2").setAttribute("value", curContent.content);
 
     if (curContent.filename != "") {
         if (getFileExt(curContent.filename).toLowerCase() == "mp4") {                
@@ -118,16 +140,22 @@ function setPageAssets(docu_id) {
             mSel("#portfolio-item0").setAttribute("visible", true);
         }
         else {
-            mSel("#main_image_area").setAttribute("src", "");
+            var targetHeight =  (2.5 * curContent.height) / curContent.width;
+            mSel("#main_image_area").setAttribute("src", "");            
             mSel("#main_image_area").setAttribute("src", curContent.filename);
+            mSel("#main_image_area").setAttribute("height", targetHeight);   
+                        
+            var a_planePos = targetHeight / 1.5;
+            //mSel("#aplane").setAttribute("position", "0 -" + a_planePos + " 0.01");                        
+            mSel("#comment_a2").setAttribute("position", "-0.4 -" + a_planePos + " 0.1");
+            mSel("#like_button").setAttribute("position", "0.85 -" + a_planePos + " 0.1");
+            
             mSel("#main_image_area").setAttribute("visible", true);
-            mSel("#portfolio-item0").setAttribute("visible", false);                
+            mSel("#portfolio-item0").setAttribute("visible", false);
         }
     }
 
-    mSel("#paintandquest-video-mp4").currentTime = 0;
-    mSel("#paintandquest-video-mp4").pause();
-    mSel("#paintandquest-preview-button").setAttribute("visible", true);
+    playMedia(false);
 
     setLikeButtonStatus(docu_id);
 }
@@ -153,8 +181,7 @@ function setThirdPage() {
 
 function setMapPage() {
     playSound(1);
-    mSel("#paintandquest-video-mp4").currentTime = 0;
-    mSel("#paintandquest-video-mp4").pause();
+    playMedia(false);
     window.open("https://naver.me/xkx9kjNi", "_blank");
 }
 
@@ -267,7 +294,7 @@ function get_messages() {
             });            
         }
 
-        pageContents[docu_id] = {title : r[0].title, content : r[0].content, filename : r[0].file, comments : commentArray};
+        pageContents[docu_id] = {title : r[0].title, content : r[0].content, filename : r[0].file, comments : commentArray, width:r[0].width, height:r[0].height};
 
         if (currentJobIndex < jobIds.length) {
             get_messages();            

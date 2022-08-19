@@ -70,7 +70,7 @@
     
 </head>
 <body>    
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer="colorManagement: true, physicallyCorrectLights" device-orientation-permission-ui="enabled: true">
     <a-assets>
       <img id="hearticon" src="./assets/icon_heart.png" />
       <img id="line_plane" src="./assets/ex/plane.png" />
@@ -78,21 +78,23 @@
       <img id="selfi_image" src="./assets/ex/selfie@3x.png" />
       <img id="selfidraw_image" src="./assets/ex/selfimage@3x.png" />
       <img id="paintandquest-preview" src="./assets/play.png" />
-      <video id="paintandquest-video-mp4" autoplay="false" loop="true" src="./assets/ex/inv.mp4"></video>
+      <img id="paintandquest-video-loader-spin-image" src="./assets/loader.png" />      
+      <video id="paintandquest-video-mp4" autoplay="false" loop="true"></video>            
     </a-assets>
 
-    <a-camera position="-0.9 0.8 7" rotation-reader my-camera></a-camera>
-    <a-entity look-at="[my-camera]" position="0.8 0 -0.5">
-        <!-- <a-image id="aplane" src="#line_plane" position="0 0 -0.01" width="3" height="3"></a-image> -->
+    <a-camera position="-0.9 0.8 2.2" rotation-reader my-camera cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+    <a-entity id="allentity" look-at="[my-camera]" position="0.8 0 -0.5">
+        <a-image id="aplane" src="#line_plane" position="0 -0.5 -0.01" width="3" height="4.2"></a-image>
                   
-        <a-image id="main_image_area" src="#selfi_image" position="0 0.1 0" width="2.5" height="2.8"></a-image>          
+        <a-image id="main_image_area" src="#selfi_image" position="0 -0.1 0" width="2.5" height="2.8"></a-image>          
 
-        <a-troika-text id="comment_a2" max-width="2.5" line-height="1.5" position="-0.05 -0.33 0.1" value="41234123" color="#333" align="left" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.03"></a-troika-text>
-        <a-image cursor="rayOrigin: mouse" class="clickable" id="like_button" src="#hearticon_before" position="0.27 -0.39 0.01" alpha-test="0.5" width="0.1" height="0.1" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image>
+        <a-troika-text id="comment_a2" value="TEST COMMENT 123412 15153 15123 12532" max-width="1.6" line-height="1.5" position="-0.15 -0.7 0.1" color="#333" align="left" font="../objet/assets/PoorStory-Regular.ttf" font-size="0.12"></a-troika-text>
+        <a-image id="like_button" class="clickable" src="#hearticon_before" position="0.27 -0.39 0.01" width="0.4" height="0.4" animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true"></a-image>
 
-        <a-entity id="portfolio-item0">
+        <a-entity id="portfolio-item0">                    
+          <a-image id="paintandquest-video-loader-spin" visible="false" src="#paintandquest-video-loader-spin-image" position="0 0.1 0" width="2.5" height="1.7"></a-image>
           <a-video id="paintandquest-video-link" webkit-playsinline playsinline width="2.5" height="1.7" position="0 0.1 0"></a-video>
-          <a-image id="paintandquest-preview-button" cursor="rayOrigin: mouse" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0.1 0" width="2.5" height="1.7"></a-image>
+          <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" position="0 0.1 0" width="2.5" height="1.7"></a-image>
         </a-entity>                  
     </a-entity>
   </a-scene>
@@ -119,7 +121,7 @@
       </tr>
       <tr>
         <td colspan="4" align="left">
-          <span id="comment_a1" style="color:white;"></span>
+          <span id="comment_a1" style="color:white;">TEST MESSAGE</span>
         </td>
         <td align="center" style="color:white;" width="60px">
           <span style="color:white;">AR 포토</span>
