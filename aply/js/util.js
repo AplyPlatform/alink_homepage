@@ -183,7 +183,7 @@ function showComment() {
 
 function ajaxRequest(data, callback, errorcallback) {
     $.ajax({
-        url: "https://aply.biz/op_aplx/aplx_handler/handler.php",
+        url: "https://aplx.link/aplx_handler/handler.php",
         crossDomain: true,
         cache: false,
         data: data,
