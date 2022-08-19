@@ -31,14 +31,17 @@
     <script src="./js/invitation_ml.js"></script>
     <style>
       .a-dialog-allow-button {
+        color:#000;
         background-color: #8fd1e7;
       }
 
       .a-dialog-deny-button {
+        color:#000;
         background-color: #ff6666;
       }
 
       .a-dialog-ok-button {
+        color:#000;
         background-color: #8fd1e7;
       }
       
@@ -82,7 +85,8 @@
     
 </head>
 <body>    
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer="colorManagement: true, physicallyCorrectLights" device-orientation-permission-ui="enabled: true">
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer="colorManagement: true, physicallyCorrectLights"
+    device-orientation-permission-ui="enabled: true; deviceMotionMessage:증강현실 기능의 사용을 위하 스마트폰의 동작과 방향 정보를 읽습니다.; denyButtonText: 거부; allowButtonText: 허용; cancelButtonText: 취소">
     <a-assets>
       <img id="hearticon" src="./assets/icon_heart.png" />
       <img id="line_plane" src="./assets/ex/plane.png" />
@@ -157,7 +161,7 @@
           <hr size="2" width="100%" color="#BABABA">
         </div>
         <div class="col-8 eh_comment">
-          <font size="1" color="#969696">정은혜 아홉번째 개인전<br>
+          <font size="1" color="#969696">정은혜 개인전<br>
           전시기간 : 2022년 8월 24일~30일<br>
           전시장소 : 토포하우스<br>
           서울시 종로구 인사동 11길 6<br></font>
