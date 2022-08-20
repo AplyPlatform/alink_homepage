@@ -34,45 +34,68 @@
     
     <style>
       #bottom_border {
-        background-color: rgba(255,255,255,0.9); color: black;
-        top: 92px;
-        bottom: 0;        
-        left: 0;
-        right: 0;        
-        width: 100vw;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-bottom: 2px;
-        position: fixed;
-        z-index: 8;
-        text-overflow: ellipsis;        
+          background-color: rgba(255,255,255,0.9); color: black;
+          top: 92px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100vw;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-top: 20px;
+          padding-bottom: 2px;
+          position: fixed;
+          z-index: 8;
+          text-overflow: ellipsis;
       }
 
       #top_border {
-        font-family: 'Poor Story', cursive;
-        color:white;
-        background-color: rgba(255,255,255,0); color: white;        
-        left: 0;
-        top: 0;
-        right: 0;        
-        width: 100vw;
-        padding: 15px;
-        height: 92px;
-        position: fixed;
-        z-index: 8;
+          font-family: 'Poor Story', cursive;
+          color:white;
+          background-color: rgba(255,255,255,0); color: white;        
+          left: 0;
+          top: 0;
+          right: 0;        
+          width: 100vw;
+          padding: 15px;
+          height: 92px;
+          position: fixed;
+          z-index: 8;
       }
 
       hr {
-        padding: 0px;
-        margin-top: 5px;
-        margin-bottom: 5px;
+          padding: 0px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+      }
+
+      #comment_a2 {
+          position: relative;
+          margin:0px;
+          padding:0px;
+      }
+
+      p {          
+          padding: 0px;
+          margin-top: 1px;
+          margin-bottom: 1px;
+      }
+
+      #bird1_button, #bird2_button {
+        position: relative;
+        left: -10px;
       }
 
       #scroll {
           font-family: 'Noto Sans KR', sans-serif;
           position: absolute;
           top: 0px;
+      }
+
+      .topMenuText {
+          font-family: 'Noto Sans KR', sans-serif;
+          font-size: 16;
+          color: white;
       }
 
       #oScroll {
@@ -90,9 +113,7 @@
           overflow: auto;
       }      
 
-    </style>
-
-    
+    </style>    
 </head>
 <body>
   <div id="example-container" class="example-container">
@@ -105,18 +126,18 @@
           <div class="inner">        
             <img src="./assets/ex/inv_fr.jpg" id="front_image"/>
             <div class="scanline"></div>
-          </div>          
-    </div>    
+          </div>
+    </div>
   </div>
 
   <div id="top_border">
     <table border="0" cellpadding="2px" width="100%">
       <tr>
-        <td width="50px" align="center">          
-          <img src="./assets/ex/icon_bird1@3x.png" border="0" width="30px" id="bird1_button">
+        <td width="100px" align="center" class="topMenuText">
+          <li><a id="bird1_button"><b>전시 소개</b></a></li>
         </td>
-        <td width="50px" align="center">
-          <img src="./assets/ex/icon_bird2@3x.png" border="0" width="30px" id="bird2_button">
+        <td width="100px" align="center" class="topMenuText">
+          <li><a id="bird2_button"><b>작가 이력</b></a></li>
         </td>        
         <td></td>  
         <td align="center" style="color:white;" width="60px">
@@ -141,19 +162,11 @@
   </div>
   
   <div id="bottom_border" style="display:none;">
-    <div class="row" style="margin-bottom: 10px">        
+    <div class="row" style="margin-bottom: 10px">
         <div class="col-12 justify-content-center align-self-center">
           <pre id="oScroll" onmouseover="javascript:pauseScroll();">
             <div id="scroll"><span style="font-size:20px;color:#777" id="comment_a2"></span></div>
           </pre>
-          <img id="like_button" src="./assets/icon_heart.png" width="30px">
-          <hr size="1" width="100%" color="#BABABA">
-        </div>        
-        <div class="col-10 justify-content-center align-self-center eh_comment">
-            <span style="font-size:small;color:#000" id="comment_area"></span>
-        </div>
-        <div class="col-2 justify-content-center align-self-center text-center">
-          <img id="write_comment_button" src="./assets/ex/icon_write@3x.png" width="30px">
         </div>
         <div class="col-12 aplx_title">
           <hr size="1" width="100%" color="#BABABA">
@@ -161,38 +174,6 @@
           <br>
         </div>        
     </div>                                   
-  </div>
-
-  <div id="area_comment_writer" style="display: none;">
-    <div class="row">
-      <div class="col-12">
-        <font color="white">댓글쓰기</font>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <input type="text" class="form-control" name="commentInput" id="commentInput" size=10 placeholder="짧은 댓글을 남겨보세요 (25자 이내)"><br>
-      </div>         
-    </div>
-    <div class="row">
-       <div class="col-9">
-          <input type="text" class="form-control" name="nameInput" id="nameInput" size="5" placeholder="이름 (5자 이내)">
-        </div>        
-        <div class="col-3">
-          <button id="replyButton" type="button" class="btn btn-comment btn-block">쓰기</button>
-        </div>
-    </div>     
-    <div class="row">
-      <div class="col-12">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <hr>
-        <button id="closeButton" type="button" class="btn btn-comment btn-block">취소</button>
-      </div>
-    </div>
   </div>
   <script src="../aply/js/bootstrap.min.js"></script>
 </body>
