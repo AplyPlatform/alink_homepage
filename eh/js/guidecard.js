@@ -57,7 +57,6 @@ function updateMindSet() {
         pauseScroll();
     });
 
-    $("#oScroll").height(window.innerHeight - 180);
     setButtons();
     get_messages();
 }
@@ -106,6 +105,7 @@ function setPageAssets(docu_id) {
 
 
 function setFirstPage() {
+    $("#oScroll").height(window.innerHeight - 180);
     currrentPage = 0;
     playSound(1);
     pauseScroll();    
