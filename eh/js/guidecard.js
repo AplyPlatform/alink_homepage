@@ -99,7 +99,6 @@ function setPageAssets(docu_id) {
     mSel("#over_image").setAttribute("height", ratio + 0.02);
     mSel("#over_image").setAttribute("width", 1.02);
 
-    //mSel("#comment_a1").innerHTML = curContent.title;
     mSel("#comment_a2").innerHTML = curContent.content;
 }
 
