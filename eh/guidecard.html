@@ -34,16 +34,14 @@
     
     <style>
       #bottom_border {
-          background-color: rgba(255,255,255,0.9); color: black;
+          background-color: rgba(255,255,255,0.9);
+          color: black;
           top: 92px;
           bottom: 0;
           left: 0;
           right: 0;
           width: 100vw;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-top: 20px;
-          padding-bottom: 2px;
+          padding: 10px 10px 2px 10px;
           position: fixed;
           z-index: 8;
           text-overflow: ellipsis;
@@ -52,7 +50,7 @@
       #top_border {
           font-family: 'Poor Story', cursive;
           color:white;
-          background-color: rgba(255,255,255,0); color: white;        
+          background-color: rgba(255,255,255,0);        
           left: 0;
           top: 0;
           right: 0;        
@@ -63,11 +61,7 @@
           z-index: 8;
       }
 
-      hr {
-          padding: 0px;
-          margin-top: 5px;
-          margin-bottom: 5px;
-      }
+      hr {padding: 0px; margin-top: 5px; margin-bottom: 5px;}
 
       #comment_a2 {
           position: relative;
@@ -75,23 +69,20 @@
           padding:0px;
       }
 
-      p {          
-          padding: 0px;
-          margin-top: 1px;
-          margin-bottom: 1px;
-      }
-
       #bird1_button, #bird2_button {
-        position: relative;
-        left: -10px;
+          position: relative;
+          left: -10px;
       }
 
-      #scroll {
-          font-family: 'Noto Sans KR', sans-serif;
-          position: absolute;
-          top: 0px;
-      }
-
+      #scroll {line-height:1.5; font-family: 'Noto Sans KR', sans-serif; position: absolute; top: 0px;}
+      
+      #comment_a2 p {margin:0; padding:0;}
+      #comment_a2 ul {list-style:disc outside; margin:0 0 15px 0; padding:0 0 0 30px;}
+      #comment_a2 ol {list-style:disc outside; margin:0 0 15px 0; padding:0 0 0 30px;}
+      #comment_a2 li {padding:15px 5px 5px 5px; border-bottom:1px dotted #333; marign:0;}
+	  #comment_a2 hr {height:1px; border-top:1px solid #000; padding: 0px; margin-top: 5px; margin-bottom: 5px; color:#000;}
+	  #comment_a2 br {margin:0; padding:0;}
+	  
       .topMenuText {
           font-family: 'Noto Sans KR', sans-serif;
           font-size: 16;
@@ -100,18 +91,21 @@
 
       #oScroll {
           font-family: 'Noto Sans KR', sans-serif;
-          margin: 10px;
+          margin: 5px;
           margin-right: 25px;
+          margin-left: 0px;          
           padding: 5px;
+          padding-left: 3px;
           padding-right: 20px;
           position: relative;
           width: 98%;
           top: 0;
           bottom: 0;          
-          white-space: pre-wrap;
+          white-space:normal;
           word-break: break-all;
           overflow: auto;
       }      
+           
 
     </style>    
 </head>
@@ -163,14 +157,15 @@
   
   <div id="bottom_border" style="display:none;">
     <div class="row" style="margin-bottom: 10px">
+        <div class="col-12 text-right" style="padding-right:20px"><a id="close_button"><img src="./assets/ex/icon_close.png" border="0" width="30px"></a></div>
         <div class="col-12 justify-content-center align-self-center">
           <pre id="oScroll" onmouseover="javascript:pauseScroll();">
-            <div id="scroll"><span style="font-size:18px;color:#777" id="comment_a2"></span></div>
+            <div id="scroll"><span style="font-size:18px;color:#000" id="comment_a2"></span></div>
           </pre>
         </div>
         <div class="col-12 aplx_title">
-          <hr size="1" width="100%" color="#BABABA">
-          <font color="#969696">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
+          <hr size="1" width="100%" color="#000">
+          <font color="#000">POWERED BY <a href="https://aplx.aply.biz" target="_blank"><font color=#5657A6>APLX</font></a></font>
           <br>
         </div>        
     </div>                                   

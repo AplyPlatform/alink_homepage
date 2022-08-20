@@ -26,11 +26,18 @@ function updateMindSet() {
     setARContent(mindFileName);
 
     const setButtons = () => {
-        mSel("#bird1_button").addEventListener('click', function (evt) {       
-            setFirstPage();
+        mSel("#close_button").addEventListener('click', function (evt) {       
+            mSel("#bottom_border").style.display = 'none';
+            pauseScroll();
         });
 
-        mSel("#bird2_button").addEventListener('click', function (evt) {       
+        mSel("#bird1_button").addEventListener('click', function (evt) {
+            mSel("#bottom_border").style.display = 'block';
+            setFirstPage();            
+        });
+
+        mSel("#bird2_button").addEventListener('click', function (evt) {
+            mSel("#bottom_border").style.display = 'block';
             setSecondPage();
         });
 
@@ -53,8 +60,8 @@ function updateMindSet() {
     });
         
     sceneEl.addEventListener('targetLost', event => {
-        mSel("#bottom_border").style.display = 'none';
-        pauseScroll();
+        //mSel("#bottom_border").style.display = 'none';
+        //pauseScroll();   
     });
 
     setButtons();
@@ -104,7 +111,7 @@ function setPageAssets(docu_id) {
 
 
 function setFirstPage() {
-    $("#oScroll").height(window.innerHeight - 180);
+    $("#oScroll").height(window.innerHeight - 190);    
     currrentPage = 0;
     playSound(1);
     pauseScroll();    
@@ -113,7 +120,7 @@ function setFirstPage() {
 }
 
 
-function setSecondPage() {
+function setSecondPage() {    
     currrentPage = 1;
     playSound(1);
     pauseScroll();
@@ -178,11 +185,13 @@ function scroll(oid, iid) {
     this.move = function () {
         this.ele.style.top = this.n + "px";
         this.n--;
+
+        if ((-this.height) > (this.n - 10)) this.n = this.oCont.clientHeight;
     }
 }
 
 function startHistoryScroll() {
     isStop = false;
     vScroll = new scroll("oScroll", "scroll");
-    intervalHandle = setInterval("vScroll.move()", 30)
+    intervalHandle = setInterval("vScroll.move()", 30);
 }
