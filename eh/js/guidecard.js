@@ -181,7 +181,7 @@ function scroll(oid, iid) {
     this.oCont = document.getElementById(oid);
     this.ele = document.getElementById(iid);
     this.height = this.ele.clientHeight;
-    this.n = this.oCont.clientHeight;
+    this.n = this.oCont.clientHeight - 60;    
     this.move = function () {
         this.ele.style.top = this.n + "px";
         this.n--;
