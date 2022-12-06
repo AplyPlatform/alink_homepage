@@ -12110,28 +12110,11 @@ img.img-shadow,
     margin: 0;
 }
 
-.social-icons > li {
-    display: inline-block;
-    margin: 0 20px 0 0;
-}
-
-.social-icons > li > a {
-    font-size: .8125rem;
-    color: #222;
-}
-
-.social-icons > li > a:hover,
-.social-icons > li > a:focus {
-    color: #505cfd;
-}
-
-.social-icons.text-center > li {
-    margin: 0 10px 0 10px;
-}
-
-.social-icons.text-right > li {
-    margin: 0 0 0 20px;
-}
+.social-icons > li {display: inline-block; margin: 0 20px 0 0;}
+.social-icons > li > a {font-size: 1.25rem; color: #222;}
+.social-icons > li > a:hover, .social-icons > li > a:focus {color: #505cfd;}
+.social-icons.text-center > li {margin: 0 10px 0 10px;}
+.social-icons.text-right > li {margin: 0 0 0 20px;}
 
 .page-loader {
     background: #fff;

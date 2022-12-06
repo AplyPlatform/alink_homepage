@@ -90,9 +90,13 @@
                             <li><a href="#services"><span class="menu-item-span">Services</span></a></li>
                             <li><a href="#experience"><span class="menu-item-span">Experience</span></a></li>
                             <li><a href="#email-up"><span class="menu-item-span">CONTACT</span></a></li>
-                            <li><a href="./index_en.html"><span class="menu-item-span">English</span></a></li>
                         </ul>
-                    </div>
+                    </div>                    
+                </div>
+                <div class="extra-nav">
+                    <ul>
+                        <li><a href="./index_en.html"><span class="menu-item-span">English</span></a></li>
+                    </ul>
                 </div>
             </div>
         </header>
@@ -207,7 +211,7 @@
             <!-- About end-->
             
             <!-- Sercvices-->            
-             <section class="module bg-gray" id="services">
+             <section class="module bg-gray divider-top" id="services">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-9 m-auto text-center">
@@ -260,7 +264,7 @@
             </section>
 
             <!-- Experience-->
-            <section class="module" id="experience">
+            <section class="module divider-top" id="experience">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 m-auto text-center">
@@ -371,7 +375,9 @@
                                             <span class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
+                            </div>
+                            <div class="owl-carousel review-carousel">                                
                                 <div class="review-card">
                                     <div class="review-card-content">
                                         <p>정말 멋진 전시였고 전시 주제를 잘 느낄 수 있었다.</p>
@@ -409,12 +415,17 @@
             </section>
             
 			<!-- Contact us -->
-            <section class="module bg-gray" id="email-up">
+            <section class="module bg-gray divider-top" id="email-up">
                 <div class="container">
                 	<div class="row">
                         <div class="col-lg-6 col-md-9 m-auto text-center">
                             <h1>Contact us<span class="blinking-cursor">_</span></h1>
                             <p class="lead">분야를 먼저 선택하신 후 문의 내용을 작성해주세요. APLY가 곧 연락드리겠습니다.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="space" data-MY="40px"></div>
                         </div>
                     </div>
                     <form role="form" method="post" id="email_up">
@@ -486,10 +497,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
-                                <!-- Text widget-->
                                 <aside class="widget widget-text">
                                     <div class="widget-title">
-                                        <p><img src="aplx.png" width="40px" style="padding-bottom:3px">&nbsp; | &nbsp;<a href="https://aply.biz" target="_blank">APLY Inc.</a></p>
+                                        <p><img src="aplx.png" width="40px" style="padding-bottom:3px"><br /><a href="https://aply.biz" target="_blank">APLY Inc.</a></p>
                                     </div>
                                 </aside>
                             </div>
@@ -498,22 +508,20 @@
                                     <div class="textwidget">
                                         <p>
                                             02751 서울특별시 성북구 화랑로 11길, 폴라리스 5층  
-                                            <a href=mailto:contactus@aply.biz>contactus@aply.biz</a><br>                                            
-                                            <select id="selSites" class="select"
-                                                style="background-color: #333; color: #aaa; border-color: #888;"
-                                                onChange="changedSelector">
-                                                <option selected>Family site</option>
-                                                <option value="aply">APLY HOMEPAGE</option>
-                                                <option value="recruit">RECRUIT</option>
-                                                <option value="blog">BLOG</option>
+                                            <i class="fas fa-envelope"></i> <a href=mailto:contactus@aply.biz>contactus@aply.biz</a><br><br>                                        
+                                            <select id="selSites" class="form-control-sm" onChange="changedSelector">
+                                                <option selected>Family Sites</option>
+                                                <option value="aply">APLY Inc.</option>
+                                                <option value="recruit">Recruit</option>
+                                                <option value="blog">Blog</option>
                                                 <option>-------------------------------------</option>
                                                 <option value="duni">DUNI</option>
-                                                <option value="dunipilot">DUNI PILOT CENTER</option>
-                                                <option value="dunistock">DUNI STOCK</option>
+                                                <option value="dunipilot">DUNI Pilot Center</option>
+                                                <option value="dunistock">DUNI Stock</option>
                                                 <option>-------------------------------------</option>
-                                                <option value="dromi">DROMI</option>
+                                                <option value="dromi">Dromi</option>
                                                 <option value="dkdk">DKDK</option>
-                                                <option value="catchme">CATCHME</option>
+                                                <option value="catchme">CatchMe</option>
                                             </select>
                                         </p>
                                     </div>
@@ -525,13 +533,12 @@
                                         <ul class="social-icons">
                                             <li><a href="https://www.instagram.com/aplyplatform"><i class="fab fa-instagram"></i></a></li>
                                             <li><a href="https://www.facebook.com/APLYPLATFORM"><i class="fab fa-facebook-f"></i></a></li>                                            
-                                            <li><a href="https://kr.linkedin.com/company/aplyplatform" target=_new><i class="fab fa-linkedin"></i></a></li>
-                                            <li>
-                                                <div colorscheme="dark" class="fb-like" data-href="https://facebook.com/aplyplatform" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-width="100%" data-share="false">
-                                                </div>
-                                            </li>
+                                            <li><a href="https://kr.linkedin.com/company/aplyplatform" target=_new><i class="fab fa-linkedin"></i></a></li>                                                
+                                        
                                         </ul>
                                     </div>
+                                    <div colorscheme="dark" class="fb-like" data-href="https://facebook.com/aplyplatform" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-width="100%" data-share="false">
+                                                </div>
                                 </aside>    
                             </div>                            
                         </div>
