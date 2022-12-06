@@ -11319,12 +11319,7 @@ img.img-shadow,
     padding: 20px 0;
 }
 
-.icon-box .icon-box-icon {
-    font-size: 2.375rem;
-    margin: 0 0 10px;
-    color: #6770b0;
-    transition: all .3s ease-in-out;
-}
+.icon-box .icon-box-icon {font-size: 2.375rem; margin: 0 0 10px; color:#2a39fd; transition: all .3s ease-in-out;}
 
 .icon-box .icon-box-icon-wh {
     font-size: 1.375rem;
