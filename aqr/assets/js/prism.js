@@ -954,7 +954,7 @@ Prism.languages.js = Prism.languages.javascript;
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// execute inside handler, for dropping Event as argument
-		self.Prism.fileHighlight();
+		//self.Prism.fileHighlight();
 	});
 
 })();
