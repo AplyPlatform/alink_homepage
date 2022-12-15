@@ -7393,21 +7393,16 @@ a.text-white {
 .text-white {
   color: #fff !important; }
 
-.text-gray {
-  color: #6c757d !important; }
+.text-gray {color: #6c757d !important; }
 
-.text-gray-dark {
-  color: #343a40 !important; }
+.text-gray-dark {color: #343a40 !important; }
 
-.footer-long {
-  font-size: .875rem;
-  padding: 4.5rem 0 7.5rem 0; }
-  .footer-long .h5 {
-    margin-bottom: 3rem; }
+.footer-long {font-size: .875rem; padding: 4.5rem 0; }
+  .footer-long .h5 {margin-bottom: 3rem; }
 
 @media (max-width: 991.98px) {
-  .footer-long {
-    padding: 3rem 0; } }
+  .footer-long {padding: 3rem 0;}
+  }
 
 @media (max-width: 575.98px) {
   .footer-long .h5 {
