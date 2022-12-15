@@ -124,6 +124,7 @@
             <div class="col-12 col-md-8 col-lg-7 text-center">
               <h1 class="display-3">Ready, Set, Go.</h1>
               <span class="lead">Advanced QR, 쉬운 송금!</span>
+              <a class="btn btn-lg btn-success" href="https://aplx.link/register" target="_blank">나만의 QR 코드와 URL 만들기</a>
             </div>
           </div>
         </div>
@@ -165,7 +166,7 @@
                         <div class="step-circle mr-4">1</div>
                         <div class="media-body">
                           <h5>QR 인식 또는 URL 클릭하기</h5>
-                          <span>계좌번호를 일일이 확인하며 입력할 필요가 없습니다.</span>
+                          <span>AQR에서 제공하는 고유 QR을 인식하거나 URL을 클릭하세요.</span>
                         </div>
                       </div>
                     </div>
@@ -178,7 +179,7 @@
                         <div class="step-circle mr-4">2</div>
                         <div class="media-body">
                           <h5>계좌번호 복사하기</h5>
-                          <span>터치 한 번이면 OK!</span>
+                          <span>계좌번호를 일일이 확인하며 입력할 필요가 없습니다. 터치 한 번이면 OK!</span>
                         </div>
                       </div>
                     </div>
@@ -191,7 +192,7 @@
                         <div class="step-circle mr-4">3</div>
                         <div class="media-body">
                           <h5>뱅킹 앱 열기</h5>
-                          <span>이제 단순 터치 몇 번으로 송금하세요.</span>
+                          <span>내가 자주 쓰는 뱅킹 앱을 열어서 안전하게 송금하세요.</span>
                         </div>
                       </div>
                     </div>
@@ -224,7 +225,7 @@
                 	</div>
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-5">                
+              <div class="col-12 col-md-6 col-lg-5 text-center">                
                 <p data-aos="fade-up" data-aos-delay="150">스마트폰에서 QR를 인식하거나 URL을 클릭하여 간편하게 송금할 수 있습니다.</p>                
                 <a class="btn btn-lg btn-success" href="https://aplx.link/register" target="_blank">나만의 QR 코드와 URL 만들기</a>
               </div>
@@ -293,25 +294,24 @@
 
           <ul class="feature-list feature-list-xlg">
             <li class="row align-items-center justify-content-around">
-              <div class="col-12 col-md-6 order-md-2 mt-4">
-                <p class="lead">예시 <pre><code class="language-pug">https://aplx.link/q/a?id=123456789&price=15000</code></pre></p>
-              </div>
               <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
                 <i class="icon-folder-music text-teal display-3"></i>
                 <h3 class="h1">고유 URL 서비스</h3>                          
-                <p>고유 URL을 수정하여 서비스 화면에 가격을 표시할 수 있습니다.<br />주소의 마지막에 "&price=[가격]"을 입력해 보세요.</p>
+                <p>고유 URL을 수정하여 서비스 화면에 가격을 표시할 수 있습니다.<br /><span class="step-circle step-circle-sm">1</span> 주소의 마지막에 "&price=[가격]"을 입력해 보세요.</p>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 mt-4">
+                <p class="lead"><span class="step-circle step-circle-sm">1</span> 예시 <pre><code class="language-pug">https://aplx.link/q/a?id=123456789&price=15000</code></pre></p>
               </div>
             </li>
             <li class="row align-items-center justify-content-around">
-              <div class="col-12 col-md-6 order-md-2 mt-4">
-                <p class="lead">예시 <pre><code class="language-pug">https://aplx.link/to/aply/15000</code></pre></p>
-                <p class="lead">예시 <pre><code class="language-pug">https://aplx.link/to/aply?price=15000</code></pre></p>
-              </div>
               <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
                 <i class="icon-folder-music text-teal display-3"></i>
                 <h3 class="h1">고급 고유 URL 서비스<span class="small">(준비 중)</span></h3>                          
-                <p>고급 고유 URL을 수정하여 서비스 화면에 가격을 표시할 수 있습니다.<br />주소의 마지막에 "/[가격]"을 입력해 보세요.<br >또는 "?price=[가격]"을 입력하셔도 됩니다.</p>
-                
+                <p>고급 고유 URL을 수정하여 서비스 화면에 가격을 표시할 수 있습니다.<br /><span class="step-circle step-circle-sm">2</span> 주소의 마지막에 "/[가격]"을 입력해 보세요.<br />또는<br /><span class="step-circle step-circle-sm ">3</span>"?price=[가격]"을 입력하셔도 됩니다.</p>                
+              </div>
+              <div class="col-12 col-md-6 order-md-2 mt-4">
+                <p class="lead"><span class="step-circle step-circle-sm">2</span> 예시 <pre><code class="language-pug">https://aplx.link/to/aply/15000</code></pre></p>
+                <p class="lead"><span class="step-circle step-circle-sm">3</span> 예시 <pre><code class="language-pug">https://aplx.link/to/aply?price=15000</code></pre></p>
               </div>
             </li>
           </ul>
@@ -329,30 +329,29 @@
             </div>
             <form role="form" method="post" id="email_up">
             <div class="row mt-4">              
-                  <div class="row">
                       <div class="col-lg-12">
                           <div class="form-group">
                               <div class="form-control" style="padding-bottom:.05rem;">
-                                  <div class="row">
-                                      <div class="col-lg-3 p-b-10">
-                                          <input type="checkbox" id="min_type_1" name="min_type_1" value="SW개발"> 
-                                          <label class="lab_check" for="min_type_1"><span class="checkbox"></span> &nbsp;SW 개발</label>
-                                      </div>                                            
-                                      <div class="col-lg-3 p-b-10">
-                                          <input type="checkbox" id="min_type_2" name="min_type_2" value="제휴">
-                                          <label class="lab_check" for="min_type_2"><span class="checkbox"></span> &nbsp;제휴 및 협업</label>
-                                      </div>
-                                      <div class="col-lg-3 p-b-10">
-                                          <input type="checkbox" id="min_type_3" name="min_type_3" value="서비스">
-                                          <label class="lab_check" for="min_type_3"><span class="checkbox"></span> &nbsp;서비스 적용</label>
-                                      </div>
-                                      <div class="col-lg-3 p-b-10">
-                                          <input type="checkbox" id="min_type_4" name="min_type_4" value="기타">
-                                          <label class="lab_check" for="min_type_4"><span class="checkbox"></span> &nbsp;기타 문의</label>
-                                      </div>                                                    
-                                  </div>
-                              </div>
+                              <div class="row">
+                                <div class="col-3 p-b-10">
+                                    <input type="checkbox" id="min_type_1" name="min_type_1" value="SW개발"> 
+                                    <label class="lab_check" for="min_type_1"><span class="checkbox"></span> &nbsp;SW 개발</label>
+                                </div>                                            
+                                <div class="col-3 p-b-10">
+                                    <input type="checkbox" id="min_type_2" name="min_type_2" value="제휴">
+                                    <label class="lab_check" for="min_type_2"><span class="checkbox"></span> &nbsp;제휴 및 협업</label>
+                                </div>
+                                <div class="col-3 p-b-10">
+                                    <input type="checkbox" id="min_type_3" name="min_type_3" value="서비스">
+                                    <label class="lab_check" for="min_type_3"><span class="checkbox"></span> &nbsp;서비스 적용</label>
+                                </div>
+                                <div class="col-3 p-b-10">
+                                    <input type="checkbox" id="min_type_4" name="min_type_4" value="기타">
+                                    <label class="lab_check" for="min_type_4"><span class="checkbox"></span> &nbsp;기타 문의</label>
+                                </div>
+                        	  </div>
                               <p class="help-block text-danger"></p>
+                              </div>
                           </div>
                       </div>                            
                       <div class="col-lg-6">
@@ -386,7 +385,6 @@
                           <input name="form_kind" id="form_kind" type="hidden" value="recruit">
                       </div>
                   </div>              
-            </div>
             </form>
         </div>
       </section>
@@ -399,18 +397,13 @@
               <h3 class="h2" data-aos="fade-up">증강현실 기반의 전시/홍보/커뮤니케이션 플랫폼</h3>
               <a href="https://aplx.aply.biz/" class="btn btn-lg btn-success" data-aos="fade-up">Go to APLX</a>
             </div>
-            <!--end of col-->
           </div>
-          <!--end of row-->
           <div class="row">
             <div class="col-12">
               <img alt="Image" class="w-100 opacity-60" src="assets/img/graphic-bg-city.svg" />
             </div>
-            <!--end of col-->
           </div>
-          <!--end of row-->
         </div>
-        <!--end of container-->
       </section>
       
 		<footer class="bg-gray text-light footer-long">
@@ -484,8 +477,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">(주)어플라이 개인정보 처리방침</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
                     <p>주식회사 어플라이(이하 '회사')는 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은
