@@ -76,10 +76,13 @@ function sendApplicationData(form_id, token)
 	$(form_id).append(ref);	
 	ref = $('<input type="hidden" value="' + min_type + '" name="min_type">');	
 	$(form_id).append(ref);	
-	ref = $('<input type="hidden" value="arinkcontact" name="form_kind">');	
+	ref = $('<input type="hidden" value="aqrcontact" name="form_kind">');	
 	$(form_id).append(ref);
 		
 	let sed = new FormData($(form_id)[0]);
+
+	$("#email_up_send").hide();
+	$("#sending_progress").show();
 
 	$.ajax({
 		type: "POST",
@@ -94,11 +97,14 @@ function sendApplicationData(form_id, token)
 		success: function (data) {
 			if (data.result == "success") {
 				showDialog("전송이 완료되었습니다. APLY가 연락 드리겠습니다.", function(){
-					location.href = "index.html";
-				});				
+					location.href = "./index.html";
+					return;
+				});
 			}
 			else {
 				showDialog("오류가 발생하였습니다. 잠시 후 다시 시도해 주세요. : " + data.message , null);
+				$("#email_up_send").show();
+				$("#sending_progress").hide();
 			}
 
 			$(form_id + " input").last().remove();
@@ -111,6 +117,9 @@ function sendApplicationData(form_id, token)
 			if ($('div').is('.page-loader')) {
 				$('.page-loader').delay(200).fadeOut(800);
 			}
+
+			$("#email_up_send").show();
+			$("#sending_progress").hide();
 		}
 	});
 }
