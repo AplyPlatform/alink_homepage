@@ -86,7 +86,7 @@ function sendApplicationData(form_id, token)
 
 	$.ajax({
 		type: "POST",
-		url: 'https://aply.biz/aplx_handler/arinkcontact.php',
+		url: 'https://aply.biz/contact/handler.php',
 		crossDomain: true,
 		dataType: "json",
 		data:sed,
