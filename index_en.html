@@ -57,6 +57,11 @@
     <link href="assets/css/plugins.min.css" rel="stylesheet">
     <!-- Template core CSS-->
     <link href="assets/css/template.css" rel="stylesheet">
+    <style>
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+    </style>
     <script src='https://www.google.com/recaptcha/api.js?render=6LfPn_UUAAAAAN-EHnm2kRY9dUT8aTvIcfrvxGy7'></script>
     </head>
     <body>
@@ -360,8 +365,11 @@
                                 <hr class="m-b-30 m-t-30">
     
                                 <div class="text-center">
-                                    <input class="btn btn-circle btn-brand" id="email_up_send" type="submit"
+                                    <input class="btn btn-circle btn-brand btn-block" id="email_up_send" type="submit"
                                         value="Send">
+                                    This site is protected by reCAPTCHA and the Google
+                                        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                                        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
                                 </div>
                                 <input type="hidden" name="form_token" id="form_token">
                                 <input name="form_kind" id="form_kind" type="hidden" value="recruit">
@@ -401,13 +409,6 @@
                                                 <option value="recruit">RECRUIT</option>
                                                 <option value="blog">BLOG</option>
                                                 <option>-------------------------------------</option>
-                                                <option value="duni">DUNI</option>
-                                                <option value="dunipilot">DUNI PILOT CENTER</option>
-                                                <option value="dunistock">DUNI STOCK</option>
-                                                <option>-------------------------------------</option>
-                                                <option value="dromi">DROMI</option>
-                                                <option value="dkdk">DKDK</option>
-                                                <option value="drdr">DRDR</option>
                                             </select>
                                         </p>
                                         <ul class="social-icons">

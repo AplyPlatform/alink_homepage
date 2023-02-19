@@ -54,6 +54,11 @@
     	<link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
     	<script src='https://www.google.com/recaptcha/api.js?render=6LfPn_UUAAAAAN-EHnm2kRY9dUT8aTvIcfrvxGy7'></script>
     	<script src="https://kit.fontawesome.com/3bc6b6ae05.js" crossorigin="anonymous"></script>
+      <style>
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+      </style>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -489,8 +494,9 @@
                           <a href="javascript:showPrivacyDialog();">개인정보 처리방침</a> 동의 <span class="required">(필수)</span></label></p>
                                       
                           <div class="text-center">
-                              <input class="btn btn-lg btn-success" id="email_up_send" type="submit" value="문의하기">
+                              <input class="btn btn-block btn-lg btn-success" id="email_up_send" type="submit" value="문의하기">
                               <span id="sending_progress" style="display:none;">전송중...</span>
+                              이 사이트는 reCAPTCHA의 보호를 받으며 Google <a href='https://policies.google.com/privacy' target='_blank'>개인 정보 보호 정책</a> 및 <a href='https://policies.google.com/terms' target='_blank'>서비스 약관</a>이 적용됩니다.</a>
                           </div>
                           <input type="hidden" name="form_token" id="form_token">
                       </div>
