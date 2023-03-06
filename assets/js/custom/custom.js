@@ -20,7 +20,7 @@
 
     const targetsInfo = [
         ["aply", "https://aply.biz/"],
-        ["aqr", "https://aplx.aply.biz/aqr"],
+        ["aqr", "https://aqr.aplx.link"],
         ["recruit", "https://home.aply.biz/recruit/index.html"],
         ["duni", "https://duni.io"],
         ["dunipilot", "https://pilot.duni.io"],
