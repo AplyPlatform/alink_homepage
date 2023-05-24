@@ -116,7 +116,11 @@ function ajaxRequest(fed, form_id) {
     	contentType: false,
     	cache: false,
 		success: function (data) {
-			if (data.result == "success") {
+			if ($('div').is('.page-loader')) {
+				$('.page-loader').delay(200).fadeOut(800);
+			}
+
+			if (data.result == "success") {				
 				showDialog("전송이 완료되었습니다. APLY가 연락 드리겠습니다.", function(){
 					location.href="/index.html";
 				});
@@ -126,10 +130,7 @@ function ajaxRequest(fed, form_id) {
 				showDialog("오류가 발생하였습니다. 잠시 후 다시 시도해 주세요. : " + data.message , null);
 			}
 
-			$(form_id + " input").last().remove();
-			if ($('div').is('.page-loader')) {
-				$('.page-loader').delay(200).fadeOut(800);
-			}
+			$(form_id + " input").last().remove();			
 		},
 		error: function(jqXHR, text, error){
 			showDialog("죄송합니다, 일시적인 오류가 발생하였습니다. 다시 시도 부탁드립니다.", null);
