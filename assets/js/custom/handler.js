@@ -19,14 +19,14 @@ function showPrivacyDialog() {
 }
 
 const showPrivacy = () => {
-    $('#modal_title_content').text("AQR 개인정보처리방침");
+    $('#modal_title_content').text("APLY 개인정보처리방침");
     $('#modal_body_content').load("privacy.html");
     $('#modal-3').modal({"show" : true});
 };
 
 
 var appSent = false;
-function sendApplicationData(form_id, token)
+function sendApplicationData(form_id)
 {
 	let min_type = "";
 	if ($(form_id).find('input[name="min_type_1"]').is(":checked")) {
@@ -44,6 +44,14 @@ function sendApplicationData(form_id, token)
 	if ($(form_id).find('input[name="min_type_4"]').is(":checked")) {
 		min_type = min_type + "/기타 문의";
 	}
+
+	if (min_type == "") {
+		showDialog("문의 종류를 선택해 주세요.", null);		
+		if ($('div').is('.page-loader')) {
+			$('.page-loader').delay(200).fadeOut(800);
+		}
+		return false;
+	}	
 
 	let form_content = $("#form_content").val();
 	if (form_content == "") {
@@ -78,9 +86,7 @@ function sendApplicationData(form_id, token)
 			$('.page-loader').delay(200).fadeOut(800);
 		}
 		return false;
-	}
-
-	$(form_id).find('input[name="form_token"]').val(token);
+	}	
 	
 	let ref = $('<input type="hidden" value="' + document.referrer + '" name="ref">');	
 	$(form_id).append(ref);	
@@ -88,24 +94,33 @@ function sendApplicationData(form_id, token)
 	$(form_id).append(ref);	
 	ref = $('<input type="hidden" value="arinkcontact" name="form_kind">');	
 	$(form_id).append(ref);
-		
-	let sed = new FormData($(form_id)[0]);
 
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LfPn_UUAAAAAN-EHnm2kRY9dUT8aTvIcfrvxGy7', {action: 'homepage'}).then(function(token) {
+			$(form_id).find('input[name="form_token"]').val(token);
+			let fed = new FormData($(form_id)[0]);
+		   	ajaxRequest(fed, form_id);
+		});
+	});	
+}
+
+function ajaxRequest(fed, form_id) {
 	$.ajax({
 		type: "POST",
 		url: 'https://aply.biz/contact/handler.php',
 		crossDomain: true,
 		dataType: "json",
-		data:sed,
+		data:fed,
 		enctype: 'multipart/form-data', // 필수
 		processData: false,
-    contentType: false,
-    cache: false,
+    	contentType: false,
+    	cache: false,
 		success: function (data) {
 			if (data.result == "success") {
 				showDialog("전송이 완료되었습니다. APLY가 연락 드리겠습니다.", function(){
 					location.href="/index.html";
-				});				
+				});
+				return;
 			}
 			else {
 				showDialog("오류가 발생하였습니다. 잠시 후 다시 시도해 주세요. : " + data.message , null);
@@ -140,12 +155,8 @@ function setSubmitHandler(form_p_id) {
 		}
 
 		$('.page-loader').show();
-		
-		grecaptcha.ready(function() {
-	      grecaptcha.execute('6LfPn_UUAAAAAN-EHnm2kRY9dUT8aTvIcfrvxGy7', {action: 'homepage'}).then(function(token) {
-	         sendApplicationData(form_id, token);
-	      });
-	  });
+				
+	    sendApplicationData(form_id);	    
 	});
 
 	$('[name^=form_phone]').keypress(validateNumber);
