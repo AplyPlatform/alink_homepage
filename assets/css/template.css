@@ -13940,6 +13940,7 @@ img.img-shadow,
 .footer .form-control {
     background: #1d1d1d;
     border-color: #1c1c1c;
+    color: #aaa;
 }
 
 .footer-widgets {
